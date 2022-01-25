@@ -6,5 +6,7 @@ public interface AuthService {
 	
 	User register(User user); 
 	
+	User findUserByUsername(String username);
+	
 
 }

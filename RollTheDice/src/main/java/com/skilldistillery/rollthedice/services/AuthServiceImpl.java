@@ -17,5 +17,10 @@ public class AuthServiceImpl implements AuthService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public User findUserByUsername(String username) {
+		return userRepo.findByUsername(username);
+	}
 
 }
