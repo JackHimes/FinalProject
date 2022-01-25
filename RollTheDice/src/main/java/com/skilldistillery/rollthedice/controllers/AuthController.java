@@ -15,7 +15,7 @@ import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.services.AuthService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost:4200"})
+@CrossOrigin({"*", "http://localhost:4300"})
 public class AuthController {
 	
 	@Autowired
