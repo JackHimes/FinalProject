@@ -388,7 +388,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rollthedicedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (1, 'admin', '$2a$10$zHd.Ca6BmYwL3sO0oJm79uYjVH4z1RcDlRXcbyVsdfdhF5S6V.YCi', 'Lavender', 'Cupcake', 'admin@admin.com', 'https://i.ytimg.com/vi/d-ABIIZV3vA/maxresdefault.jpg', 1, 'ROLE_ADMIN', NULL, 'I\'m an admin and my name is Johnny.');
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (1, 'admin', '$2a$10$zHd.Ca6BmYwL3sO0oJm79uYjVH4z1RcDlRXcbyVsdfdhF5S6V.YCi', 'Lavender', 'Cupcake', 'admin@admin.com', 'https://i.ytimg.com/vi/d-ABIIZV3vA/maxresdefault.jpg', 1, 'ROLE_ADMIN', 1, 'I\'m an admin and my name is Johnny.');
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (2, 'charlie', 'charlie', 'Charlie', 'Day', 'charlie@paddys.com', 'https://www.nme.com/wp-content/uploads/2017/03/Screen-Shot-2017-03-16-at-16.00.59-696x442.png', 1, 'user', NULL, 'I can\'t read.');
 
 COMMIT;
