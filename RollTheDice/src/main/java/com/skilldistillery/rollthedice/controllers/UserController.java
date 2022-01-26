@@ -45,7 +45,7 @@ public class UserController {
 	@PostMapping("users")
 	public User createUser(HttpServletRequest req, HttpServletResponse res, Principal principal, @RequestBody User user) {
 		try {
-			user = userService.createUser(principal.getName(), user);
+			userService.createUser(principal.getName(), user);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(user.getId());

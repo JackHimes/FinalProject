@@ -47,9 +47,11 @@ public class GameEvent {
 
 	private String title;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="gameEvent")
 	private List<Comment> comments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="gameEvent")
 	private List<Review> reviews;
 	
