@@ -12,7 +12,7 @@
 	<class>com.skilldistillery.rollthedice.entities.Review</class>
 	<class>com.skilldistillery.rollthedice.entities.Genre</class>
 	<class>com.skilldistillery.rollthedice.entities.Game</class>
-	<class>com.skilldistillery.rollthedice.entities.EventTags</class>
+	<class>com.skilldistillery.rollthedice.entities.EventTag</class>
 	
 
 		<properties>

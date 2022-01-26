@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="event_tags")
-public class EventTags {
+@Table(name="event_tag")
+public class EventTag {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +62,7 @@ public class EventTags {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EventTags other = (EventTags) obj;
+		EventTag other = (EventTag) obj;
 		return id == other.id;
 	}
 	
