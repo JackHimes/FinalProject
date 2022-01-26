@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -33,6 +38,27 @@ public class User {
 	
 	@Column(name="profile_picture_url")
 	private String profilePictureUrl;
+	
+	@ManyToMany(mappedBy="users")
+	private List<Address> addresses;
+	
+	@OneToOne
+	@JoinColumn(name="address_id")
+	private Address homeAddress;
+	
+	@ManyToMany
+	@JoinTable(name="user_has_event",
+		joinColumns=@JoinColumn(name="user_id"),
+				inverseJoinColumns=@JoinColumn(name="event_id")
+	)
+	private List<GameEvent> gameEvents;
+	
+	@ManyToMany(mappedBy="users")
+	private List<Game> games;
+	
+	
+	
+	
 
 	public User() {
 		super();
