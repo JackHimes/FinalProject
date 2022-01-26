@@ -25,8 +25,6 @@ public class GameEvent {
 	@Column(name = "max_number_of_guests")
 	private int maxNumberOfGuests;
 
-	private boolean alcohol;
-
 	private boolean enabled;
 
 	@Column(name = "start_time")
@@ -54,13 +52,6 @@ public class GameEvent {
 		this.id = id;
 	}
 
-	public boolean isAlcohol() {
-		return alcohol;
-	}
-
-	public void setAlcohol(boolean alcohol) {
-		this.alcohol = alcohol;
-	}
 
 	public LocalDate getDateOfEvent() {
 		return dateOfEvent;
@@ -128,8 +119,8 @@ public class GameEvent {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(alcohol, dateOfEvent, description, enabled, endTime, id, imageUrl, maxNumberOfGuests,
-				startTime, title);
+		return Objects.hash(dateOfEvent, description, enabled, endTime, id, imageUrl, maxNumberOfGuests, startTime,
+				title);
 	}
 
 	@Override
@@ -141,18 +132,17 @@ public class GameEvent {
 		if (getClass() != obj.getClass())
 			return false;
 		GameEvent other = (GameEvent) obj;
-		return alcohol == other.alcohol && Objects.equals(dateOfEvent, other.dateOfEvent)
-				&& Objects.equals(description, other.description) && enabled == other.enabled
-				&& Objects.equals(endTime, other.endTime) && id == other.id && Objects.equals(imageUrl, other.imageUrl)
-				&& maxNumberOfGuests == other.maxNumberOfGuests && Objects.equals(startTime, other.startTime)
-				&& Objects.equals(title, other.title);
+		return Objects.equals(dateOfEvent, other.dateOfEvent) && Objects.equals(description, other.description)
+				&& enabled == other.enabled && Objects.equals(endTime, other.endTime) && id == other.id
+				&& Objects.equals(imageUrl, other.imageUrl) && maxNumberOfGuests == other.maxNumberOfGuests
+				&& Objects.equals(startTime, other.startTime) && Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
 		return "GameEvent [id=" + id + ", dateOfEvent=" + dateOfEvent + ", maxNumberOfGuests=" + maxNumberOfGuests
-				+ ", alcohol=" + alcohol + ", enabled=" + enabled + ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", imageUrl=" + imageUrl + ", description=" + description + ", title=" + title + "]";
+				+ ", enabled=" + enabled + ", startTime=" + startTime + ", endTime=" + endTime + ", imageUrl="
+				+ imageUrl + ", description=" + description + ", title=" + title + "]";
 	}
 
 }
