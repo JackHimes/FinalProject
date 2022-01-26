@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Game {
@@ -30,6 +34,25 @@ public class Game {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@ManyToMany
+	@JoinTable(name="game_event_has_game",
+			joinColumns=@JoinColumn(name="game_id"),
+			inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> users;
+
+	@ManyToMany
+	@JoinTable(name="user_has_game",
+	joinColumns=@JoinColumn(name="game_id"),
+	inverseJoinColumns=@JoinColumn(name="game_event_id"))
+	private List<GameEvent> gameEvents;
+	
+	@ManyToMany(mappedBy="games")
+	private List<Genre> genres;
+
+	public Game() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -85,6 +108,30 @@ public class Game {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<GameEvent> getGameEvents() {
+		return gameEvents;
+	}
+
+	public void setGameEvents(List<GameEvent> gameEvents) {
+		this.gameEvents = gameEvents;
+	}
+
+	public List<Genre> getGenres() {
+		return genres;
+	}
+
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override
