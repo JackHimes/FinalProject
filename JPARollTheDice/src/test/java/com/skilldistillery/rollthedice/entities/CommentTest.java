@@ -46,5 +46,17 @@ class CommentTest {
 		assertNotNull(comment);
 		assertEquals("I'll bring a bottle of preseco!", comment.getMessage());
 	}
+	@Test
+	void test_Comment_User_relational_mapping() {
+		assertNotNull(comment);
+		assertNotNull(comment.getUser());
+		assertEquals("admin@admin.com", comment.getUser().getEmail());
+	}
+	@Test
+	void test_Comment_GameEvent_relational_mapping() {
+		assertNotNull(comment);
+		assertNotNull(comment.getGameEvent());
+		assertEquals("Best Game Night", comment.getGameEvent().getTitle());
+	}
 
 }
