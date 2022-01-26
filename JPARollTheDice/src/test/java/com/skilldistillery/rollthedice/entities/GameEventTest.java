@@ -47,5 +47,53 @@ class GameEventTest {
 		assertNotNull(gameEvent);
 		assertEquals("Best Game Night", gameEvent.getTitle());
 	}
+	
+	@Test
+	void test_GameEvent_Comment_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("I'll bring a bottle of preseco!", gameEvent.getComments().get(0).getMessage());
+		assertTrue(gameEvent.getComments().size() > 0);
+	}
+	
+	@Test
+	void test_GameEvent_Reviews_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals(5, gameEvent.getReviews().get(0).getRating());
+		assertTrue(gameEvent.getReviews().size() > 0);	
+	}
+	
+	@Test
+	void test_GameEvent_Games_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("Ticket to Ride", gameEvent.getGames().get(0).getName());
+		assertTrue(gameEvent.getGames().size() > 0);
 
+		
+	}
+	
+	@Test
+	void test_GameEvent_EventTag_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("Alcohol Friendly", gameEvent.getEventTags().get(0).getName());
+
+	}
+	
+	@Test
+	void test_GameEvent_User_OneToOneHost_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("Lavender", gameEvent.getHost().getFirstName());
+	}
+	
+	@Test
+	void test_GameEvent_User_ManyToManyGuest_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertNotNull(gameEvent.getGuests());
+		assertTrue(gameEvent.getGuests().size() > 0);
+	}
+	
+	@Test
+	void test_GameEvent_OneToOne_Address_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("1234 Main St", gameEvent.getAddress().getAddress());
+	}
 }
