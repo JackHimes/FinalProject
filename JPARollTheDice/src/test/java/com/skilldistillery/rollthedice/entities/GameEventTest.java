@@ -47,5 +47,32 @@ class GameEventTest {
 		assertNotNull(gameEvent);
 		assertEquals("Best Game Night", gameEvent.getTitle());
 	}
+	
+	@Test
+	void test_GameEvent_Comment_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("I'll bring a bottle of preseco!", gameEvent.getComments().get(0).getMessage());
+		assertTrue(gameEvent.getComments().size() > 0);
+	}
+	
+	@Test
+	void test_GameEvent_Reviews_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals(5, gameEvent.getReviews().get(0).getRating());
+		assertTrue(gameEvent.getReviews().size() > 0);	
+	}
+	
+	@Test
+	void test_GameEvent_Games_relationship_mapping() {
+		assertNotNull(gameEvent);
+		assertEquals("Ticket to Ride", gameEvent.getGames().get(0).getName());
+		assertEquals(5, gameEvent.getGames().get(0).getMaxPlayers());
+		
+	}
+	
+	@Test
+	void test_GameEvent_EventTag_relationship_mapping() {
+		assertNotNull(gameEvent);
+	}
 
 }
