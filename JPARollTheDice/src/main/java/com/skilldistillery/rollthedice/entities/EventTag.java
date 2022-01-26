@@ -1,11 +1,15 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,12 @@ public class EventTag {
 	private String name;
 	
 	private String description;
+	
+	@ManyToMany
+	@JoinTable(name="event_tags_has_game_event",
+					joinColumns=@JoinColumn(name="event_tags_id"),
+					inverseJoinColumns=@JoinColumn(name="game_event_id"))
+	private List<GameEvent> gameEvents;
 
 	public int getId() {
 		return id;

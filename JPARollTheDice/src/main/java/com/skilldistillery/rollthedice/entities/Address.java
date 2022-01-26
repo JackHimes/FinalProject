@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Address {
@@ -23,6 +27,17 @@ public class Address {
 	
 	@Column(name="postal_code")
 	private String postalCode;
+	
+	@ManyToMany
+	@JoinTable(name="favorite_venues",
+			joinColumns=@JoinColumn(name="address_id"),
+			inverseJoinColumns=@JoinColumn(name="user_id"))
+	private List<User> users;
+	
+	
+	public Address() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -62,6 +77,14 @@ public class Address {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override
