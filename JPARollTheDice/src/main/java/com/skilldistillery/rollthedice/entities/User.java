@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -53,16 +54,15 @@ public class User {
 	)
 	private List<GameEvent> gameEvents;
 	
+	
 	@ManyToMany(mappedBy="users")
 	private List<Game> games;
 	
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
 	
-	@ManyToMany
-	@JoinTable(name="friends",
-		joinColumns=@JoinColumn(name="user_id"),
-				inverseJoinColumns=@JoinColumn(name="friend_id")
-	)
-	private List<User> friends;
+	@OneToMany(mappedBy="user")
+	private List<Review> reviews;
 	
 
 	public User() {
@@ -140,7 +140,8 @@ public class User {
 	public void setProfilePictureUrl(String profilePictureUrl) {
 		this.profilePictureUrl = profilePictureUrl;
 	}
-
+	
+	
 	public List<Address> getAddresses() {
 		return addresses;
 	}
@@ -173,12 +174,20 @@ public class User {
 		this.games = games;
 	}
 
-	public List<User> getFriends() {
-		return friends;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
-	public void setFriends(List<User> friends) {
-		this.friends = friends;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override
@@ -202,7 +211,9 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", profilePictureUrl=" + profilePictureUrl + "]";
+				+ ", profilePictureUrl=" + profilePictureUrl + ", addresses=" + addresses + ", homeAddress="
+				+ homeAddress + ", gameEvents=" + gameEvents + ", games=" + games + ", comments=" + comments
+				+ ", reviews=" + reviews + "]";
 	}
 
 }
