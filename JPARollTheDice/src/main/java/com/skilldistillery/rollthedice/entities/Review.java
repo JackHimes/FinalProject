@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -24,6 +26,14 @@ public class Review {
 
 //	@Column(name = "rating")
 	private Integer rating;
+	
+	@ManyToOne
+	@JoinColumn(name = "event_id")
+	private GameEvent gameEvent;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Review() {
 		super();
@@ -59,6 +69,24 @@ public class Review {
 
 	public void setRating(Integer rating) {
 		this.rating = rating;
+	}
+	
+	
+
+	public GameEvent getGameEvent() {
+		return gameEvent;
+	}
+
+	public void setGameEvent(GameEvent gameEvent) {
+		this.gameEvent = gameEvent;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
