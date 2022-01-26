@@ -1,6 +1,7 @@
 package com.skilldistillery.rollthedice.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,6 +44,7 @@ class CommentTest {
 	@Test
 	void test_Comment_entity_mapping() {
 		assertNotNull(comment);
+		assertEquals("I'll bring a bottle of preseco!", comment.getMessage());
 	}
 
 }
