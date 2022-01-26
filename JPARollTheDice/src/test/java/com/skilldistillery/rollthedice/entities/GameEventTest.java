@@ -45,7 +45,7 @@ class GameEventTest {
 	@Test
 	void test_GameEvent_entity_mapping() {
 		assertNotNull(gameEvent);
-		assertEquals("", gameEvent.getTitle());
+		assertEquals("Best Game Night", gameEvent.getTitle());
 	}
 
 }
