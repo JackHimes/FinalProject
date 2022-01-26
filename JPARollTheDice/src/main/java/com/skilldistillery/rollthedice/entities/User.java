@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
@@ -47,12 +49,16 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address homeAddress;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="user_has_event",
 		joinColumns=@JoinColumn(name="user_id"),
 				inverseJoinColumns=@JoinColumn(name="event_id")
 	)
 	private List<GameEvent> gameEvents;
+	
+	@OneToMany(mappedBy="host")
+	private List<GameEvent> hostedGameEvents;
 	
 	
 	@ManyToMany(mappedBy="users")
@@ -64,6 +70,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="friends",
 		joinColumns=@JoinColumn(name="user_id"),
@@ -170,6 +177,16 @@ public class User {
 
 	public void setGameEvents(List<GameEvent> gameEvents) {
 		this.gameEvents = gameEvents;
+	}
+	
+	
+
+	public List<GameEvent> getHostedGameEvents() {
+		return hostedGameEvents;
+	}
+
+	public void setHostedGameEvents(List<GameEvent> hostedGameEvents) {
+		this.hostedGameEvents = hostedGameEvents;
 	}
 
 	public List<Game> getGames() {

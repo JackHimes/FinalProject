@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "game_event")
 public class GameEvent {
@@ -51,12 +53,15 @@ public class GameEvent {
 	@OneToMany(mappedBy="gameEvent")
 	private List<Review> reviews;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="gameEvents")
 	private List<Game> games;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="gameEvents")
 	private List<User> guests;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "gameEvents")
 	private List<EventTag> eventTags;
 	
