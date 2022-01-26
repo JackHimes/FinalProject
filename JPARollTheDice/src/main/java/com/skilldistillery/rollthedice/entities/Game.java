@@ -23,6 +23,7 @@ public class Game {
 	@Column(name="link_to_game")
 	private String linkToGame;
 	
+	@Column(name="time_to_play")
 	private String timeToPlay;
 	
 	private String description;
