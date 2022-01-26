@@ -54,6 +54,9 @@ public class User {
 	)
 	private List<GameEvent> gameEvents;
 	
+	@OneToMany(mappedBy="host")
+	private List<GameEvent> hostedGameEvents;
+	
 	
 	@ManyToMany(mappedBy="users")
 	private List<Game> games;
@@ -170,6 +173,16 @@ public class User {
 
 	public void setGameEvents(List<GameEvent> gameEvents) {
 		this.gameEvents = gameEvents;
+	}
+	
+	
+
+	public List<GameEvent> getHostedGameEvents() {
+		return hostedGameEvents;
+	}
+
+	public void setHostedGameEvents(List<GameEvent> hostedGameEvents) {
+		this.hostedGameEvents = hostedGameEvents;
 	}
 
 	public List<Game> getGames() {
