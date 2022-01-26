@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Address {
 	
@@ -28,6 +30,7 @@ public class Address {
 	@Column(name="postal_code")
 	private String postalCode;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="favorite_venues",
 			joinColumns=@JoinColumn(name="address_id"),
