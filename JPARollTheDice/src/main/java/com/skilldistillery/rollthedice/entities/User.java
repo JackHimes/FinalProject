@@ -57,7 +57,12 @@ public class User {
 	private List<Game> games;
 	
 	
-	
+	@ManyToMany
+	@JoinTable(name="friends",
+		joinColumns=@JoinColumn(name="user_id"),
+				inverseJoinColumns=@JoinColumn(name="friend_id")
+	)
+	private List<User> friends;
 	
 
 	public User() {
@@ -134,6 +139,46 @@ public class User {
 
 	public void setProfilePictureUrl(String profilePictureUrl) {
 		this.profilePictureUrl = profilePictureUrl;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+
+	public Address getHomeAddress() {
+		return homeAddress;
+	}
+
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
+	public List<GameEvent> getGameEvents() {
+		return gameEvents;
+	}
+
+	public void setGameEvents(List<GameEvent> gameEvents) {
+		this.gameEvents = gameEvents;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+	public List<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<User> friends) {
+		this.friends = friends;
 	}
 
 	@Override

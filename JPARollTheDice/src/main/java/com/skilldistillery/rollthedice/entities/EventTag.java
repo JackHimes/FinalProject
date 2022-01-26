@@ -54,6 +54,14 @@ public class EventTag {
 		this.description = description;
 	}
 
+	public List<GameEvent> getGameEvents() {
+		return gameEvents;
+	}
+
+	public void setGameEvents(List<GameEvent> gameEvents) {
+		this.gameEvents = gameEvents;
+	}
+
 	@Override
 	public String toString() {
 		return "EventTags [id=" + id + ", name=" + name + ", description=" + description + "]";
