@@ -64,6 +64,12 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 	
+	@ManyToMany
+	@JoinTable(name="friends",
+		joinColumns=@JoinColumn(name="user_id"),
+				inverseJoinColumns=@JoinColumn(name="friend_id")
+	)
+	private List<User> friends;
 
 	public User() {
 		super();
@@ -188,6 +194,14 @@ public class User {
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
+	}
+
+	public List<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<User> friends) {
+		this.friends = friends;
 	}
 
 	@Override
