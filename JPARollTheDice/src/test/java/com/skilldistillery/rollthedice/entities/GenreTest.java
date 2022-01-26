@@ -42,9 +42,15 @@ class GenreTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_Genre_entity_mapping() {
 		assertNotNull(genre);
 		assertEquals("Dice", genre.getName());
+	}
+
+	@Test
+	void test_Genre_Game_relational_mapping() {
+		assertNotNull(genre);
+		assertTrue(genre.getGames().size() > 0);
 	}
 
 

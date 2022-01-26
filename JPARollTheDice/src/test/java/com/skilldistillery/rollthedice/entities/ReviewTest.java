@@ -46,4 +46,16 @@ class ReviewTest {
 		assertEquals("Omg this event was so fun! Great host!", review.getMessage());
 
 	}
+	@Test
+	void test_Review_GameEvent_relational_mapping() {
+		assertNotNull(review);
+		assertNotNull(review.getGameEvent());
+		assertEquals("Best Game Night", review.getGameEvent().getTitle());
+	}
+	@Test
+	void test_Review_User_relational_mapping() {
+		assertNotNull(review);
+		assertNotNull(review.getUser());
+		assertEquals("admin@admin.com", review.getUser().getEmail());
+	}
 }
