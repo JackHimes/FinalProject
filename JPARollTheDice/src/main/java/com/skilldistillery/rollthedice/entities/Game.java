@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Game {
 	
@@ -35,12 +37,14 @@ public class Game {
 	@Column(name="image_url")
 	private String imageUrl;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="user_has_game",
 			joinColumns=@JoinColumn(name="game_id"),
 			inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> users;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="game_event_has_game",
 	joinColumns=@JoinColumn(name="game_id"),
