@@ -116,20 +116,20 @@ DROP TABLE IF EXISTS `comment` ;
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `message` TEXT NULL,
-  `user_id` INT NOT NULL,
   `event_id` INT NOT NULL,
   `post_date` DATETIME NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_comment_event1_idx` (`event_id` ASC),
-  CONSTRAINT `fk_comment_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_comment_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_comment_event1`
     FOREIGN KEY (`event_id`)
     REFERENCES `game_event` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -389,6 +389,7 @@ COMMIT;
 START TRANSACTION;
 USE `rollthedicedb`;
 INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (1, 'admin', '$2a$10$zHd.Ca6BmYwL3sO0oJm79uYjVH4z1RcDlRXcbyVsdfdhF5S6V.YCi', 'Lavender', 'Cupcake', 'admin@admin.com', 'https://i.ytimg.com/vi/d-ABIIZV3vA/maxresdefault.jpg', 1, 'ROLE_ADMIN', NULL, 'I\'m an admin and my name is Johnny.');
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (2, 'charlie', 'charlie', 'Charlie', 'Day', 'charlie@paddys.com', 'https://www.nme.com/wp-content/uploads/2017/03/Screen-Shot-2017-03-16-at-16.00.59-696x442.png', 1, 'user', NULL, 'I can\'t read.');
 
 COMMIT;
 
@@ -418,7 +419,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rollthedicedb`;
-INSERT INTO `comment` (`id`, `message`, `user_id`, `event_id`, `post_date`) VALUES (1, 'I\'ll bring a bottle of preseco!', 1, 1, NULL);
+INSERT INTO `comment` (`id`, `message`, `event_id`, `post_date`, `user_id`) VALUES (1, 'I\'ll bring a bottle of preseco!', 1, NULL, 1);
 
 COMMIT;
 
@@ -444,11 +445,81 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `game_genre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `game_genre` (`game_id`, `genre_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `friends`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `favorite_venues`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `favorite_venues` (`user_id`, `address_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `user_has_event` (`user_id`, `event_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `event_tag`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rollthedicedb`;
 INSERT INTO `event_tag` (`id`, `name`, `description`) VALUES (1, 'Alcohol Friendly', 'Alcohol can be brought and consumed during this event.');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_tags_has_game_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `event_tags_has_game_event` (`event_tags_id`, `game_event_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `game_event_has_game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `game_event_has_game` (`game_event_id`, `game_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `user_has_game` (`user_id`, `game_id`) VALUES (1, 1);
 
 COMMIT;
 
