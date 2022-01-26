@@ -23,7 +23,7 @@ public class Game {
 	@Column(name="link_to_game")
 	private String linkToGame;
 	
-	private int timeToPlay;
+	private String timeToPlay;
 	
 	private String description;
 	
@@ -62,11 +62,11 @@ public class Game {
 		this.linkToGame = linkToGame;
 	}
 
-	public int getTimeToPlay() {
+	public String getTimeToPlay() {
 		return timeToPlay;
 	}
 
-	public void setTimeToPlay(int timeToPlay) {
+	public void setTimeToPlay(String timeToPlay) {
 		this.timeToPlay = timeToPlay;
 	}
 

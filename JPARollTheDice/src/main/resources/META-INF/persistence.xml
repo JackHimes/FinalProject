@@ -7,11 +7,12 @@
     
 	<class>com.skilldistillery.rollthedice.entities.User</class>
 	<class>com.skilldistillery.rollthedice.entities.Address</class>
-	<class>com.skilldistillery.rollthedice.entities.Event</class>
+	<class>com.skilldistillery.rollthedice.entities.GameEvent</class>
 	<class>com.skilldistillery.rollthedice.entities.Comment</class>
 	<class>com.skilldistillery.rollthedice.entities.Review</class>
 	<class>com.skilldistillery.rollthedice.entities.Genre</class>
 	<class>com.skilldistillery.rollthedice.entities.Game</class>
+	<class>com.skilldistillery.rollthedice.entities.EventTags</class>
 	
 
 		<properties>

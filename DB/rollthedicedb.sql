@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -382,3 +383,5 @@ INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `em
 
 COMMIT;
 
+=======
+>>>>>>> 0c4cc45111a74af2fb787fb011f466c10ef7d5c0
