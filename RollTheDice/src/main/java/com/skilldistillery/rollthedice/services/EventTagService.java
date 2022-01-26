@@ -9,4 +9,12 @@ public interface EventTagService {
 
 	List<EventTag> getAllEventTags();
 
+	EventTag getEventTagById(int id);
+
+	EventTag createEventTag(EventTag eventTag);
+
+	EventTag updateEventTag(EventTag eventTag, int id);
+
+	boolean deleteEventTag(int id);
+
 }

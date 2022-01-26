@@ -30,6 +30,7 @@ public class Address {
 	@Column(name="postal_code")
 	private String postalCode;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="favorite_venues",
 			joinColumns=@JoinColumn(name="address_id"),
