@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="event_tag")
 public class EventTag {
@@ -24,6 +26,7 @@ public class EventTag {
 	
 	private String description;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="event_tags_has_game_event",
 					joinColumns=@JoinColumn(name="event_tags_id"),
