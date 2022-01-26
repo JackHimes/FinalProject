@@ -1,6 +1,8 @@
 package com.skilldistillery.rollthedice.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class AddressTest {
@@ -45,6 +48,14 @@ class AddressTest {
 		assertNotNull(address);
 		assertEquals("1234 Main St", address.getAddress());
 		
+	}
+	
+	@DisplayName("address to user many to many entity mapping")
+	@Test
+	void test2() {
+		assertNotNull(address);
+		assertTrue(address.getUsers().size() > 0);
+		assertEquals("admin", address.getUsers().get(0).getUsername());
 	}
 
 }
