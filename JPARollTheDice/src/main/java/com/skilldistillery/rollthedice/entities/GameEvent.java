@@ -147,11 +147,68 @@ public class GameEvent {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+
+	public List<User> getGuests() {
+		return guests;
+	}
+
+	public void setGuests(List<User> guests) {
+		this.guests = guests;
+	}
+
+	public List<EventTag> getEventTags() {
+		return eventTags;
+	}
+
+	public void setEventTags(List<EventTag> eventTags) {
+		this.eventTags = eventTags;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public User getHost() {
+		return host;
+	}
+
+	public void setHost(User host) {
+		this.host = host;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateOfEvent, description, enabled, endTime, id, imageUrl, maxNumberOfGuests, startTime,
-				title);
+		return Objects.hash(address, comments, dateOfEvent, description, enabled, endTime, eventTags, games, guests,
+				host, id, imageUrl, maxNumberOfGuests, reviews, startTime, title);
 	}
 
 	@Override
@@ -163,17 +220,23 @@ public class GameEvent {
 		if (getClass() != obj.getClass())
 			return false;
 		GameEvent other = (GameEvent) obj;
-		return Objects.equals(dateOfEvent, other.dateOfEvent) && Objects.equals(description, other.description)
-				&& enabled == other.enabled && Objects.equals(endTime, other.endTime) && id == other.id
+		return Objects.equals(address, other.address) && Objects.equals(comments, other.comments)
+				&& Objects.equals(dateOfEvent, other.dateOfEvent) && Objects.equals(description, other.description)
+				&& enabled == other.enabled && Objects.equals(endTime, other.endTime)
+				&& Objects.equals(eventTags, other.eventTags) && Objects.equals(games, other.games)
+				&& Objects.equals(guests, other.guests) && Objects.equals(host, other.host) && id == other.id
 				&& Objects.equals(imageUrl, other.imageUrl) && maxNumberOfGuests == other.maxNumberOfGuests
-				&& Objects.equals(startTime, other.startTime) && Objects.equals(title, other.title);
+				&& Objects.equals(reviews, other.reviews) && Objects.equals(startTime, other.startTime)
+				&& Objects.equals(title, other.title);
 	}
 
 	@Override
 	public String toString() {
 		return "GameEvent [id=" + id + ", dateOfEvent=" + dateOfEvent + ", maxNumberOfGuests=" + maxNumberOfGuests
 				+ ", enabled=" + enabled + ", startTime=" + startTime + ", endTime=" + endTime + ", imageUrl="
-				+ imageUrl + ", description=" + description + ", title=" + title + "]";
+				+ imageUrl + ", description=" + description + ", title=" + title + ", comments=" + comments
+				+ ", reviews=" + reviews + ", games=" + games + ", guests=" + guests + ", eventTags=" + eventTags
+				+ ", address=" + address + ", host=" + host + "]";
 	}
 
 }
