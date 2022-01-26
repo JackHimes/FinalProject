@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -280,14 +279,14 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `event_tags`
+-- Table `event_tag`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `event_tags` ;
+DROP TABLE IF EXISTS `event_tag` ;
 
-CREATE TABLE IF NOT EXISTS `event_tags` (
+CREATE TABLE IF NOT EXISTS `event_tag` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -305,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `event_tags_has_game_event` (
   INDEX `fk_event_tags_has_game_event_event_tags1_idx` (`event_tags_id` ASC),
   CONSTRAINT `fk_event_tags_has_game_event_event_tags1`
     FOREIGN KEY (`event_tags_id`)
-    REFERENCES `event_tags` (`id`)
+    REFERENCES `event_tag` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_event_tags_has_game_event_game_event1`
@@ -375,13 +374,81 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `address` (`id`, `address`, `city`, `state`, `postal_code`) VALUES (1, '1234 Main St', 'Denver', 'Colorado', '80204');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rollthedicedb`;
-INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (1, 'admin', '$2a$10$zHd.Ca6BmYwL3sO0oJm79uYjVH4z1RcDlRXcbyVsdfdhF5S6V.YCi', 'Lavender', 'Cupcake', NULL, NULL, 1, 'ROLE_ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`, `profile_picture_url`, `enabled`, `role`, `address_id`, `biography`) VALUES (1, 'admin', '$2a$10$zHd.Ca6BmYwL3sO0oJm79uYjVH4z1RcDlRXcbyVsdfdhF5S6V.YCi', 'Lavender', 'Cupcake', 'admin@admin.com', 'https://i.ytimg.com/vi/d-ABIIZV3vA/maxresdefault.jpg', 1, 'ROLE_ADMIN', NULL, 'I\'m an admin and my name is Johnny.');
 
 COMMIT;
 
-=======
->>>>>>> 0c4cc45111a74af2fb787fb011f466c10ef7d5c0
+
+-- -----------------------------------------------------
+-- Data for table `game`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `game` (`id`, `name`, `max_players`, `link_to_game`, `time_to_play`, `description`, `image_url`) VALUES (1, 'Ticket to Ride', 5, 'https://boardgamegeek.com/boardgame/9209/ticket-ride', '30-60 minutes', 'Build your railroad across North America to connect cities and complete tickets.', 'https://boardgamegeek.com/image/38668/ticket-ride');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `game_event`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `game_event` (`id`, `date_of_event`, `max_number_of_guests`, `host_id`, `address_id`, `enabled`, `start_time`, `end_time`, `image_url`, `description`, `title`) VALUES (1, '2022-01-26', 8, 1, 1, 1, '18:00:00', '21:00:00', 'https://cdn1.vectorstock.com/i/1000x1000/82/00/young-people-having-fun-and-startuping-confetti-vector-13688200.jpg', 'Come play with the friends!', 'Best Game Night');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `comment` (`id`, `message`, `user_id`, `event_id`, `post_date`) VALUES (1, 'I\'ll bring a bottle of preseco!', 1, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `genre`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `genre` (`id`, `name`, `description`) VALUES (1, 'Dice', 'Gameplay requires use of at least two dice.');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `review`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `review` (`id`, `message`, `event_id`, `review_date`, `rating`, `game_id`, `user_id`) VALUES (1, 'Omg this event was so fun! Great host!', 1, NULL, 5, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `event_tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `rollthedicedb`;
+INSERT INTO `event_tag` (`id`, `name`, `description`) VALUES (1, 'Alcohol Friendly', 'Alcohol can be brought and consumed during this event.');
+
+COMMIT;
+

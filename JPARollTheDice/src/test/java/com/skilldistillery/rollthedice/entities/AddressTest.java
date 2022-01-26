@@ -43,6 +43,8 @@ class AddressTest {
 	@Test
 	void test_Address_entity_mapping() {
 		assertNotNull(address);
+		assertEquals("1234 Main St", address.getAddress());
+		
 	}
 
 }

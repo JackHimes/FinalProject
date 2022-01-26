@@ -45,7 +45,7 @@ class EventTagsTest {
 	@Test
 	void test1() {
 		assertNotNull(eventTag);
-		assertEquals("alcohol friendly", eventTag.getName());
+		assertEquals("Alcohol Friendly", eventTag.getName());
 	}
 
 }

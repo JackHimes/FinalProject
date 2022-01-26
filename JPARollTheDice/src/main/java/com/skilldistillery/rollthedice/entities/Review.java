@@ -16,13 +16,13 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "messsage")
+//	@Column(name = "message")
 	private String message;
 
 	@Column(name = "review_date")
 	private LocalDate reviewDate;
 
-	@Column(name = "rating")
+//	@Column(name = "rating")
 	private Integer rating;
 
 	public Review() {

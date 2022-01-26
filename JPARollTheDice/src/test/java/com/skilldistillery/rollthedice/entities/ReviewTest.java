@@ -43,6 +43,7 @@ class ReviewTest {
 	@Test
 	void test_Review_entity_mapping() {
 		assertNotNull(review);
+		assertEquals("Omg this event was so fun! Great host!", review.getMessage());
 
 	}
 }
