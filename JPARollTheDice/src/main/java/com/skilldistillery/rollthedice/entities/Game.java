@@ -36,13 +36,13 @@ public class Game {
 	private String imageUrl;
 	
 	@ManyToMany
-	@JoinTable(name="game_event_has_game",
+	@JoinTable(name="user_has_game",
 			joinColumns=@JoinColumn(name="game_id"),
 			inverseJoinColumns=@JoinColumn(name="user_id"))
 	private List<User> users;
 
 	@ManyToMany
-	@JoinTable(name="user_has_game",
+	@JoinTable(name="game_event_has_game",
 	joinColumns=@JoinColumn(name="game_id"),
 	inverseJoinColumns=@JoinColumn(name="game_event_id"))
 	private List<GameEvent> gameEvents;

@@ -2,6 +2,7 @@ package com.skilldistillery.rollthedice.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,6 +48,30 @@ class GameTest {
 	void test1() {
 		assertNotNull(game);
 		assertEquals("Ticket to Ride", game.getName());
+	}
+	
+	@DisplayName("test game to genre many to many relationship mapping")
+	@Test
+	void test2() {
+		assertNotNull(game);
+		assertTrue(game.getGenres().size() > 0);
+		assertEquals("Dice", game.getGenres().get(0).getName());
+	}
+
+	@DisplayName("test game to game event many to many relationship mapping")
+	@Test
+	void test3() {
+		assertNotNull(game);
+		assertTrue(game.getGameEvents().size() > 0);
+		assertEquals("Best Game Night", game.getGameEvents().get(0).getTitle());
+	}
+	
+	@DisplayName("test game to user many to many relationship mapping")
+	@Test
+	void test5() {
+		assertNotNull(game);
+		assertTrue(game.getUsers().size() > 0);
+		assertEquals("admin", game.getUsers().get(0).getUsername());
 	}
 
 }
