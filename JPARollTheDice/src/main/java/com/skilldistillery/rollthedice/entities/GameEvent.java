@@ -238,7 +238,7 @@ public class GameEvent {
 		}
 		if (!games.contains(game)) {
 			games.add(game);
-//			game.addGameEvent(this);
+			game.addGameEvent(this);
 		}
 	}
 	

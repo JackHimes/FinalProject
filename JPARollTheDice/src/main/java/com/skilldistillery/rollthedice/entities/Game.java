@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -152,6 +153,59 @@ public class Game {
 	public void setGameOwner(User gameOwner) {
 		this.gameOwner = gameOwner;
 	}
+	
+	public void addGenre(Genre genre) {
+		if (genres == null) {
+			genres = new ArrayList<>();
+		}
+		if (!genres.contains(genre)) {
+			genres.add(genre);
+			genre.addGame(this);
+		}
+		
+	}
+	
+	public void removeGenre(Genre genre) {
+		if (genres != null && genres.contains(genre)) {
+			genres.remove(genre);
+			genre.removeGame(this);
+		}
+	}
+	
+	public void addGameEvent(GameEvent gameEvent) {
+		if (gameEvents == null) {
+			gameEvents = new ArrayList<>();
+		}
+		if (!gameEvents.contains(gameEvent)) {
+			gameEvents.add(gameEvent);
+			gameEvent.addGame(this);
+		}
+	}
+	
+	public void removeGameEvent(GameEvent gameEvent) {
+		if (gameEvents != null && gameEvents.contains(gameEvent)) {
+			gameEvents.remove(gameEvent);
+			gameEvent.removeGame(this);
+		}
+	}
+	
+	public void addUser(User user) {
+		if (users == null) {
+			users = new ArrayList<>();
+		}
+		if (!users.contains(user)) {
+			users.add(user);
+//			user.addGame(this);
+		}
+	}
+	
+	public void removeUser(User user) {
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+//			user.removeGame(this);
+		}
+	}
+	
 
 	@Override
 	public String toString() {
