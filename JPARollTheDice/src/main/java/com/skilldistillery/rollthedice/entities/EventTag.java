@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,6 +33,10 @@ public class EventTag {
 					joinColumns=@JoinColumn(name="event_tags_id"),
 					inverseJoinColumns=@JoinColumn(name="game_event_id"))
 	private List<GameEvent> gameEvents;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 	public int getId() {
 		return id;
@@ -63,6 +68,14 @@ public class EventTag {
 
 	public void setGameEvents(List<GameEvent> gameEvents) {
 		this.gameEvents = gameEvents;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

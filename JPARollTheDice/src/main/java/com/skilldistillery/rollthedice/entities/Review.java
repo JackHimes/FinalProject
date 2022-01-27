@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Review {
 
@@ -27,10 +29,12 @@ public class Review {
 //	@Column(name = "rating")
 	private Integer rating;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private GameEvent gameEvent;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

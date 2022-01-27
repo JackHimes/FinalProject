@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,10 +50,10 @@ public class EventTagController {
 	}
 	
 	@PostMapping("eventtags")
-	public EventTag createEventTag(@RequestBody EventTag eventTag, HttpServletRequest req, HttpServletResponse res) {
+	public EventTag createEventTag(@RequestBody EventTag eventTag, HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		EventTag newEventTag = null;
 		try {
-			newEventTag = eventTagSvc.createEventTag(eventTag);
+			newEventTag = eventTagSvc.createEventTag(eventTag, principal.getName());
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(newEventTag.getId());
@@ -66,10 +67,10 @@ public class EventTagController {
 	}
 	
 	@PutMapping("eventtags/{id}")
-	public EventTag updateEventTag(@RequestBody EventTag eventTag, @PathVariable int id, HttpServletResponse res	 ) {
+	public EventTag updateEventTag(@RequestBody EventTag eventTag, @PathVariable int id, HttpServletResponse res, Principal principal) {
 		EventTag newEventTag = null;
 		try {
-			newEventTag = eventTagSvc.updateEventTag(eventTag, id);
+			newEventTag = eventTagSvc.updateEventTag(eventTag, id, principal.getName());
 			if (newEventTag == null) {
 				res.setStatus(404);
 			}
@@ -82,8 +83,8 @@ public class EventTagController {
 	}
 	
 	@DeleteMapping("eventtags/{id}")
-	public void deleteEventTag(@PathVariable int id, HttpServletResponse res) {
-		boolean deleted = eventTagSvc.deleteEventTag(id);
+	public void deleteEventTag(@PathVariable int id, HttpServletResponse res, Principal principal) {
+		boolean deleted = eventTagSvc.deleteEventTag(id, principal.getName());
 		if (deleted) {
 			res.setStatus(HttpStatus.NO_CONTENT.value());
 		} else {
