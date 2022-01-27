@@ -2,6 +2,7 @@ package com.skilldistillery.rollthedice.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -210,6 +211,86 @@ public class GameEvent {
 	public void setHost(User host) {
 		this.host = host;
 	}
+	
+	public void addReview(Review review) {
+		if (reviews == null) {
+			reviews = new ArrayList<>();
+		}
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setGameEvent(this);
+		}
+	}
+	
+	public void addComment(Comment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			comment.setGameEvent(this);
+		}
+	}
+	
+	public void addGame(Game game) {
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+		if (!games.contains(game)) {
+			games.add(game);
+//			game.addGameEvent(this);
+		}
+	}
+	
+	public void addGuest(User guest) {
+		if (guests == null) {
+			guests = new ArrayList<>();
+		}
+		if(!guests.contains(guest)) {
+			guests.add(guest);
+//			guest.addGameEvent(this);
+		}
+	}
+	
+	public void addEventTag(EventTag eventTag) {
+		if (eventTags == null) {
+			eventTags = new ArrayList<>();
+		}
+		if (!eventTags.contains(eventTag)) {
+			eventTags.add(eventTag);
+			eventTag.addGameEvent(this);
+		}
+	}
+	
+	public void removeComment(Comment comment) {
+		if (comments != null && comments.contains(comment)) {
+			comments.remove(comment);
+//			comment.removeGameEvent(this);
+		}
+	}
+	
+	public void removeGame(Game game) {
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+//			game.removeGameEvent(this);
+		}
+	}
+	
+	public void removeGuest(User guest) {
+		if (guests != null && guests.contains(guest)) {
+			guests.remove(guest);
+//			guest.removeGameEvent(this);
+		}
+	}
+	
+	public void removeEventTag(EventTag eventTag) {
+		if (eventTags != null && eventTags.contains(eventTag)) {
+			eventTags.remove(eventTag);
+			eventTag.removeGameEvent(this);
+		}
+	}
+	
+	
 
 	@Override
 	public int hashCode() {
