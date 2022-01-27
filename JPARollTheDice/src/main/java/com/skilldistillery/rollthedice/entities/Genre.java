@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,6 +66,23 @@ public class Genre {
 
 	public void setGames(List<Game> games) {
 		this.games = games;
+	}
+	
+	public void addGame(Game game) {
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+		if (!games.contains(game)) {
+			games.add(game);
+			game.addGenre(this);
+		}
+	}
+	
+	public void removeGame(Game game) {
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+			game.removeGenre(this);
+		}
 	}
 
 	@Override

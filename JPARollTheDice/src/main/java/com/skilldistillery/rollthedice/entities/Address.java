@@ -95,19 +95,21 @@ public class Address {
 		if (users == null) {
 			users = new ArrayList<>();
 		}
+		
 		if (!users.contains(user)) {
 			users.add(user);
-//			user.removeAddress(this);
-		}
-	}
-
-	public void removeUser(User user) {
-		if (users != null && users.contains(user)) {
-			users.remove(user);
-//			user.removeAddress(this);
+			user.addAddress(this);
 		}
 	}
 	
+	public void removeUser(User user) {
+		if (users != null && users.contains(user)) {
+			users.remove(user);
+			user.removeAddress(this);
+		}
+	}
+
+
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", address=" + address + ", city=" + city + ", state=" + state + ", postalCode="
