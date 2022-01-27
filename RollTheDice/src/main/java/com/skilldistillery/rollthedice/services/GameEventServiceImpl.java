@@ -33,7 +33,9 @@ public class GameEventServiceImpl implements GameEventService {
 	@Override
 	public GameEvent addNewGameEvent(String username, GameEvent gameEvent) {
 		User user = userRepo.findByUsername(username);
+		user.addHostedGameEvent(gameEvent);
 		gameEvent.setHost(user);
+		userRepo.saveAndFlush(user);
 		return gameEventRepo.saveAndFlush(gameEvent);
 	}
 

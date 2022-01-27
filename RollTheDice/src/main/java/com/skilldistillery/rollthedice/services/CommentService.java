@@ -10,10 +10,10 @@ public interface CommentService {
 	
 	public Comment findCommentById(String username, int commentId);
 	
-	public Comment createComment(String username, Comment comment);
+	public Comment createComment(String username, Comment comment, int gId);
 	
-	public Comment updateComment(String username, Comment comment, int commentId);
+	public Comment updateComment(String username, Comment comment, int commentId, int gId);
 	
-	public boolean destroyComment(String username, int commentId);
+	public boolean destroyComment(String username, int commentId, int gId);
 
 }
