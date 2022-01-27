@@ -274,7 +274,7 @@ public class User {
 		}
 		if (!games.contains(game)) {
 			games.add(game);
-//			game.addUser(this);
+			game.addUser(this);
 			
 		}
 	}
@@ -282,7 +282,7 @@ public class User {
 	public void removeGame(Game game) {
 		if (games != null && games.contains(game)) {
 			games.remove(game);
-//			game.removeUser(this);
+			game.removeUser(this);
 		}
 	}
 	
@@ -299,7 +299,6 @@ public class User {
 	public void removeComment(Comment comment) {
 		if (comments != null && comments.contains(comment)) {
 			comments.remove(comment);
-//			comment.setUser(null); --> we decided we don't need to do this, correct?
 		}
 	}
 	
@@ -319,7 +318,6 @@ public class User {
 			user.removeFriend(this);
 		}
 	}
-	//reviews
 	
 	public void addReview(Review review) {
 		if (reviews == null) {

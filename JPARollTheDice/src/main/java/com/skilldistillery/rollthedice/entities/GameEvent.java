@@ -248,7 +248,7 @@ public class GameEvent {
 		}
 		if(!guests.contains(guest)) {
 			guests.add(guest);
-//			guest.addGameEvent(this);
+			guest.addGameEvent(this);
 		}
 	}
 	
@@ -265,21 +265,20 @@ public class GameEvent {
 	public void removeComment(Comment comment) {
 		if (comments != null && comments.contains(comment)) {
 			comments.remove(comment);
-//			comment.removeGameEvent(this);
 		}
 	}
 	
 	public void removeGame(Game game) {
 		if (games != null && games.contains(game)) {
 			games.remove(game);
-//			game.removeGameEvent(this);
+			game.removeGameEvent(this);
 		}
 	}
 	
 	public void removeGuest(User guest) {
 		if (guests != null && guests.contains(guest)) {
 			guests.remove(guest);
-//			guest.removeGameEvent(this);
+			guest.removeGameEvent(this);
 		}
 	}
 	
@@ -290,6 +289,11 @@ public class GameEvent {
 		}
 	}
 	
+	public void removeReview(Review review) {
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+		}
+	}
 	
 
 	@Override
