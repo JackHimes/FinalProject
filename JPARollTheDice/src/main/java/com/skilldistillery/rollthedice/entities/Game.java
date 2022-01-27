@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -53,6 +54,11 @@ public class Game {
 	
 	@ManyToMany(mappedBy="games")
 	private List<Genre> genres;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name= "user_id")
+	private User gameOwner;
 
 	public Game() {
 		super();
@@ -137,11 +143,21 @@ public class Game {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+	
+
+	public User getGameOwner() {
+		return gameOwner;
+	}
+
+	public void setGameOwner(User gameOwner) {
+		this.gameOwner = gameOwner;
+	}
 
 	@Override
 	public String toString() {
 		return "Game [id=" + id + ", name=" + name + ", maxPlayers=" + maxPlayers + ", linkToGame=" + linkToGame
-				+ ", timeToPlay=" + timeToPlay + ", description=" + description + ", imageUrl=" + imageUrl + "]";
+				+ ", timeToPlay=" + timeToPlay + ", description=" + description + ", imageUrl=" + imageUrl + ", users="
+				+ users + ", gameEvents=" + gameEvents + ", genres=" + genres + ", gameOwner=" + gameOwner + "]";
 	}
 
 	@Override
