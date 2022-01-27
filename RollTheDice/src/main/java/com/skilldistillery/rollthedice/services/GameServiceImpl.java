@@ -6,81 +6,72 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.Genre;
 import com.skilldistillery.rollthedice.entities.User;
-import com.skilldistillery.rollthedice.repositories.GenreRepository;
+import com.skilldistillery.rollthedice.repositories.GameRepository;
 import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
-public class GenreServiceImpl implements GenreService {
+public class GameServiceImpl implements GameService {
 	
 	@Autowired
-	private GenreRepository genreRepo;
+	private GameRepository gameRepo;
 	
 	@Autowired
 	private UserRepository userRepo;
 
 	@Override
-	public List<Genre> index() {
-		
-		return genreRepo.findAll();
+	public List<Game> index() {
+		return gameRepo.findAll();
 	}
 
 	@Override
-	public Genre show(int id) {
-
-		Optional<Genre> op = genreRepo.findById(id);
+	public Game show(int id) {
+		Optional<Game> op = gameRepo.findById(id);
 		if(op.isPresent()) {
 			return op.get();
 		}
 		return null;
 	}
-	
+
 	@Override
-	public Genre create(Genre genre, String username) {
+	public Game create(Game game, String username) {
 		User user = userRepo.findByUsername(username);
-		if(genre != null && user.getRole().equals("ROLE_ADMIN")) {
-			return genreRepo.saveAndFlush(genre);
+		if(game != null && (user.getRole().equals("ROLE_ADMIN")) || user.getUsername().equals(username)) {
+			return gameRepo.saveAndFlush(game);
 		}
 		return null;
 		
 		
 	}
-	
 
 	@Override
-	public Genre update(Genre genre, int gid, String username) {
+	public Game update(Game game, int gid, String username) {
+		Optional<Game> opt = gameRepo.findById(gid);
 		User user = userRepo.findByUsername(username);
 		
-		Optional<Genre> opt = genreRepo.findById(gid);
-		Genre managed = null;
-		if(opt.isPresent() && user.getRole().equals("ROLE_ADMIN")) {
-			managed = opt.get();
-			managed.setDescription(genre.getDescription());
-			managed.setGames(genre.getGames());
-			managed.setName(genre.getName());
-			genreRepo.saveAndFlush(managed);
+		//Comeback for game.userid to verify the correct user is making updates
+		if(opt.isPresent() && (user.getRole().equals("ROLE_ADMIN"))) {  
+			game.setId(gid);
+			return gameRepo.saveAndFlush(game);
 		}
-		return managed;
-		
+		return null;
 	}
-	
-
 
 	@Override
 	public boolean delete(int id, String username) {
 		User user = userRepo.findByUsername(username);
 
-		Optional<Genre> op = genreRepo.findById(id);
+		Optional<Game> op = gameRepo.findById(id);
 		boolean deleted = false;
 		
 		if(op.isPresent() && user.getRole().equals("ROLE_ADMIN")) {
-			genreRepo.deleteById(id);
+			gameRepo.deleteById(id);
 			deleted = true;
 		}
 
 		return deleted;
 	}
-	
 
 }
