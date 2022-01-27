@@ -6,14 +6,14 @@ import com.skilldistillery.rollthedice.entities.User;
 
 public interface UserService {
 	
-	public List<User> findAllUsers(String username);
+	public List<User> findAllUsers();
 	
-	public User findUserById(String username, int userId);
+	public User findUserById(int userId);
 	
-	public User createUser(String username, User user);
+	public User createUser(User user);
 	
-	public User updateUser(String username, User user);
+	public User updateUser(String username, User user, int userId);
 	
-	public void destroyUser(String username, int userId);
+	public boolean destroyUser(String username, int userId);
 
 }

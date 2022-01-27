@@ -29,13 +29,13 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("users")
-	public List<User> findAllUsers(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		return userService.findAllUsers(principal.getName());
+	public List<User> findAllUsers(HttpServletRequest req, HttpServletResponse res) {
+		return userService.findAllUsers();
 	}
 	
 	@GetMapping("users/{userId}")
-	public User findUserById(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId) {
-		User resultUser = userService.findUserById(principal.getName(), userId);
+	public User findUserById(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId) {
+		User resultUser = userService.findUserById(userId);
 		if (resultUser == null) {
 			res.setStatus(404);
 		}
@@ -43,9 +43,9 @@ public class UserController {
 	}
 	
 	@PostMapping("users")
-	public User createUser(HttpServletRequest req, HttpServletResponse res, Principal principal, @RequestBody User user) {
+	public User createUser(HttpServletRequest req, HttpServletResponse res,  @RequestBody User user) {
 		try {
-			userService.createUser(principal.getName(), user);
+			userService.createUser(user);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(user.getId());
@@ -60,16 +60,26 @@ public class UserController {
 	
 	@PutMapping("users/{userId}")
 	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId, @RequestBody User user) {
-		User updatedUser = userService.updateUser(principal.getName(), user);
+		User updatedUser = userService.updateUser(principal.getName(), user, userId);
 		if (updatedUser != null) {
 			res.setStatus(201);
+		} else {
+			res.setStatus(400);
+			System.err.println("Invalid user, user not updated");
 		}
-		return updatedUser;
+		return updatedUser;	
 	}
 	
 	@DeleteMapping("users/{userId}")
 	public void destroyUser(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId) {
-		userService.destroyUser(principal.getName(), userId);
+		
+		boolean deleted = userService.destroyUser(principal.getName(), userId);
+		if (deleted) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(404);
+			System.err.println("Error deleting user.");
+		}
 	}
 
 }
