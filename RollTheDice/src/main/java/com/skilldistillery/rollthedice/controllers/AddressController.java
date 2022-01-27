@@ -68,7 +68,7 @@ public class AddressController {
 	public User createHomeAddress(HttpServletRequest req, HttpServletResponse res,  @RequestBody Address address, Principal principal) {
 		User addressUser = null;
 		try {
-			addressUser = addressService.createAddress(principal.getName(), address);
+			addressUser = addressService.createHomeAddress(principal.getName(), address);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(address.getId());
