@@ -71,7 +71,14 @@ CREATE TABLE IF NOT EXISTS `game` (
   `time_to_play` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `image_url` VARCHAR(2000) NULL,
-  PRIMARY KEY (`id`))
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_game_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_game_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -287,7 +294,14 @@ CREATE TABLE IF NOT EXISTS `event_tag` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `description` TEXT NULL,
-  PRIMARY KEY (`id`))
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_event_tag_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_event_tag_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -399,7 +413,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rollthedicedb`;
-INSERT INTO `game` (`id`, `name`, `max_players`, `link_to_game`, `time_to_play`, `description`, `image_url`) VALUES (1, 'Ticket to Ride', 5, 'https://boardgamegeek.com/boardgame/9209/ticket-ride', '30-60 minutes', 'Build your railroad across North America to connect cities and complete tickets.', 'https://boardgamegeek.com/image/38668/ticket-ride');
+INSERT INTO `game` (`id`, `name`, `max_players`, `link_to_game`, `time_to_play`, `description`, `image_url`, `user_id`) VALUES (1, 'Ticket to Ride', 5, 'https://boardgamegeek.com/boardgame/9209/ticket-ride', '30-60 minutes', 'Build your railroad across North America to connect cities and complete tickets.', 'https://boardgamegeek.com/image/38668/ticket-ride', 1);
 
 COMMIT;
 
@@ -489,7 +503,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `rollthedicedb`;
-INSERT INTO `event_tag` (`id`, `name`, `description`) VALUES (1, 'Alcohol Friendly', 'Alcohol can be brought and consumed during this event.');
+INSERT INTO `event_tag` (`id`, `name`, `description`, `user_id`) VALUES (1, 'Alcohol Friendly', 'Alcohol can be brought and consumed during this event.', 1);
 
 COMMIT;
 

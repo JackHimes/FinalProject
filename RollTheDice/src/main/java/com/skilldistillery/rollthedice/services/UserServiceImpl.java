@@ -16,41 +16,51 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<User> findAllUsers(String username) {
+	public List<User> findAllUsers() {
 		List<User> resultUsers = userRepo.findAll();
 		return resultUsers;
 	}
 
 	@Override
-	public User findUserById(String username, int userId) {
+	public User findUserById(int userId) {
 		User result = null;
 		Optional<User> userOptional = userRepo.findById(userId);
 		if (userOptional.isPresent()) {
 			User resultUser = userOptional.get();
-			if (resultUser.getUsername().equals(username) || username.equals("admin")) {
 				result = resultUser;
-			}
 		}
 		return result;
 	}
 
 	@Override
-	public User createUser(String username, User user) {
+	public User createUser(User user) {
 		return userRepo.saveAndFlush(user);
 	}
 
 	@Override
-	public User updateUser(String username, User user) {
-		int userId = user.getId();
-		if (userRepo.existsById(userId)) {
-			return userRepo.saveAndFlush(user);
-		}		
+	public User updateUser(String username, User user, int userId) {
+		User loggedInUser = userRepo.findByUsername(username);	
+		
+		user.setId(userId);	
+		if (loggedInUser.equals(user) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
+			if (userRepo.existsById(userId)) {
+				return userRepo.saveAndFlush(user);
+			}				
+		}
 		return null;
 	}
 
 	@Override
-	public void destroyUser(String username, int userId) {
-		userRepo.deleteById(userId);
+	public boolean destroyUser(String username, int userId) {
+		User loggedInUser = userRepo.findByUsername(username);
+		boolean deleted = false;
+		if (loggedInUser.getId() == userId || loggedInUser.getRole().equals("ROLE_ADMIN")) {
+			if (userRepo.existsById(userId)) {
+				deleted = true;
+				userRepo.deleteById(userId);
+			}				
+		}
+		return deleted;
 	}
 
 }

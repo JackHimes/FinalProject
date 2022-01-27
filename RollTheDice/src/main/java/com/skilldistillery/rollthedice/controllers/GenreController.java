@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,13 +61,13 @@ public class GenreController {
 		return genre;
 	}
 	
-	///////////////////////////
-	/////// POST genre ///////
+	  /////////////////////////
+	 /////// POST genre //////
 	/////////////////////////
 	@PostMapping("genres")
-	public Genre create(HttpServletRequest req, HttpServletResponse res,@RequestBody Genre genre) {
+	public Genre create(HttpServletRequest req, HttpServletResponse res, @RequestBody Genre genre, Principal principal) {
 		try {
-			genreServ.create(genre);
+			genreServ.create(genre, principal.getName());
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(genre.getId());
@@ -87,9 +88,9 @@ public class GenreController {
 	/////////////////////////
 	
 	@PutMapping("genres/{gid}")
-	public Genre update(HttpServletRequest req, HttpServletResponse res, @PathVariable int gid, @RequestBody Genre genre) {
+	public Genre update(HttpServletRequest req, HttpServletResponse res, @PathVariable int gid, @RequestBody Genre genre, Principal principal) {
 		try {
-			genre = genreServ.update(genre, gid);
+			genre = genreServ.update(genre, gid, principal.getName());
 			if(genre == null) {
 				res.setStatus(404);
 			}else {
@@ -108,10 +109,9 @@ public class GenreController {
 	///  DELETE genres/{gid} //
 	/////////////////////////
 	@DeleteMapping("genres/{gid}")
-	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int gid) {
-		
+	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int gid, Principal principal) {
 		try {
-			if (genreServ.delete(gid)) {
+			if (genreServ.delete(gid, principal.getName())) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(400);
