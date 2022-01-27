@@ -8,8 +8,8 @@ public interface GenreService {
 	
 	List<Genre> index();
 	Genre show(int id);
-	Genre create(Genre genre);
-	Genre update(Genre genre, int gid);
-	boolean delete(int id);
+	Genre create(Genre genre, String username);
+	Genre update(Genre genre, int gid, String username);
+	boolean delete(int id, String username);
 
 }
