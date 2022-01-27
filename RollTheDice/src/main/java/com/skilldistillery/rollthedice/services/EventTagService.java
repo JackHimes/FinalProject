@@ -11,10 +11,10 @@ public interface EventTagService {
 
 	EventTag getEventTagById(int id);
 
-	EventTag createEventTag(EventTag eventTag);
+	EventTag createEventTag(EventTag eventTag, String username);
 
-	EventTag updateEventTag(EventTag eventTag, int id);
+	EventTag updateEventTag(EventTag eventTag, int id, String username);
 
-	boolean deleteEventTag(int id);
+	boolean deleteEventTag(int id, String username);
 
 }
