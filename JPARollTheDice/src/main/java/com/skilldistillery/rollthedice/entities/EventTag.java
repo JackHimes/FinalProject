@@ -92,14 +92,14 @@ public class EventTag {
 		
 		if (!gameEvents.contains(gameEvent)) {
 			gameEvents.add(gameEvent);
-//			gameEvent.addEventTag(this);
+			gameEvent.addEventTag(this);
 		}
 	}
 	
 	public void removeGameEvent(GameEvent gameEvent) {
 		if (gameEvents != null && gameEvents.contains(gameEvent)) {
 			gameEvents.remove(gameEvent);
-//			gameEvent.removeEventTag(this);
+			gameEvent.removeEventTag(this);
 		}
 		
 	}
