@@ -39,15 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(String username, User user, int userId) {
-//		Optional<User> userToChange = userRepo.findById(userId);
-		User loggedInUser = userRepo.findByUsername(username);
-//		
-//		if (userToChange.isPresent() && (loggedInUser.getId() == userId || loggedInUser.getRole().equals("ROLE_ADMIN"))) {
-//			user.setId(userId);
-//			return userRepo.saveAndFlush(user);
-//		}
-//		return null;
-//		
+		User loggedInUser = userRepo.findByUsername(username);	
 		
 		user.setId(userId);	
 		if (loggedInUser.equals(user) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
