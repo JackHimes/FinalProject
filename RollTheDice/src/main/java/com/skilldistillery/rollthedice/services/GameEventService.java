@@ -10,10 +10,10 @@ public interface GameEventService {
 	
 	GameEvent getGameEventById(Integer gameEventId);
 	
-	GameEvent addNewGameEvent(GameEvent gameEvent);
+	GameEvent addNewGameEvent(String username, GameEvent gameEvent);
 	
-	boolean deleteGameEvent(Integer gameEventId);
+	boolean deleteGameEvent(String username, Integer gameEventId);
 	
-	GameEvent updateGameEvent(GameEvent gameEvent);
+	GameEvent updateGameEvent(String username, GameEvent gameEvent, Integer gameEventId);
 
 }

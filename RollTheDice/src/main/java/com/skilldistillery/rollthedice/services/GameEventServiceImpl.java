@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rollthedice.entities.GameEvent;
+import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.repositories.GameEventRepository;
+import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
 public class GameEventServiceImpl implements GameEventService {
 
 	@Autowired
 	private GameEventRepository gameEventRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<GameEvent> getAllGameEvents() {
@@ -22,43 +27,39 @@ public class GameEventServiceImpl implements GameEventService {
 
 	@Override
 	public GameEvent getGameEventById(Integer gameEventId) {
-//		Optional<GameEvent> gameEventOptional = gameEventRepo.findById(gameEventId);
-//		if (gameEventOptional.isPresent()) {
-//			GameEvent resultGameEvent = gameEventOptional.get();
-//			if (resultGameEvent.get)
-//		}
 		return gameEventRepo.findById(gameEventId).get();
 	}
 
 	@Override
-	public GameEvent addNewGameEvent(GameEvent gameEvent) {
+	public GameEvent addNewGameEvent(String username, GameEvent gameEvent) {
+		User user = userRepo.findByUsername(username);
+		gameEvent.setHost(user);
 		return gameEventRepo.saveAndFlush(gameEvent);
 	}
 
 	@Override
-	public boolean deleteGameEvent(Integer gameEventId) {
+	public boolean deleteGameEvent(String username, Integer gameEventId) {
+		User loggedInUser = userRepo.findByUsername(username);
 		boolean isDeleted = false;
 		if (gameEventRepo.existsById(gameEventId)) {
+			if (loggedInUser.getUsername().equals(username) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
 			gameEventRepo.deleteById(gameEventId);
 			isDeleted = true;
+			}
 		}
 		return isDeleted;
 	}
 
 	@Override
-	public GameEvent updateGameEvent(GameEvent gameEvent) {
-		Optional<GameEvent> gameEventOp = gameEventRepo.findById(gameEvent.getId());
+	public GameEvent updateGameEvent(String username, GameEvent gameEvent, Integer gameEventId) {
+		Optional<GameEvent> gameEventOp = gameEventRepo.findById(gameEventId);
+		User loggedInUser = userRepo.findByUsername(username);
 		if (gameEventOp.isPresent()) {
 			GameEvent updatedGameEvent = gameEventOp.get();
-			updatedGameEvent.setDateOfEvent(gameEvent.getDateOfEvent());
-			updatedGameEvent.setMaxNumberOfGuests(gameEvent.getMaxNumberOfGuests());
-			updatedGameEvent.setEnabled(gameEvent.isEnabled());
-			updatedGameEvent.setStartTime(gameEvent.getStartTime());
-			updatedGameEvent.setEndTime(gameEvent.getEndTime());
-			updatedGameEvent.setImageUrl(gameEvent.getImageUrl());
-			updatedGameEvent.setDescription(gameEvent.getDescription());
-			updatedGameEvent.setTitle(gameEvent.getTitle());
-			return gameEventRepo.saveAndFlush(updatedGameEvent);
+			if(updatedGameEvent.getHost().getUsername().equals(loggedInUser.getUsername()) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
+	
+				return gameEventRepo.saveAndFlush(gameEvent);
+			}
 		}
 		return null;
 	}
