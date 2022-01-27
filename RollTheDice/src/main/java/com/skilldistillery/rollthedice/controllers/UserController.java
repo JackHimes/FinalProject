@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.rollthedice.entities.User;
+import com.skilldistillery.rollthedice.services.AuthService;
 import com.skilldistillery.rollthedice.services.UserService;
 
 @RestController
@@ -27,6 +28,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AuthService authService;
 	
 	@GetMapping("users")
 	public List<User> findAllUsers(HttpServletRequest req, HttpServletResponse res) {
@@ -41,22 +45,22 @@ public class UserController {
 		}
 		return resultUser;
 	}
-	
-	@PostMapping("users")
-	public User createUser(HttpServletRequest req, HttpServletResponse res,  @RequestBody User user) {
-		try {
-			userService.createUser(user);
-			res.setStatus(201);
-			StringBuffer url = req.getRequestURL();
-			url.append("/").append(user.getId());
-			res.setHeader("Location", url.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("Invalid JSON for New User");
-			res.setStatus(400);
-		}
-		return user;
-	}
+//	
+//	@PostMapping("users")
+//	public User createUser(HttpServletRequest req, HttpServletResponse res,  @RequestBody User user) {
+//		try {
+//			authService.register(userTemp);
+//			res.setStatus(201);
+//			StringBuffer url = req.getRequestURL();
+//			url.append("/").append(user.getId());
+//			res.setHeader("Location", url.toString());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.err.println("Invalid JSON for New User");
+//			res.setStatus(400);
+//		}
+//		return user;
+//	}
 	
 	@PutMapping("users/{userId}")
 	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId, @RequestBody User user) {

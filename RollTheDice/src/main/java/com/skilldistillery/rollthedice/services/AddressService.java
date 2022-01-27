@@ -13,6 +13,8 @@ public interface AddressService {
 	
 	public User createAddress(String username, Address address);
 	
+	public User createHomeAddress(String username, Address address);
+	
 	public Address updateAddress(String username, Address address, int addressId);
 	
 	public boolean destroyAddress(String username, int addressId);

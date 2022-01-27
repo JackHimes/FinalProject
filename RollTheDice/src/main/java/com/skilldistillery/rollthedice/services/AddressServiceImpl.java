@@ -45,6 +45,17 @@ public class AddressServiceImpl implements AddressService {
 		userRepo.saveAndFlush(loggedInUser);
 		return loggedInUser;
 	}
+	
+	@Override
+	public User createHomeAddress(String username, Address address) {
+		User loggedInUser = userRepo.findByUsername(username);
+		loggedInUser.addAddress(address);
+		loggedInUser.setHomeAddress(address);
+		address.addUser(loggedInUser);
+		addressRepo.saveAndFlush(address);
+		userRepo.saveAndFlush(loggedInUser);
+		return loggedInUser;
+	}
 
 	@Override
 	public Address updateAddress(String username, Address address, int addressId) {
@@ -56,12 +67,18 @@ public class AddressServiceImpl implements AddressService {
 
 		if (homeAddress.getId() == address.getId() || loggedInUser.getRole().equals("ROLE_ADMIN")) {
 			if (addressRepo.existsById(addressId)) {
+				loggedInUser.addAddress(address);
+				address.addUser(loggedInUser);
+				userRepo.saveAndFlush(loggedInUser);
 				return addressRepo.saveAndFlush(address);
 			}
 		} else {
 			for (Address userAddress : usersAddresses) {
 				if (userAddress.getId() == address.getId() || loggedInUser.getRole().equals("ROLE_ADMIN")) {
 					if (addressRepo.existsById(addressId)) {
+						loggedInUser.addAddress(address);
+						address.addUser(loggedInUser);
+						userRepo.saveAndFlush(loggedInUser);
 						return addressRepo.saveAndFlush(address);
 					}
 				}
@@ -87,5 +104,7 @@ public class AddressServiceImpl implements AddressService {
 		}
 		return deleted;
 	}
+	
+	
 
 }
