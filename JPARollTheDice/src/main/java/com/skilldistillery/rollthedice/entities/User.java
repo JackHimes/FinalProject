@@ -62,7 +62,6 @@ public class User {
 	@OneToMany(mappedBy="host")
 	private List<GameEvent> hostedGameEvents;
 	
-	
 	@ManyToMany(mappedBy="users")
 	private List<Game> games;
 	
@@ -81,8 +80,6 @@ public class User {
 				inverseJoinColumns=@JoinColumn(name="friend_id")
 	)
 	private List<User> friends;
-	
-
 	
 	public User() {
 		super();
@@ -184,8 +181,6 @@ public class User {
 	public void setGameEvents(List<GameEvent> gameEvents) {
 		this.gameEvents = gameEvents;
 	}
-	
-	
 
 	public List<GameEvent> getHostedGameEvents() {
 		return hostedGameEvents;
@@ -245,7 +240,6 @@ public class User {
 		}
 	}
 	
-	
 	public void addGameEvent(GameEvent gameEvent) {
 		if (gameEvents == null) {
 			gameEvents = new ArrayList<>();
@@ -262,13 +256,7 @@ public class User {
 			gameEvents.remove(gameEvent);
 			gameEvent.removeGuest(this);
 		}
-	}
-	
-	//hostedGameEvents
-	//games
-	//comments
-	//reviews
-	//friends
+	}	
 	
 	public void addHostedGameEvent(GameEvent hostedGameEvent) {
 		if (hostedGameEvents == null) {
@@ -276,7 +264,77 @@ public class User {
 		}
 		if (!hostedGameEvents.contains(hostedGameEvent)) {
 			hostedGameEvents.add(hostedGameEvent);
+			hostedGameEvent.setHost(this);
+		}
+	}
+	
+	public void addGame(Game game) {
+		if (games == null) {
+			games = new ArrayList<>();
+		}
+		if (!games.contains(game)) {
+			games.add(game);
+//			game.addUser(this);
 			
+		}
+	}
+	
+	public void removeGame(Game game) {
+		if (games != null && games.contains(game)) {
+			games.remove(game);
+//			game.removeUser(this);
+		}
+	}
+	
+	public void addComment(Comment comment) {
+		if (comments == null) {
+			comments = new ArrayList<>();
+		}
+		if (!comments.contains(comment)) {
+			comments.add(comment);
+			comment.setUser(this);
+		}
+	}
+	
+	public void removeComment(Comment comment) {
+		if (comments != null && comments.contains(comment)) {
+			comments.remove(comment);
+//			comment.setUser(null); --> we decided we don't need to do this, correct?
+		}
+	}
+	
+	public void addFriend(User user) {
+		if (friends == null) {
+			friends = new ArrayList<>();
+		}
+		if (!friends.contains(user)) {
+			friends.add(user);
+			user.addFriend(this);
+		}
+	}
+	
+	public void removeFriend(User user) {
+		if (friends != null && friends.contains(user)) {
+			friends.remove(user);
+			user.removeFriend(this);
+		}
+	}
+	//reviews
+	
+	public void addReview(Review review) {
+		if (reviews == null) {
+			 reviews = new ArrayList<>();
+		}
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setUser(this);
+		}
+	}
+	
+	public void removeReview(Review review) {
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+			review.setUser(null);
 		}
 	}
 
