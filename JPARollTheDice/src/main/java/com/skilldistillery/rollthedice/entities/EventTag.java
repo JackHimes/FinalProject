@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,6 +38,12 @@ public class EventTag {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	
+
+	public EventTag() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -76,6 +83,25 @@ public class EventTag {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public void addGameEvent(GameEvent gameEvent) {
+		if (gameEvents == null) {
+			gameEvents = new ArrayList<>();
+		}
+		
+		if (!gameEvents.contains(gameEvent)) {
+			gameEvents.add(gameEvent);
+//			gameEvent.addEventTag(this);
+		}
+	}
+	
+	public void removeGameEvent(GameEvent gameEvent) {
+		if (gameEvents != null && gameEvents.contains(gameEvent)) {
+			gameEvents.remove(gameEvent);
+//			gameEvent.removeEventTag(this);
+		}
+		
 	}
 
 	@Override
