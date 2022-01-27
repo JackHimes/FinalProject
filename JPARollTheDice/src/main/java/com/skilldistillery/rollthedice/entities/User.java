@@ -1,5 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,7 +81,9 @@ public class User {
 				inverseJoinColumns=@JoinColumn(name="friend_id")
 	)
 	private List<User> friends;
+	
 
+	
 	public User() {
 		super();
 	}
@@ -222,6 +225,59 @@ public class User {
 
 	public void setFriends(List<User> friends) {
 		this.friends = friends;
+	}
+	
+	public void addAddress(Address address) {
+		if (addresses == null) {
+			addresses = new ArrayList<>();
+		}
+		
+		if (!addresses.contains(address)) {
+			addresses.add(address);
+			address.addUser(this);
+		}
+	}
+	
+	public void removeAddress(Address address) {
+		if (addresses != null && addresses.contains(address)) {
+			addresses.remove(address);
+			address.removeUser(this);
+		}
+	}
+	
+	
+	public void addGameEvent(GameEvent gameEvent) {
+		if (gameEvents == null) {
+			gameEvents = new ArrayList<>();
+		}
+		
+		if (!gameEvents.contains(gameEvent)) {
+			gameEvents.add(gameEvent);
+			gameEvent.addGuest(this);
+		}
+	}
+	
+	public void removeGameEvent(GameEvent gameEvent) {
+		if (gameEvents != null && gameEvents.contains(gameEvent)) {
+			gameEvents.remove(gameEvent);
+			gameEvent.removeGuest(this);
+		}
+	}
+	
+	//hostedGameEvents
+	//games
+	//comments
+	//reviews
+	//friends
+	
+	public void addHostedGameEvent(GameEvent hostedGameEvent) {
+		if (hostedGameEvents == null) {
+			hostedGameEvents = new ArrayList<>();
+		}
+		if (!hostedGameEvents.contains(hostedGameEvent)) {
+			hostedGameEvents.add(hostedGameEvent);
+			
+		}
 	}
 
 	@Override
