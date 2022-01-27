@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.Review;
 import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.repositories.GameEventRepository;
@@ -38,33 +37,36 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public Review createReview(Review review, String username, GameEvent gameEvent) {
-		//TODO set user to review
-		System.out.println("**************************************************************** in svcimpl.createreview");
-		review.setGameEvent(gameEventRepo.getById(gameEvent.getId()));
+	public Review createReview(Review review, String username, int gId) {
+		review.setGameEvent(gameEventRepo.getById(gId));
 		User user = userRepo.findByUsername(username);
 		review.setUser(user);
 		return reviewRepo.saveAndFlush(review);
 	}
 	
 	@Override
-	public Review updateReview(Review review, int id, String username) {
+	public Review updateReview(Review review, int id, String username, int gId) {
+		review.setId(id);
+		System.out.println("************************************************ IN UPDATE REVIEW SERVICE id = " + id);
+		System.out.println("review = " + review);
+		System.out.println("username = " + username);
+		System.out.println("gId = " + gId);
 		User loggedInUser = userRepo.findByUsername(username);
+		review.setUser(loggedInUser);
 		Optional<Review> updatedReview = reviewRepo.findById(id);
-		if (updatedReview.isPresent() && ((loggedInUser.getId() == review.getUser().getId()) || loggedInUser.getRole().equals("ROLE_ADMIN"))) {
-			review.setId(id);
+		if (updatedReview.isPresent() && ((loggedInUser.getId() == review.getUser().getId()) || loggedInUser.getRole().equals("ROLE_ADMIN")) && gId == review.getGameEvent().getId()) {
 			return reviewRepo.saveAndFlush(review);
 		}
 		return null;
 	}
 	
 	@Override
-	public boolean deleteReview(int id, String username) {
+	public boolean deleteReview(int id, String username, int gId) {
 		boolean deleted = false;
 		Optional<Review> r = reviewRepo.findById(id);
 		Review review = r.get();
 		User loggedInUser = userRepo.findByUsername(username);
-		if (r.isPresent() && ((loggedInUser.getId() == review.getUser().getId()) || loggedInUser.getRole().equals("ROLE_ADMIN"))) {
+		if (r.isPresent() && ((loggedInUser.getId() == review.getUser().getId()) || loggedInUser.getRole().equals("ROLE_ADMIN")) && review.getGameEvent().getId() == gId) {
 			reviewRepo.delete(review);
 			deleted = true;
 		}

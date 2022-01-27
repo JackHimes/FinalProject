@@ -29,7 +29,7 @@ public class Review {
 //	@Column(name = "rating")
 	private Integer rating;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private GameEvent gameEvent;

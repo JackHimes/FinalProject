@@ -2,7 +2,6 @@ package com.skilldistillery.rollthedice.services;
 
 import java.util.List;
 
-import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.Review;
 
 public interface ReviewService {
@@ -11,10 +10,10 @@ public interface ReviewService {
 
 	Review findReviewById(int id);
 	
-	Review createReview(Review review, String username, GameEvent gameEvent);
+	Review createReview(Review review, String username, int gId);
 
-	Review updateReview(Review review, int id, String username);
+	Review updateReview(Review review, int id, String username, int gId);
 
-	boolean deleteReview(int id, String username);
+	boolean deleteReview(int id, String username, int gId);
 
 }
