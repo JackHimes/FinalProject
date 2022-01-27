@@ -13,10 +13,10 @@ import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
 public class AddressServiceImpl implements AddressService {
-	
+
 	@Autowired
 	private AddressRepository addressRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
@@ -44,17 +44,25 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public Address updateAddress(String username, Address address, int addressId) {
 		address.setId(addressId);
-		
+
 		User loggedInUser = userRepo.findByUsername(username);
 		List<Address> usersAddresses = loggedInUser.getAddresses();
-		
-		for (Address userAddress : usersAddresses) {
-			if (userAddress.getId() == address.getId() || loggedInUser.getRole().equals("ROLE_ADMIN")) {
-				if (addressRepo.existsById(addressId)) {
-					return addressRepo.saveAndFlush(address);
+		Address homeAddress = loggedInUser.getHomeAddress();
+
+		if (homeAddress.getId() == address.getId() || loggedInUser.getRole().equals("ROLE_ADMIN")) {
+			if (addressRepo.existsById(addressId)) {
+				return addressRepo.saveAndFlush(address);
+			}
+		} else {
+			for (Address userAddress : usersAddresses) {
+				if (userAddress.getId() == address.getId() || loggedInUser.getRole().equals("ROLE_ADMIN")) {
+					if (addressRepo.existsById(addressId)) {
+						return addressRepo.saveAndFlush(address);
+					}
 				}
 			}
-		}	
+		}
+
 		return null;
 	}
 
@@ -64,14 +72,14 @@ public class AddressServiceImpl implements AddressService {
 
 		User loggedInUser = userRepo.findByUsername(username);
 		List<Address> usersAddresses = loggedInUser.getAddresses();
-		
+
 		for (Address userAddress : usersAddresses) {
 			if (userAddress.getId() == addressId || loggedInUser.getRole().equals("ROLE_ADMIN")) {
 				deleted = true;
 				addressRepo.deleteById(addressId);
 				break;
 			}
-		}	
+		}
 		return deleted;
 	}
 
