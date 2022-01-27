@@ -195,14 +195,14 @@ public class Game {
 		}
 		if (!users.contains(user)) {
 			users.add(user);
-//			user.addGame(this);
+			user.addGame(this);
 		}
 	}
 	
 	public void removeUser(User user) {
 		if (users != null && users.contains(user)) {
 			users.remove(user);
-//			user.removeGame(this);
+			user.removeGame(this);
 		}
 	}
 	
