@@ -48,9 +48,10 @@ public class AddressController {
 	}
 	
 	@PostMapping("addresses")
-	public Address createAddress(HttpServletRequest req, HttpServletResponse res,  @RequestBody Address address, Principal principal) {
+	public User createAddress(HttpServletRequest req, HttpServletResponse res,  @RequestBody Address address, Principal principal) {
+		User addressUser = null;
 		try {
-			addressService.createAddress(principal.getName(), address);
+			addressUser = addressService.createAddress(principal.getName(), address);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(address.getId());
@@ -60,7 +61,7 @@ public class AddressController {
 			System.err.println("Invalid JSON for New Address");
 			res.setStatus(400);
 		}
-		return address;
+		return addressUser;
 	}
 	
 	@PutMapping("addresses/{addressId}")

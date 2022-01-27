@@ -37,8 +37,13 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public Address createAddress(String username, Address address) {
-		return addressRepo.saveAndFlush(address);
+	public User createAddress(String username, Address address) {
+		User loggedInUser = userRepo.findByUsername(username);
+		loggedInUser.addAddress(address);
+		address.addUser(loggedInUser);
+		addressRepo.saveAndFlush(address);
+		userRepo.saveAndFlush(loggedInUser);
+		return loggedInUser;
 	}
 
 	@Override
