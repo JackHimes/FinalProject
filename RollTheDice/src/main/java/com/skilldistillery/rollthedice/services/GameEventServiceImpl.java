@@ -57,7 +57,7 @@ public class GameEventServiceImpl implements GameEventService {
 		if (gameEventOp.isPresent()) {
 			GameEvent updatedGameEvent = gameEventOp.get();
 			if(updatedGameEvent.getHost().getUsername().equals(loggedInUser.getUsername()) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
-	
+				gameEvent.setId(gameEventId);
 				return gameEventRepo.saveAndFlush(gameEvent);
 			}
 		}
