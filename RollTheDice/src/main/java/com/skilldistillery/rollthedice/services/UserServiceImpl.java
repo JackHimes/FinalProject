@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.User;
+import com.skilldistillery.rollthedice.repositories.GameEventRepository;
 import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
@@ -14,7 +16,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
-
+	@Autowired
+	private GameEventRepository gameEventRepo;
+	
 	@Override
 	public List<User> findAllUsers() {
 		List<User> resultUsers = userRepo.findAll();
@@ -61,6 +65,17 @@ public class UserServiceImpl implements UserService {
 			}				
 		}
 		return deleted;
+	}
+
+	@Override
+	public GameEvent addGuestToGameEvent(String username, int geId) {
+		User loggedInUser = userRepo.findByUsername(username);
+		GameEvent gameEvent = gameEventRepo.findById(geId).get();
+		loggedInUser.addGameEvent(gameEvent);
+		gameEvent.addGuest(loggedInUser);
+		userRepo.saveAndFlush(loggedInUser);
+		gameEventRepo.saveAndFlush(gameEvent);
+		return gameEvent;
 	}
 
 }

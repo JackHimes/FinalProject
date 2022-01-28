@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.services.AuthService;
 import com.skilldistillery.rollthedice.services.UserService;
@@ -84,6 +84,23 @@ public class UserController {
 			res.setStatus(404);
 			System.err.println("Error deleting user.");
 		}
+	}
+	
+	@PutMapping("users/{userId}/gameevents/{gId}")
+	public GameEvent addGuestToGameEvent(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId, @PathVariable int gId, Principal principal) {
+		GameEvent gameEvent = null;
+		User user = userService.findUserById(userId);
+		try {
+			if (user.getUsername().equals(principal.getName())) {
+				gameEvent = userService.addGuestToGameEvent(principal.getName(), gId);	
+				res.setStatus(201);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			System.err.println("Error adding guest to Game Event");
+		}
+		return gameEvent;
 	}
 
 }
