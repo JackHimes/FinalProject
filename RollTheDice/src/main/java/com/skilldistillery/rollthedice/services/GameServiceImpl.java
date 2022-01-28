@@ -103,4 +103,9 @@ public class GameServiceImpl implements GameService {
 		return deleted;
 	}
 
+	@Override
+	public List<Game> searchKeyword(String keyword) {
+		return gameRepo.findByNameContainsOrDescriptionContains(keyword, keyword);
+	}
+
 }

@@ -88,5 +88,18 @@ public class GameEventController {
 			res.setStatus(400);
 		}
 	}
+	
+	@GetMapping("gameevents/search/{keyword}")
+	public List<GameEvent> showByKeyword(@PathVariable String keyword, HttpServletResponse res) {
+		List<GameEvent> resultGameEvents = null;
+		try {
+			resultGameEvents = gameEventService.searchKeyword(keyword);
+			res.setStatus(200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return resultGameEvents;
+	}
 
 }

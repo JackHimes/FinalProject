@@ -122,5 +122,18 @@ public class GameController {
 			res.setStatus(400);
 		}
 	}
+	
+	@GetMapping("games/search/{keyword}")
+	public List<Game> showByKeyword(@PathVariable String keyword, HttpServletResponse res) {
+		List<Game> resultGames = null;
+		try {
+			resultGames = gameServ.searchKeyword(keyword);
+			res.setStatus(200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return resultGames;
+	}
 
 }

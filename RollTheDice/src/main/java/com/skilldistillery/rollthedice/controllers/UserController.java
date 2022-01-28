@@ -102,5 +102,18 @@ public class UserController {
 		}
 		return gameEvent;
 	}
+	
+	@GetMapping("users/search/{keyword}")
+	public List<User> showByKeyword(@PathVariable String keyword, HttpServletResponse res) {
+		List<User> resultUsers = null;
+		try {
+			resultUsers = userService.searchKeyword(keyword);
+			res.setStatus(200);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return resultUsers;
+	}
 
 }
