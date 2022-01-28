@@ -13,6 +13,7 @@ import { CreationComponent } from './components/creation/creation.component';
 import { GameeventdetailsComponent } from './components/gameeventdetails/gameeventdetails.component';
 import { GamedetailsComponent } from './components/gamedetails/gamedetails.component';
 import { AdvancedsearchComponent } from './components/advancedsearch/advancedsearch.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdvancedsearchComponent } from './components/advancedsearch/advancedsea
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     AuthService,
