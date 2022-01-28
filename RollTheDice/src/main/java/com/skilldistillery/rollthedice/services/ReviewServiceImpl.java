@@ -38,7 +38,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public Review createReview(Review review, String username, int gId) {
-		review.setGameEvent(gameEventRepo.getById(gId));
+		review.setGameEvent(gameEventRepo.queryById(gId));
 		User user = userRepo.findByUsername(username);
 		review.setUser(user);
 		return reviewRepo.saveAndFlush(review);
@@ -47,10 +47,6 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public Review updateReview(Review review, int id, String username, int gId) {
 		review.setId(id);
-		System.out.println("************************************************ IN UPDATE REVIEW SERVICE id = " + id);
-		System.out.println("review = " + review);
-		System.out.println("username = " + username);
-		System.out.println("gId = " + gId);
 		User loggedInUser = userRepo.findByUsername(username);
 		review.setUser(loggedInUser);
 		Optional<Review> updatedReview = reviewRepo.findById(id);

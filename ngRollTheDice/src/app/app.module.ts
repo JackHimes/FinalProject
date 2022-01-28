@@ -14,6 +14,7 @@ import { GameeventdetailsComponent } from './components/gameeventdetails/gameeve
 import { GamedetailsComponent } from './components/gamedetails/gamedetails.component';
 import { AdvancedsearchComponent } from './components/advancedsearch/advancedsearch.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     NgbModule
   ],
   providers: [

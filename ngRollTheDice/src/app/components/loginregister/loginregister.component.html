@@ -1,2 +1,30 @@
-<p>loginregister works!</p>
-<button>Hello test bootstrap</button>
+<div name="loginRegisterFormDiv">
+<form name="registerForm" *ngIf="registerSelected">
+  <h3>Create an Account</h3>
+  <label for="username">Username:</label><br>
+  <input type="text" name="username" placeholder="Username" required [(ngModel)]="createUser.username">
+  <br>
+  <label for="password">Password:</label><br>
+  <input type="password" name="password" placeholder="Password" required [(ngModel)]="createUser.password">
+  <br><label for="passwordConfirm">Confirm Password:</label><br>
+  <input type="password" name="passwordConfirm" placeholder="Confirm Password" required [(ngModel)]="confirmPword">
+  <br> <label for="email">Email:</label><br>
+  <input type="text" name="email" placeholder="Email" required [(ngModel)]="createUser.email">
+  <br><input type="submit" value="Create Account" (click)="createAcct(createUser)">
+  <br>
+</form>
+
+
+
+
+<form name="loginForm" *ngIf="loginSelected">
+  <h3>Login</h3>
+  <label for="username">Username:</label><br>
+  <input type="text" name="username" placeholder="Username" required [(ngModel)]="loggingInUser.username">
+  <br>
+  <label for="password">Password:</label><br>
+  <input type="password" name="password" placeholder="Password" required [(ngModel)]="loggingInUser.password">
+  <br><input type="submit" value="Login" (click)="loginUser(loggingInUser)">
+  <p (click)="loginSelected = false; registerSelected = true" >Need an account? Register here</p>
+</form>
+</div>
