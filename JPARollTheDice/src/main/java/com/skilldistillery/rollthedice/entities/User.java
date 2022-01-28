@@ -81,6 +81,8 @@ public class User {
 	)
 	private List<User> friends;
 	
+	private String biography;
+	
 	public User() {
 		super();
 	}
@@ -222,6 +224,14 @@ public class User {
 		this.friends = friends;
 	}
 	
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
+
 	public void addAddress(Address address) {
 		if (addresses == null) {
 			addresses = new ArrayList<>();

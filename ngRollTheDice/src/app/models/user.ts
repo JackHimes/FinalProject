@@ -22,6 +22,7 @@ export class User {
   comments: Comment[] | undefined;
   reviews: Review[] | undefined;
   friends: User[] | undefined;
+  biography: string | undefined;
 
 
   constructor(
@@ -41,7 +42,8 @@ export class User {
     games?: Game[] | undefined,
     comments?: Comment[] | undefined,
     reviews?: Review[] | undefined,
-    friends?: User[] | undefined) {
+    friends?: User[] | undefined,
+    biography: string = '') {
       this.id = id;
       this.username = username;
       this.password = password;
@@ -59,6 +61,7 @@ export class User {
       this.comments = comments;
       this.reviews = reviews;
       this.friends = friends;
+      this.biography = biography;
 
   }
 

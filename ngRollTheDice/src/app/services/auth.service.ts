@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, catchError, throwError } from 'rxjs';
+import { tap, catchError, throwError, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 
@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<User> {
     // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);
     // Send credentials as Authorization header (this is spring security convention for basic auth)
@@ -27,11 +27,12 @@ export class AuthService {
 
     // create request to authenticate credentials
     return this.http
-      .get(this.baseUrl + 'authenticate', httpOptions)
+      .get<User>(this.baseUrl + 'authenticate', httpOptions)
       .pipe(
-        tap((res) => {
+        tap((user) => {
           localStorage.setItem('credentials' , credentials);
-          return res;
+          localStorage.setItem('userId' , '' + user.id);
+          return user;
         }),
         catchError((err: any) => {
           console.log(err);
@@ -57,6 +58,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('credentials');
+    localStorage.removeItem('userId');
   }
 
   checkLogin() {
@@ -74,5 +76,12 @@ export class AuthService {
     return localStorage.getItem('credentials');
   }
 
+    getCurrentUserId(): number {
+      var temp = localStorage.getItem('userId');
+      if (temp != null){
+      return Number.parseInt(temp);
+      }
+      else return -1;
+    }
 
 }
