@@ -66,4 +66,9 @@ public class GameEventServiceImpl implements GameEventService {
 		return null;
 	}
 
+	@Override
+	public List<GameEvent> searchKeyword(String keyword) {
+		return gameEventRepo.findByTitleContainsOrDescriptionContains(keyword, keyword);
+	}
+
 }

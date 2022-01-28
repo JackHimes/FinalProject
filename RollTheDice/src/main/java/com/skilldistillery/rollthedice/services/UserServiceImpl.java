@@ -78,4 +78,9 @@ public class UserServiceImpl implements UserService {
 		return gameEvent;
 	}
 
+	@Override
+	public List<User> searchKeyword(String keyword) {
+		return userRepo.findByUsernameContainsOrFirstNameContainsOrLastNameContains(keyword, keyword, keyword);
+	}
+
 }

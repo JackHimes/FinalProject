@@ -11,5 +11,6 @@ public interface GameService {
 	Game create(Game game, String username);
 	Game update(Game bame, int gid, String username);
 	boolean delete(int id, String username);
+	List<Game> searchKeyword(String keyword);
 
 }

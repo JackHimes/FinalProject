@@ -15,6 +15,7 @@ import { GamedetailsComponent } from './components/gamedetails/gamedetails.compo
 import { AdvancedsearchComponent } from './components/advancedsearch/advancedsearch.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     CreationComponent,
     GameeventdetailsComponent,
     GamedetailsComponent,
-    AdvancedsearchComponent
+    AdvancedsearchComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

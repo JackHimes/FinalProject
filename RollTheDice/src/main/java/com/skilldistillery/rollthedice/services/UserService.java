@@ -18,5 +18,7 @@ public interface UserService {
 	public boolean destroyUser(String username, int userId);
 	
 	GameEvent addGuestToGameEvent(String username, int geId);
+	
+	List<User> searchKeyword(String keyword);
 
 }

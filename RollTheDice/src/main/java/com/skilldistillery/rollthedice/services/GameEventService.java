@@ -17,4 +17,6 @@ public interface GameEventService {
 	
 	GameEvent updateGameEvent(String username, GameEvent gameEvent, Integer gameEventId);
 	
+	List<GameEvent> searchKeyword(String keyword);
+	
 }
