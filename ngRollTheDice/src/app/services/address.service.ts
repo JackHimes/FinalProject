@@ -78,7 +78,7 @@ update(address: Address, id: number): Observable<Address> {
     catchError((err: any) => {
       console.log(err);
       return throwError(
-        () => new Error('AddressService.create(): error updating address: ' + err)
+        () => new Error('AddressService.update(): error updating address: ' + err)
       );
     })
   );
@@ -89,7 +89,7 @@ destroy(id: number): Observable<void> {
     catchError((err: any) => {
       console.log(err);
       return throwError(
-        () => new Error('AddressService.create(): error destroying address: ' + err)
+        () => new Error('AddressService.destroy(): error destroying address: ' + err)
       );
     })
   )
