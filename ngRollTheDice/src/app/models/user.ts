@@ -2,6 +2,7 @@ import { Address } from "./address";
 import { Gameevent } from "./gameevent";
 import { Game } from "./game";
 import { Review } from "./review";
+import { Comment } from "./comment";
 
 export class User {
   id: number;
