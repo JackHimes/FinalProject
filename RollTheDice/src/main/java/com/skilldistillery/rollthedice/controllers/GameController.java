@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.rollthedice.entities.Game;
+import com.skilldistillery.rollthedice.entities.Genre;
 import com.skilldistillery.rollthedice.services.GameService;
 
 @RestController
@@ -67,7 +68,8 @@ public class GameController {
 	public Game create(HttpServletRequest req, HttpServletResponse res, @RequestBody Game game,
 			Principal principal) {
 		try {
-			gameServ.create(game, principal.getName());
+			List<Genre> temp = game.getGenres();
+			gameServ.create(game, principal.getName(), temp);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(game.getId());
