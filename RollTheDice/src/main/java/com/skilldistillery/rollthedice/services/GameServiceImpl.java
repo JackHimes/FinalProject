@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rollthedice.entities.Game;
+import com.skilldistillery.rollthedice.entities.Genre;
 import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.repositories.GameRepository;
@@ -36,11 +37,16 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Game create(Game game, String username) {
+	public Game create(Game game, String username, List<Genre> genres) {
 		User user = userRepo.findByUsername(username);
 		game.setGameOwner(user);
+		System.out.println("**********************************************************************" +genres);
+		for (Genre genre : genres) {
+			game.addGenre(genre);
+		}
 		if(game != null && (user.getRole().equals("ROLE_ADMIN")) || user.getUsername().equals(username)) {
-			return gameRepo.saveAndFlush(game);
+			Game temp = gameRepo.save(game);
+			 return update(game, temp.getId(), username);
 		}
 		return null;
 		
