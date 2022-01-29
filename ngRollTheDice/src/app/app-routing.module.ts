@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'advancedsearch', component: AdvancedsearchComponent},
   {path: 'creation', component: CreationComponent},
   {path: 'gamedetails', component: GamedetailsComponent},
+  {path: 'gamedetails/:gameId', component: GamedetailsComponent},
   {path: 'gameeventdetails', component: GameeventdetailsComponent},
   {path: 'home', component: HomeComponent},
   {path: 'navigation', component: NavigationComponent},
