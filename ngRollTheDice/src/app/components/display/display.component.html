@@ -18,6 +18,8 @@
 <div name="gameEventSearchResultDiv" *ngIf="gameEvents">
   gameEvent search results go here
   <ul *ngFor="let gameEvent of gameEvents">
+    <li>Game Host: {{gameEvent.host.username}}</li>
+    <li>Guests: {{gameEvent.guests}}</li>
     <li>Date of Event: {{ gameEvent.dateOfEvent }}</li>
     <li>Max # of Guests: {{ gameEvent.maxNumberOfGuests }}</li>
     <li>Start Time: {{ gameEvent.startTime }}</li>
