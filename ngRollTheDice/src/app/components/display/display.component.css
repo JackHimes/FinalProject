@@ -9,10 +9,8 @@
 }
 
 img {
-  max-height: 20%;
-  max-width: 20%;
-  float: right;
-  margin-top: -30px;
+  margin-left: auto;
+
 }
 
 .card-body {
@@ -23,4 +21,5 @@ img {
 a {
   margin-top: auto;
   max-width: 30%;
+  float: right;
 }
