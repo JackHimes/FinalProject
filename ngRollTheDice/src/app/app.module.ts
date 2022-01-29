@@ -16,6 +16,8 @@ import { AdvancedsearchComponent } from './components/advancedsearch/advancedsea
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { SearchComponent } from './components/search/search.component';
+import { DisplayComponent } from './components/display/display.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
     GameeventdetailsComponent,
     GamedetailsComponent,
     AdvancedsearchComponent,
-    AboutusComponent
+    AboutusComponent,
+    SearchComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,

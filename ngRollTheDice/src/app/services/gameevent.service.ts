@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Gameevent } from '../models/gameevent';
-import { Genre } from '../models/genre';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameeventService {
-  private url = environment.baseUrl +'gameevents';
+  private url = environment.baseUrl + 'api/gameevents';
 
   constructor(
   private http: HttpClient,
@@ -37,6 +36,17 @@ export class GameeventService {
        })
      );
    }
+
+   searchByKeyword(keyword: string): Observable<Gameevent> {
+    return this.http.get<Gameevent>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('GameEventService.searchByKeyword(): error retrieving game events' + err)
+        );
+      })
+    );
+  }
 
    index(): Observable<Gameevent> {
      return this.http.get<Gameevent>(this.url, this.getHttpOptions()).pipe(

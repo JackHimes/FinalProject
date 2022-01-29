@@ -8,19 +8,22 @@
     <a class="nav-link" aria-current="page" [routerLink]="['/loginregister']" (click)="logout()">Login</a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" [routerLink]="['/aboutus']">About Us</a>
+  <li class="nav-item" *ngIf="loggedIn()">
+    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">My Profile</a>
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
     <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Host Event</a>
   </li>
 
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" [routerLink]="['/aboutus']">About Us</a>
+  </li>
+
   <li class="nav-item" *ngIf="loggedIn()">
     <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Add Game</a>
   </li>
-
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="#">Search</a>
+  <li>
+    <app-search></app-search>
   </li>
 </ul>
