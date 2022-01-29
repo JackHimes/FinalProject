@@ -37,12 +37,12 @@ export class GamedetailsComponent implements OnInit {
     this.loadGames();
     setTimeout(() => {
       this.randomGames();
-    }, 700);
+    }, 10000);
   }
 
   randomGames() {
     if (this.game.genres) {
-      this.similarGames = this.filterGenrePipe.transform(this.games, this.game.genres);
+      this.similarGames = this.filterGenrePipe.transform(this.games, this.game.genres, this.game);
     }
     let num1 = this.getRandomNum(this.similarGames.length);
     num1 = parseInt(num1.toString());
@@ -67,33 +67,6 @@ export class GamedetailsComponent implements OnInit {
       }
     });
   }
-
-  // loadGame(num1: number, num2: number, num3: number) {
-  //   this.gameSvc.show(num1).subscribe({
-  //     next: (g) => {
-  //       this.displayGame1 = g;
-  //     },
-  //     error: (fail) => {
-  //       console.error("error in GameDetails Component.loadGame... Here the error: " + fail);
-  //     }
-  //   });
-  //   this.gameSvc.show(num2).subscribe({
-  //     next: (g) => {
-  //       this.displayGame2 = g;
-  //     },
-  //     error: (fail) => {
-  //       console.error("error in GameDetails Component.loadGame... Here the error: " + fail);
-  //     }
-  //   });
-  //   this.gameSvc.show(num3).subscribe({
-  //     next: (g) => {
-  //       this.displayGame3 = g;
-  //     },
-  //     error: (fail) => {
-  //       console.error("error in GameDetails Component.loadGame... Here the error: " + fail);
-  //     }
-  //   });
-  // }
 
   loadMainGame() {
     this.gameSvc.show(this.id).subscribe({
