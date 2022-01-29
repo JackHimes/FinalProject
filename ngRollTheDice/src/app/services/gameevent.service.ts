@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Gameevent } from '../models/gameevent';
-import { Genre } from '../models/genre';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameeventService {
-  private url = environment.baseUrl +'gameevents';
+  private url = environment.baseUrl +'api/gameevents';
 
   constructor(
   private http: HttpClient,
