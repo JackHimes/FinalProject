@@ -5,13 +5,19 @@
     </div>
     <form>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Title: <input type="text" name="title" [(ngModel)]="newGame.name"></li>
+            <li class="list-group-item">Title: <br><input type="text" name="title" [(ngModel)]="newGame.name"></li>
             <li class="list-group-item">Max Players: <input type="number" name="maxPlayers" [(ngModel)]="newGame.maxPlayers"></li>
             <li class="list-group-item">Game Url: <input type="text" name="gameUrl" [(ngModel)]="newGame.linkToGame"></li>
             <li class="list-group-item">Average Play Time: <input type="text" name="playTime" [(ngModel)]="newGame.timeToPlay"></li>
             <li class="list-group-item">Description: <input type="text" name="description" [(ngModel)]="newGame.description"></li>
             <li class="list-group-item">Image Url: <input type="text" name="imageUrl" [(ngModel)]="newGame.imageUrl"></li>
-            <li class="list-group-item">Genres: <input *ngFor="let genre of genres" type="checkbox" name="genres" value="{{genre}}" [(ngModel)]="newGame.genres"></li>
+            <li class="list-group-item">Genres:
+                <div *ngFor="let genre of genres; let i = index">
+                    <label  for="i"> {{genre.name}}: </label>
+                    <input type="checkbox" [checked]='genres.indexOf(genre) > -1' (change)=addGenresToChecked(genre)>
+                    <!-- <input type="checkbox" [checked]='cars.indexOf(car) > -1' (change)="checkChanged(car)"></td> -->
+                </div> 
+            </li>
         </ul>
     </form>
     <div class="card-body">

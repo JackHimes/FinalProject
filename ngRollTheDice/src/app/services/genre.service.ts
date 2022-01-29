@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class GenreService {
-  private url = environment.baseUrl +'genres';
+  private url = environment.baseUrl +'api/genres';
 
 
   constructor(

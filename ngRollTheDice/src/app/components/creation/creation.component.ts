@@ -13,6 +13,7 @@ export class CreationComponent implements OnInit {
 
   newGame: Game = new Game();
   genres: Genre [] = [];
+  checked: Genre [] = [];
 
   constructor(
     private gameService: GameService,
@@ -41,22 +42,42 @@ export class CreationComponent implements OnInit {
         this.genres = allGenres;
       },
       error: (fail) => {
-        console.error("Failed to loadGenres() in creation.component.ts")
+        console.error("Failed to loadGenres() in creation.component.ts" + fail)
+
       }
     });
   }
 
+  addGenresToChecked(genre : Genre){
 
-  // addTodo(todo : Todo): void{
-  //   this.todoService.create(todo).subscribe({
-  //       next: (todo) => {
-  //       this.reload();
-  //       this.newTodo = new Todo();
-  //     }, error : (fail) =>{
-  //       console.error("FAILED TODO POST")
-  //     } 
-  //   });
+    const checkedGenre = this.genres.find(g => g.id === genre.id);
+    if(checkedGenre){
+      this.genres.splice(this.genres.indexOf(checkedGenre), 1);
+    } else{
+      this.genres.push(genre);
+    }
     
-  //   }
+  }
+
+
+//   checkChanged(car)
+// {
+//   const checkedCar = this.cars.find(c => c.id === car.id);
+//   if(checkedCar)
+//   {
+//     this.cars.splice(this.cars.indexOf(checkedCar), 1);
+//   }
+//   else
+//   {
+//     this.cars.push(car);
+//   }
+// }
+
+  removeGenre(){
+
+  }
+
+
+
 
 }
