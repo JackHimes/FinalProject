@@ -4,6 +4,7 @@ import { Game } from 'src/app/models/game';
 import { FilterGenrePipe } from 'src/app/pipes/filter-genre.pipe';
 import { GameService } from 'src/app/services/game.service';
 
+
 @Component({
   selector: 'app-gamedetails',
   templateUrl: './gamedetails.component.html',
