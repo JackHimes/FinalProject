@@ -2,8 +2,73 @@
   <div class="wrapper">
     <div class="profilePicDiv">
       <img id="profilePic" src="{{ user.profilePictureUrl }}" />
+      <p>{{ user.username }}</p>
     </div>
-    <div class="bio">{{user.biography}}</div>
-    <div class="box3">Three</div>
+    <div class="bio">{{ user.biography }}</div>
+    <div class="box3">Details
+      <div *ngIf="friends.length > 0">
+        <table>
+          <thead>
+            <th>Profile Picture</th>
+            <th>Username</th>
+            <th *ngIf="isItYou">First Name</th>
+          </thead>
+          <!-- <tbody> -->
+            <tr *ngFor="let friend of friends">
+              <td><img src="{{friend.profilePictureUrl}}" height="10"></td>
+              <td>{{friend.username}}</td>
+              <td *ngIf="isItYou">{{friend.firstName}}</td>
+            </tr>
+          <!-- </tbody> -->
+        </table>
+      </div>
+      <div *ngIf="games.length > 0">
+        <table>
+          <thead>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Time To Play</th>
+            <th>Maximum Players</th>
+          </thead>
+          <tr *ngFor="let game of games">
+            <td><img src="{{game.imageUrl}}"></td>
+            <td><a [href]="game.linkToGame" target="_blank">{{game.name}}</a></td>
+            <td>{{game.description}}</td>
+            <td>{{game.timeToPlay}}</td>
+            <td>{{game.maxPlayers}}</td>
+          </tr>
+        </table>
+      </div>
+      <div *ngIf="events.length > 0">
+        <table>
+          <thead>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Games</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of events">
+              <td>{{event.title}}</td>
+              <td>{{event.dateOfEvent | date: "fullDate" }}</td>
+              <td><p *ngFor="let g of event.games">{{g.name}}</p></td>
+              <td>{{event.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="options">
+      <div class="optionsIfYou" *ngIf="isItYou">
+        <h3>It's you</h3>
+        <button class="sideButton" (click)="displayFriends()">Your Friends</button><br>
+        <button class="sideButton" (click)="displayEvents()">Your Events</button><br>
+        <button class="sideButton" (click)="displayGames()">Your Games</button><br>
+      </div>
+      <div class="optionsNotYou" *ngIf="!isItYou">
+        It's not you!
+      </div>
+    </div>
   </div>
 </div>

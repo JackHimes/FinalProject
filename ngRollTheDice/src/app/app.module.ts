@@ -16,6 +16,7 @@ import { AdvancedsearchComponent } from './components/advancedsearch/advancedsea
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FilterGenrePipe } from './pipes/filter-genre.pipe';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { FilterGenrePipe } from './pipes/filter-genre.pipe';
     GamedetailsComponent,
     AdvancedsearchComponent,
     AboutusComponent,
+    NotFoundComponent,
     FilterGenrePipe
   ],
   imports: [
