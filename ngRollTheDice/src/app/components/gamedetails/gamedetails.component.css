@@ -1,0 +1,47 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.picture {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  background-color: peachpuff;
+}
+.details {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+  background-color: peachpuff;
+  text-indent: 10px;
+}
+
+.details > a {
+  font-family: 'Gill Sans';
+  text-align: center;
+}
+
+.similar {
+  grid-column: 1 / 1.5;
+  grid-row: 3 / 8;
+  background-color: peachpuff;
+}
+.discussion {
+  grid-column: 2/4;
+  grid-row: 3 / 7;
+  background-color: peachpuff;
+}
+.five {
+  grid-column: 2;
+  grid-row: 7;
+  background-color: peachpuff;
+}
+.six {
+  grid-column: 3;
+  grid-row: 7;
+  background-color: peachpuff;
+}
+
+h3 {
+  text-align: center;
+}
