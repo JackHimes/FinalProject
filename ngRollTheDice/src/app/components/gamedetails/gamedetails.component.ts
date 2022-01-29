@@ -18,7 +18,7 @@ export class GamedetailsComponent implements OnInit {
   displayGame1: Game = new Game();
   displayGame2: Game = new Game();
   displayGame3: Game = new Game();
-  buttonClick = true;
+  buttonClick = false;
   currentRate = Math.random() * 10;
 
   constructor(
@@ -35,13 +35,13 @@ export class GamedetailsComponent implements OnInit {
     }
     this.loadMainGame();
     this.loadGames();
-    // this.randomGames();
+    setTimeout(() => {
+      this.randomGames();
+    }, 700);
   }
 
   randomGames() {
-    console.log('***IN randomGames()****')
     if (this.game.genres) {
-      console.log("IN RANDOMGAMES()- this.game.genres.length = " + this.game.genres.length);
       this.similarGames = this.filterGenrePipe.transform(this.games, this.game.genres);
     }
     let num1 = this.getRandomNum(this.similarGames.length);
