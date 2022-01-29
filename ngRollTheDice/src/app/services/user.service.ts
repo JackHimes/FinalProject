@@ -47,8 +47,8 @@ export class UserService {
     );
   }
 
-  searchByKeyword(keyword: string): Observable<User> {
-    return this.http.get<User>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
+  searchByKeyword(keyword: string): Observable<User[]> {
+    return this.http.get<User[]>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

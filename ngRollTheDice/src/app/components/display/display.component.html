@@ -1,8 +1,27 @@
+<div name="userSearchResultDiv" *ngIf="users">
+  <ul *ngFor="let user of users">
+    <li>Username: {{ user.username }}</li>
+    <li>Profile Pic: <img src="{{ user.profilePictureUrl }}" /></li>
+  </ul>
+</div>
 
-<div name="userSearchResultDiv">user search results go here</div>
+<div name="gameSearchResultDiv" *ngIf="games">
+  game search results go here
+  <ul *ngFor="let game of games">
+    <li>Name: {{ game.name }}</li>
+    <li>game description: {{ game.description }}</li>
+    <li>max players: {{ game.maxPlayers }}</li>
+    <li>Game Time Limit: {{ game.timeToPlay }}</li>
+  </ul>
+</div>
 
-<div name="gameSearchResultDiv">game search results go here</div>
-
-<div name="gameEventSearchResultDiv">gameEvent search results go here</div>
-
-
+<div name="gameEventSearchResultDiv" *ngIf="gameEvents">
+  gameEvent search results go here
+  <ul *ngFor="let gameEvent of gameEvents">
+    <li>Date of Event: {{ gameEvent.dateOfEvent }}</li>
+    <li>Max # of Guests: {{ gameEvent.maxNumberOfGuests }}</li>
+    <li>Start Time: {{ gameEvent.startTime }}</li>
+    <li>End Time: {{ gameEvent.endTime }}</li>
+    <li>Description: {{ gameEvent.description }}</li>
+  </ul>
+</div>

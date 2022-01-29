@@ -4,7 +4,6 @@ import { Game } from 'src/app/models/game';
 import { Gameevent } from 'src/app/models/gameevent';
 import { User } from 'src/app/models/user';
 import { SearchService } from 'src/app/services/search.service';
-import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-display',
@@ -20,13 +19,12 @@ export class DisplayComponent implements OnInit {
 
 
   constructor(
-    private searchComp: SearchComponent,
     private route: ActivatedRoute,
     private searchSvc: SearchService
     ) { }
 
   ngOnInit(): void {
-    this.keyword = this.route.snapshot.paramMap.get('keyword');
+    this.keyword = this.route.snapshot.params['keyword'];
     if (this.keyword) {
       this.executeSearch(this.keyword);
     }
@@ -36,8 +34,11 @@ export class DisplayComponent implements OnInit {
 
     this.searchSvc.searchGameByKeyword(keyword).subscribe({
       next: (game) => {
-        console.log('success searching game by keyword');
-        this.games.push(game);
+        console.log("Game object: " + game);
+        console.log('success searching game by keyword' + this.keyword);
+        this.games = game;
+        console.log('gamesarray: ');
+        console.log(this.games);
         this.searchResults.push(this.games);
       },
       error: (fail) => {
@@ -48,8 +49,10 @@ export class DisplayComponent implements OnInit {
 
     this.searchSvc.searchGameEventByKeyword(keyword).subscribe({
       next: (gameEvent) => {
+        console.log("Game object: " + gameEvent);
         console.log('success searching game event by keyword')
-        this.gameEvents.push(gameEvent);
+        this.gameEvents = gameEvent;
+        console.log(this.gameEvents);
         this.searchResults.push(this.gameEvents);
       },
       error: (fail) => {
@@ -60,8 +63,10 @@ export class DisplayComponent implements OnInit {
 
     this.searchSvc.searchUserByKeyword(keyword).subscribe({
       next: (user) => {
+        console.log("Game object: " + user);
         console.log('success searching user by keyword');
-        this.users.push(user);
+        this.users = user;
+        console.log(this.users);
         this.searchResults.push(this.users);
       },
       error: (fail) => {

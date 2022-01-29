@@ -2,6 +2,6 @@
   <!-- <a class="nav-link" aria-current="page" href="#">Search</a> -->
   <form name="userOrGameOrGameEventSearch">
     <input type="text" name="keyword" placeholder="Search" value=keyword [(ngModel)]="keyword">
-    <input type="submit" name="search" value="Search" [routerLink]="['/display/'+keyword]" (click)="checkKeyword()">
+    <input type="submit" name="search" value="Search" [routerLink]="['/display/' + keyword]">
   </form>
 </li>

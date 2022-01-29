@@ -21,15 +21,15 @@ export class SearchService {
     private userSvc: UserService
   ) { }
 
-  searchGameByKeyword(keyword: string): Observable<Game> {
+  searchGameByKeyword(keyword: string): Observable<Game[]> {
     return this.gameSvc.searchByKeyword(keyword);
   }
 
-  searchGameEventByKeyword(keyword: string): Observable<Gameevent> {
+  searchGameEventByKeyword(keyword: string): Observable<Gameevent[]> {
     return this.gameEventSvc.searchByKeyword(keyword);
   }
 
-  searchUserByKeyword(keyword: string): Observable<User> {
+  searchUserByKeyword(keyword: string): Observable<User[]> {
     return this.userSvc.searchByKeyword(keyword);
   }
 

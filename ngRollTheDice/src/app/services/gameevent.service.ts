@@ -37,8 +37,8 @@ export class GameeventService {
      );
    }
 
-   searchByKeyword(keyword: string): Observable<Gameevent> {
-    return this.http.get<Gameevent>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
+   searchByKeyword(keyword: string): Observable<Gameevent[]> {
+    return this.http.get<Gameevent[]>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
