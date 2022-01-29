@@ -1,4 +1,77 @@
-<div name="userSearchResultDiv" *ngIf="users">
+
+<div class="resultsMasterDiv">
+<div class="card">
+  <div class="card-header">
+    Game Results!
+  </div>
+  <div class="card-body" *ngFor="let game of games">
+    <h5 class="card-title">Title: {{game.name}}</h5>
+    <p class="card-text">Description: {{game.description}}</p>
+    <a href="{{game.linkToGame}}" class="btn btn-primary">View on BoardGameGeek!</a>
+  </div>
+</div>
+<!-- delete below here -->
+<div class="card">
+  <div class="card-header">
+    Game Results!
+  </div>
+  <div class="card-body" *ngFor="let game of games">
+    <h5 class="card-title">Title: {{game.name}}</h5>
+    <p><img src=" https://cf.geekdo-images.com/ZWJg0dCdrWHxVnc0eFXK8w__imagepage/img/FcSGmLeIStNfb0l_qKSuOyz-rHY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic38668.jpg" /></p>
+    <p class="card-text">Description: {{game.description}}</p>
+    <a href="{{game.linkToGame}}" class="btn btn-primary">View on BoardGameGeek!</a>
+  </div>
+</div>
+<!-- delete later -->
+<div class="card">
+  <div class="card-header">
+    Game Results!
+  </div>
+  <div class="card-body" *ngFor="let game of games">
+    <h5 class="card-title">Title: {{game.name}} <a href="{{game.linkToGame}}" class="btn btn-primary">View on BoardGameGeek!</a></h5>
+    <p class="card-text">Description: {{game.description}}</p>
+    <!-- <a href="{{game.linkToGame}}" class="btn btn-primary">View on BoardGameGeek!</a> -->
+  </div>
+</div>
+<!-- delete above here -->
+<div class="card">
+  <div class="card-header">
+    Game Event Results!
+  </div>
+  <div class="card-body" *ngFor="let gameEvent of gameEvents">
+    <h5 class="card-title">Host: {{gameEvent.host.username}}</h5>
+    <p class="card-text">Date of Event: {{gameEvent.dateOfEvent}}</p>
+    <a href="#" class="btn btn-primary">Placeholder</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    User Results!
+  </div>
+  <div class="card-body" *ngFor="let user of users">
+    <h5 class="card-title">Username: {{user.username}}</h5>
+    <p class="card-text">{{user.profilePictureUrl}}</p>
+    <a href="#" class="btn btn-primary">View Profile!</a>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div name="userSearchResultDiv" *ngIf="users">
   <ul *ngFor="let user of users">
     <li>Username: {{ user.username }}</li>
     <li>Profile Pic: <img src="{{ user.profilePictureUrl }}" /></li>
@@ -26,4 +99,5 @@
     <li>End Time: {{ gameEvent.endTime }}</li>
     <li>Description: {{ gameEvent.description }}</li>
   </ul>
-</div>
+</div> -->
+
