@@ -37,8 +37,8 @@ show(id: number): Observable<Game> {
   );
 }
 
-index(): Observable<Game> {
-  return this.http.get<Game>(this.url, this.getHttpOptions()).pipe(
+index(): Observable<Game[]> {
+  return this.http.get<Game[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

@@ -16,6 +16,7 @@ import { AdvancedsearchComponent } from './components/advancedsearch/advancedsea
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { FilterGenrePipe } from './pipes/filter-genre.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
     GameeventdetailsComponent,
     GamedetailsComponent,
     AdvancedsearchComponent,
-    AboutusComponent
+    AboutusComponent,
+    FilterGenrePipe
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
   ],
   providers: [
     AuthService,
+    FilterGenrePipe
   ],
   bootstrap: [AppComponent]
 })

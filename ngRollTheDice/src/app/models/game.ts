@@ -1,4 +1,5 @@
 import { Gameevent } from "./gameevent";
+import { Genre } from "./genre";
 import { User } from "./user";
 
 export class Game {
@@ -13,9 +14,10 @@ imageUrl: string | undefined;
 users: User[] | undefined;
 gameEvents: Gameevent[] | undefined;
 gameOwner: User | undefined;
+genres: Genre[] | undefined;
 
 constructor(id?: number, name?: string, maxPlayers?: number, linkToGame?: string, timeToPlay?: string, description?: string, imageUrl?: string,
-  users?: User[], gameEvents?: Gameevent[], gameOwner?: User) {
+  users?: User[], gameEvents?: Gameevent[], gameOwner?: User, genres?: Genre[]) {
   this.id = id;
   this.name = name;
   this.maxPlayers = maxPlayers;
@@ -26,6 +28,7 @@ constructor(id?: number, name?: string, maxPlayers?: number, linkToGame?: string
   this.users = users;
   this.gameEvents = gameEvents;
   this.gameOwner = gameOwner;
+  this.genres = genres;
 }
 
 }
