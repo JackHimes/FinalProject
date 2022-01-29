@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FilterGenrePipe } from './pipes/filter-genre.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     GamedetailsComponent,
     AdvancedsearchComponent,
     AboutusComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FilterGenrePipe
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   providers: [
     AuthService,
+    FilterGenrePipe
   ],
   bootstrap: [AppComponent]
 })
