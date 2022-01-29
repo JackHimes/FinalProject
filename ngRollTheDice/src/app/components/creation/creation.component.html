@@ -14,11 +14,12 @@
             <li class="list-group-item">Genres:
                 <div *ngFor="let genre of genres; let i = index">
                     <label  for="i"> {{genre.name}}: </label>
-                    <input type="checkbox" [checked]='genres.indexOf(genre) > -1' (change)=addGenresToChecked(genre)>
+                    <input type="checkbox" value="genre[i]" (change)=addGenresToChecked(genre)>
                     <!-- <input type="checkbox" [checked]='cars.indexOf(car) > -1' (change)="checkChanged(car)"></td> -->
                 </div> 
             </li>
         </ul>
+        <input type="submit" (click)=addSelectedGenresBeforeAddingGame()>
     </form>
     <div class="card-body">
       <a href="#" class="card-link">Card link</a>

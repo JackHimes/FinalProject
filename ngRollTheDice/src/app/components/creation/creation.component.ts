@@ -50,14 +50,27 @@ export class CreationComponent implements OnInit {
 
   addGenresToChecked(genre : Genre){
 
-    const checkedGenre = this.genres.find(g => g.id === genre.id);
+    const checkedGenre = this.checked.find(g => g.id === genre.id);
     if(checkedGenre){
-      this.genres.splice(this.genres.indexOf(checkedGenre), 1);
+      this.checked.splice(this.genres.indexOf(checkedGenre), 1);
+      console.log(this.checked);
+      
     } else{
-      this.genres.push(genre);
+      this.checked.push(genre);
+      console.log(this.checked);
+      
     }
     
   }
+
+  addSelectedGenresBeforeAddingGame(){
+    this.newGame.genres = this.checked;
+    this.addGame(this.newGame);
+    console.log(this.newGame);
+    
+  }
+
+
 
 
 //   checkChanged(car)
