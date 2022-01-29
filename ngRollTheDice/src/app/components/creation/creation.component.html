@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem;" *ngIf="addGameBoolean">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">Add a game</h5>
@@ -20,6 +20,25 @@
             </li>
         </ul>
         <input type="submit" (click)=addSelectedGenresBeforeAddingGame()>
+    </form>
+    <div class="card-body">
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+    </div>
+  </div>
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Add Address</h5>
+    </div>
+    <form >
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Street: <input type="text" name="street" [(ngModel)]="newAddress.address"></li>
+            <li class="list-group-item">City: <input type="text" name="city" [(ngModel)]="newAddress.city"></li>
+            <li class="list-group-item">State: <input type="text" name="state" [(ngModel)]="newAddress.state"></li>
+            <li class="list-group-item">Zip Code: <input type="text" name="zipCode" [(ngModel)]="newAddress.postalCode"></li>
+        </ul>
+        <input type="submit" (click)='addAddress(newAddress)'>
     </form>
     <div class="card-body">
       <a href="#" class="card-link">Card link</a>

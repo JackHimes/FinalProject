@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Address } from 'src/app/models/address';
 import { Game } from 'src/app/models/game';
 import { Genre } from 'src/app/models/genre';
+import { AddressService } from 'src/app/services/address.service';
 import { GameService } from 'src/app/services/game.service';
 import { GenreService } from 'src/app/services/genre.service';
 
@@ -12,12 +14,15 @@ import { GenreService } from 'src/app/services/genre.service';
 export class CreationComponent implements OnInit {
 
   newGame: Game = new Game();
+  newAddress: Address = new Address();
   genres: Genre [] = [];
   checked: Genre [] = [];
+  addGameBoolean: boolean = false;
 
   constructor(
     private gameService: GameService,
     private genreService: GenreService,
+    private addressService: AddressService,
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +40,16 @@ export class CreationComponent implements OnInit {
 
     });
   }
+  addAddress(address : Address): void{
+    this.addressService.createFavoriteVenueAddress(address).subscribe({
+      next: (game) => {
+        this.newAddress = new Address();
+      }, error: (fail) => {
+        console.error("Failed to post Address")
+      }
+
+    });
+  }
 
   loadGenres(){
     this.genreService.index().subscribe({
@@ -47,6 +62,20 @@ export class CreationComponent implements OnInit {
       }
     });
   }
+  ////////////////////////MAGIC ONLINE ANSWER FOR BELOW/////////////////////////
+  //   checkChanged(car)
+  // {
+  //   const checkedCar = this.cars.find(c => c.id === car.id);
+  //   if(checkedCar)
+  //   {
+  //     this.cars.splice(this.cars.indexOf(checkedCar), 1);
+  //   }
+  //   else
+  //   {
+  //     this.cars.push(car);
+  //   }
+  // }
+    ////////////////////////MAGIC ONLINE ANSWER FOR BELOW/////////////////////////
 
   addGenresToChecked(genre : Genre){
 
@@ -70,21 +99,6 @@ export class CreationComponent implements OnInit {
     
   }
 
-
-
-
-//   checkChanged(car)
-// {
-//   const checkedCar = this.cars.find(c => c.id === car.id);
-//   if(checkedCar)
-//   {
-//     this.cars.splice(this.cars.indexOf(checkedCar), 1);
-//   }
-//   else
-//   {
-//     this.cars.push(car);
-//   }
-// }
 
   removeGenre(){
 

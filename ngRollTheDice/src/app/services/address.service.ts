@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AddressService {
-private url = environment.baseUrl +'api/addressess';
+private url = environment.baseUrl + 'api/addresses';
 
 constructor(
   private http: HttpClient,
@@ -37,8 +37,8 @@ show(id: number): Observable<Address> {
   );
 }
 
-index(): Observable<Address> {
-  return this.http.get<Address>(this.url, this.getHttpOptions()).pipe(
+index(): Observable<Address[]> {
+  return this.http.get<Address[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(
