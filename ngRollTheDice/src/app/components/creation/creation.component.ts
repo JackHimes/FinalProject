@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Address } from 'src/app/models/address';
 import { Game } from 'src/app/models/game';
+import { Gameevent } from 'src/app/models/gameevent';
 import { Genre } from 'src/app/models/genre';
 import { AddressService } from 'src/app/services/address.service';
 import { GameService } from 'src/app/services/game.service';
@@ -15,9 +16,11 @@ export class CreationComponent implements OnInit {
 
   newGame: Game = new Game();
   newAddress: Address = new Address();
+  // newGameEvent: Gameevent = new Gameevent(); DONT FORGET PLEASEEEEE
   genres: Genre [] = [];
   checked: Genre [] = [];
   addGameBoolean: boolean = false;
+  addAddressBoolean: boolean = false;
 
   constructor(
     private gameService: GameService,
