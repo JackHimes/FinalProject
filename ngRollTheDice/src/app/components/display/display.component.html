@@ -11,14 +11,14 @@
   </div>
 </div>
 
-<div class="card">
+<div class="card" *ngFor="let gameEvent of gameEvents">
   <div class="card-header">
-    Game Event Results!
+    Game Event Results! <a href="#" class="btn btn-primary">Link to host profile?</a>
   </div>
-  <div class="card-body" *ngFor="let gameEvent of gameEvents">
+  <div class="card-body">
     <h5 class="card-title">Host: {{gameEvent.host.username}}</h5>
     <p class="card-text">Date of Event: {{gameEvent.dateOfEvent}} Start Time: {{gameEvent.startTime}} End Time: {{gameEvent.endTime}}</p>
-    <a href="#" class="btn btn-primary">Placeholder</a>
+    <p class ="card-test">Description: {{gameEvent.description}}</p>
   </div>
 </div>
 
