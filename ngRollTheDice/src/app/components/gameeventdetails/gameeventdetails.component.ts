@@ -11,6 +11,7 @@ import { GameeventService } from 'src/app/services/gameevent.service';
 export class GameeventdetailsComponent implements OnInit {
   gameEvent: Gameevent = new Gameevent();
   id: number = 0;
+  guestNames = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +25,7 @@ export class GameeventdetailsComponent implements OnInit {
       this.id = Number.parseInt(idStr);
     }
     this.load();
+    this.loadGuests();
   }
 
   load() {
@@ -35,6 +37,15 @@ export class GameeventdetailsComponent implements OnInit {
         console.error("error in GameEventDetails Component.load... Here the error: " + fail);
       }
     });
+  }
+
+  loadGuests() {
+    console.log("in loadGuests");
+    console.log(this.gameEvent.guests);
+    if (this.gameEvent.guests) {
+      this.guestNames = this.gameEvent.guests.map(x => x.username).join(", ");
+      console.log(this.guestNames);
+    }
   }
 
 }
