@@ -16,6 +16,9 @@ export class DisplayComponent implements OnInit {
   games: Game[] = [];
   gameEvents: Gameevent[] = [];
   users: User[] = [];
+  // collapseOneDiv = document.getElementById("collapseOne");
+  // collapseTwoDiv = document.getElementById("collapseTwo");
+  // collapseThreeDiv = document.getElementById("collapseThree");
 
 
   constructor(
@@ -77,6 +80,21 @@ export class DisplayComponent implements OnInit {
     console.log('searchResults Array prints below this');
     console.log(this.searchResults);
     return this.searchResults;
+  }
+
+  toggleCollapseOne() {
+    let collapseOneDiv = document.getElementById("collapseOne");
+    collapseOneDiv?.classList.toggle("show");
+  }
+
+  toggleCollapseTwo() {
+    let collapseTwoDiv = document.getElementById("collapseTwo");
+    collapseTwoDiv?.classList.toggle("show");
+  }
+
+  toggleCollapseThree() {
+    let collapseThreeDiv = document.getElementById("collapseThree");
+    collapseThreeDiv?.classList.toggle("show");
   }
 
 }
