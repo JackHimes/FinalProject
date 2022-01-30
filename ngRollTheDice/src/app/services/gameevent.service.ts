@@ -37,8 +37,8 @@ export class GameeventService {
      );
    }
 
-   index(): Observable<Gameevent> {
-     return this.http.get<Gameevent>(this.url, this.getHttpOptions()).pipe(
+   index(): Observable<Gameevent[]> {
+     return this.http.get<Gameevent[]>(this.url, this.getHttpOptions()).pipe(
        catchError((err: any) => {
          console.log(err);
          return throwError(
@@ -48,6 +48,18 @@ export class GameeventService {
        })
      )
    }
+
+   create(gameEvent: Gameevent): Observable<Gameevent> {
+    return this.http.post<Gameevent>(this.url, gameEvent, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('GameeventService.create(): error creating gameevent: ' + err)
+        );
+      })
+    )
+  }
 
    update(gameevent: Gameevent, id: number): Observable<Gameevent> {
      return this.http.put<Gameevent>(this.url + '/' + id, gameevent, this.getHttpOptions()).pipe(

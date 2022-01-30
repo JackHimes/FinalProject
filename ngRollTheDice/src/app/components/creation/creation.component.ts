@@ -3,9 +3,13 @@ import { Address } from 'src/app/models/address';
 import { Game } from 'src/app/models/game';
 import { Gameevent } from 'src/app/models/gameevent';
 import { Genre } from 'src/app/models/genre';
+import { User } from 'src/app/models/user';
 import { AddressService } from 'src/app/services/address.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { GameService } from 'src/app/services/game.service';
+import { GameeventService } from 'src/app/services/gameevent.service';
 import { GenreService } from 'src/app/services/genre.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-creation',
@@ -16,20 +20,30 @@ export class CreationComponent implements OnInit {
 
   newGame: Game = new Game();
   newAddress: Address = new Address();
-  // newGameEvent: Gameevent = new Gameevent();
+  newGameEvent: Gameevent = new Gameevent();
+
+  loggedInUser: User = new User();
+  userAddressess: Address[] = [];
   genres: Genre [] = [];
   checked: Genre [] = [];
-  addGameBoolean: boolean = false;
-  addAddressBoolean: boolean = false;
+
+  addGameBoolean: boolean = true;
+  addAddressBoolean: boolean = true;
+  addGameEventBoolean: boolean = true;
 
   constructor(
     private gameService: GameService,
     private genreService: GenreService,
     private addressService: AddressService,
+    private gameEventService: GameeventService,
+    private authService: AuthService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
     this.loadGenres();
+    // this.loadAddressess();
+    this.findAddressessOfLoggedInUser();
     
   }
 
@@ -53,6 +67,16 @@ export class CreationComponent implements OnInit {
 
     });
   }
+  addGameEvent(gameEvent : Gameevent): void{
+    this.gameEventService.create(gameEvent).subscribe({
+      next: (gameEventData) => {
+        this.newGameEvent = new Gameevent();
+      }, error: (fail) => {
+        console.error("Failed to post GameEvent")
+      }
+
+    });
+  }
 
   loadGenres(){
     this.genreService.index().subscribe({
@@ -65,6 +89,17 @@ export class CreationComponent implements OnInit {
       }
     });
   }
+  // loadAddressess(){
+  //   this.addressService.index().subscribe({
+  //     next: (allAddressess) => {
+  //       this.addressess = allAddressess;
+  //     },
+  //     error: (fail) => {
+  //       console.error("Failed to loadAddresses() in creation.component.ts" + fail)
+
+  //     }
+  //   });
+  // }
   ////////////////////////MAGIC ONLINE ANSWER FOR BELOW/////////////////////////
   //   checkChanged(car)
   // {
@@ -102,12 +137,32 @@ export class CreationComponent implements OnInit {
     
   }
 
-
   removeGenre(){
 
   }
 
+  findAddressessOfLoggedInUser(){
+    this.userService.show(this.authService.getCurrentUserId()).subscribe({
+      next: (foundUser) => {
+        this.loggedInUser = foundUser;
+        console.log(this.loggedInUser);
+        
+      },
+      error: (err) => {
+        console.error("Failed to retrieve user in findAddressessOfLoggedInUser(): " + err)
+      }
+    });
 
+    if(this.loggedInUser.addresses){
+      this.userAddressess = this.loggedInUser.addresses;
+      console.log(this.userAddressess);
+      
+    }
+
+
+
+
+  }
 
 
 }

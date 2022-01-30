@@ -1,17 +1,16 @@
-<div class="card" style="width: 18rem;" *ngIf="addGameBoolean">
-    <img src="..." class="card-img-top" alt="...">
+<div class="card" style="width: 25rem;" *ngIf="addGameBoolean">
     <div class="card-body">
       <h5 class="card-title">Add a game</h5>
     </div>
     <form>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Title: <br><input type="text" name="title" [(ngModel)]="newGame.name"></li>
-            <li class="list-group-item">Max Players: <input type="number" name="maxPlayers" [(ngModel)]="newGame.maxPlayers"></li>
-            <li class="list-group-item">Game Url: <input type="text" name="gameUrl" [(ngModel)]="newGame.linkToGame"></li>
-            <li class="list-group-item">Average Play Time: <input type="text" name="playTime" [(ngModel)]="newGame.timeToPlay"></li>
-            <li class="list-group-item">Description: <input type="text" name="description" [(ngModel)]="newGame.description"></li>
-            <li class="list-group-item">Image Url: <input type="text" name="imageUrl" [(ngModel)]="newGame.imageUrl"></li>
-            <li class="list-group-item">Genres:
+            <li class="list-group-item">Max Players: <br><input type="number" name="maxPlayers" [(ngModel)]="newGame.maxPlayers"></li>
+            <li class="list-group-item">Game Url: <br><input type="text" name="gameUrl" [(ngModel)]="newGame.linkToGame"></li>
+            <li class="list-group-item">Average Play Time: <br><input type="text" name="playTime" [(ngModel)]="newGame.timeToPlay"></li>
+            <li class="list-group-item">Description: <br><input type="text" name="description" [(ngModel)]="newGame.description"></li>
+            <li class="list-group-item">Image Url: <br><input type="text" name="imageUrl" [(ngModel)]="newGame.imageUrl"></li>
+            <li class="list-group-item">Genres:<br>
                 <div *ngFor="let genre of genres; let i = index">
                     <label  for="i"> {{genre.name}}: </label>
                     <input type="checkbox" value="genre[i]" (change)=addGenresToChecked(genre)>
@@ -19,54 +18,51 @@
                 </div> 
             </li>
         </ul>
-        <input type="submit" (click)=addSelectedGenresBeforeAddingGame()>
+        <button (click)='addSelectedGenresBeforeAddingGame()'>Submit</button>
+        <!-- <input type="submit" (click)=addSelectedGenresBeforeAddingGame()> -->
     </form>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+
   </div>
 
-  <div class="card" style="width: 18rem;" *ngIf="addAddressBoolean">
+  <div class="card" style="width: 25rem;" *ngIf="addAddressBoolean">
     <div class="card-body">
       <h5 class="card-title">Add Address</h5>
     </div>
     <form >
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Street: <input type="text" name="street" [(ngModel)]="newAddress.address"></li>
-            <li class="list-group-item">City: <input type="text" name="city" [(ngModel)]="newAddress.city"></li>
-            <li class="list-group-item">State: <input type="text" name="state" [(ngModel)]="newAddress.state"></li>
-            <li class="list-group-item">Zip Code: <input type="text" name="zipCode" [(ngModel)]="newAddress.postalCode"></li>
+            <li class="list-group-item">Street: <br><input type="text" name="street" [(ngModel)]="newAddress.address"></li>
+            <li class="list-group-item">City: <br><input type="text" name="city" [(ngModel)]="newAddress.city"></li>
+            <li class="list-group-item">State: <br><input type="text" name="state" [(ngModel)]="newAddress.state"></li>
+            <li class="list-group-item">Zip Code: <br><input type="text" name="zipCode" [(ngModel)]="newAddress.postalCode"></li>
         </ul>
-        <input type="submit" (click)='addAddress(newAddress)'>
+        <button (click)='addAddress(newAddress)'>Submit</button>
+        <!-- <input type="submit" (click)='addAddress(newAddress)'> -->
     </form>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+
   </div>
 
 
-  <div class="card" style="width: 18rem;" *ngIf="addAddressBoolean">
+  <div class="card" style="width: 25rem;" *ngIf="addGameEventBoolean" >
     <div class="card-body">
       <h5 class="card-title">Host a Game Night</h5>
     </div>
-    <form >
+    <form id="gameEventForm">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Title: <input type="text" name="title" [(ngModel)]="newGameEvent.title"></li>
-            <li class="list-group-item">Date of Event: <input type="text" name="date" [(ngModel)]="newGameEvent.dateOfEvent"></li>
-            <li class="list-group-item">Maximum Number of Guests: <input type="text" name="numberOfGuests" [(ngModel)]="newGameEvent.maxNumberOfGuests"></li>
-            <li class="list-group-item">Start Time: <input type="text" name="startTime" [(ngModel)]="newGameEvent.startTime"></li>
-            <li class="list-group-item">End Time: <input type="text" name="endTime" [(ngModel)]="newGameEvent.endTime"></li>
-            <li class="list-group-item">Event Image: <input type="text" name="eventImageUrl" [(ngModel)]="newGameEvent.imageUrl"></li>
-            <li class="list-group-item">Description: <input type="text" name="description" [(ngModel)]="newGameEvent.description"></li>
-            <!-- Addresses gon' be a whole other can of worms, manana  -->
-            <!-- Event times and dates types need to be changed above -->
+            <li class="list-group-item">Title: <br><input type="text" name="title" [(ngModel)]="newGameEvent.title"></li>
+            <li class="list-group-item">Description: <br><input type="text" name="description" [(ngModel)]="newGameEvent.description"></li>
+            <li class="list-group-item">Location: <br>
+                <select form="gameEventForm" name="address" required="required" [(ngModel)]="newGameEvent.address">
+                    <option *ngFor="let a of loggedInUser.addresses" [ngValue]="a">{{a.address}}</option>
+                </select>
+            </li>
+            <li class="list-group-item">Date of Event: <br><input type="date" name="date" [(ngModel)]="newGameEvent.dateOfEvent"></li>
+            <li class="list-group-item">Maximum Number of Guests: <br><input type="text" name="numberOfGuests" [(ngModel)]="newGameEvent.maxNumberOfGuests"></li>
+            <li class="list-group-item">Start Time: <br><input type="datetime-local" name="startTime" [(ngModel)]="newGameEvent.startTime"></li>
+            <li class="list-group-item">End Time: <br><input type="datetime-local" name="endTime" [(ngModel)]="newGameEvent.endTime"></li>
+            <li class="list-group-item">Event Image: <br><input type="text" name="eventImageUrl" [(ngModel)]="newGameEvent.imageUrl"></li>
         </ul>
-        <input type="submit" (click)='addAddress(newAddress)'>
+            <button (click)='addGameEvent(newGameEvent)'>Submit</button>
+        <!-- <input type="submit" class="form-submit-button" (click)='addGameEvent(newGameEvent)'> -->
     </form>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+
   </div>
