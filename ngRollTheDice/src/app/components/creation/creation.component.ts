@@ -16,7 +16,7 @@ export class CreationComponent implements OnInit {
 
   newGame: Game = new Game();
   newAddress: Address = new Address();
-  // newGameEvent: Gameevent = new Gameevent(); DONT FORGET PLEASEEEEE
+  // newGameEvent: Gameevent = new Gameevent();
   genres: Genre [] = [];
   checked: Genre [] = [];
   addGameBoolean: boolean = false;
