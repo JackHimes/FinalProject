@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'gamedetails', component: GamedetailsComponent},
   {path: 'gamedetails/:gameId', component: GamedetailsComponent},
   {path: 'gameeventdetails', component: GameeventdetailsComponent},
+  {path: 'gameeventdetails/:eventId', component: GameeventdetailsComponent},
   {path: 'home', component: HomeComponent},
   {path: 'navigation', component: NavigationComponent},
   {path: 'profile', component: ProfileComponent},
