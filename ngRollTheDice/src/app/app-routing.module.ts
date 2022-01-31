@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'loginregister', component: LoginregisterComponent},
   {path: 'aboutus', component: AboutusComponent},
   {path: 'display/:keyword', component: DisplayComponent},
-  {path: 'display', component: DisplayComponent}
+  {path: 'display', component: DisplayComponent},
   {path: '**', component: NotFoundComponent }
 ]
 
