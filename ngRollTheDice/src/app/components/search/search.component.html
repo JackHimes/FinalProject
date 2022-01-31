@@ -1,7 +1,8 @@
 <li class="nav-item">
   <!-- <a class="nav-link" aria-current="page" href="#">Search</a> -->
   <form name="userOrGameOrGameEventSearch">
-    <input type="text" name="keyword" placeholder="Search" value=keyword [(ngModel)]="keyword">
-    <input type="submit" name="search" value="Search" [routerLink]="['/display/' + keyword]">
+    <input id="searchBar" type="text" name="keyword" placeholder="Search" value=keyword [(ngModel)]="keyword">
+    <input id="searchButton" type="submit" name="search" value="Search" [routerLink]="['/display/' + keyword]">
   </form>
 </li>
+
