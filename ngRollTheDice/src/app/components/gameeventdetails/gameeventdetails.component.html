@@ -12,6 +12,8 @@
   <div class="details">
     <h3>Host</h3>
     <p>{{ gameEvent.host.username }}</p>
+    <h3>Location</h3>
+    <p>{{gameEvent.address.address}}</p>
     <h3>Date</h3>
     <p>{{ gameEvent.dateOfEvent | date: "fullDate" }}</p>
     <h3>Time</h3>
@@ -33,29 +35,75 @@
     <p>{{ tags }}</p>
   </div>
 
-  <div class="join" *ngIf="!isHost">
-    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block">
+  <div class="join" *ngIf="!isHost && isLoggedIn && !alreadyJoined">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="joinEvent(gameEvent.id, loggedInUser.id)">
       Join
     </button>
   </div>
 
   <div class="join" *ngIf="isHost">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="beginEdit = true; loadUpdateEvent()">
+      Edit Event
+    </button>
+  </div>
+
+  <div class="join" *ngIf="!isLoggedIn">
     <button type="button" name="joinButton" class="btn btn-secondary btn-large btn-block" disabled>
       Join
     </button>
   </div>
+
+  <div class="join" *ngIf="alreadyJoined">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="leaveEvent(gameEvent.id, loggedInUser.id)">
+      Leave
+    </button>
+  </div>
+
 </div>
+  <div class="card" style="width: 25rem;" *ngIf="beginEdit" >
+    <button class="btn btn-danger" (click)="beginEdit=false;">X</button>
+    <div class="card-body">
+      <h5 class="card-title">Host a Game Night</h5>
+    </div>
+    <form id="gameEventForm">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Title: <br><input type="text" name="title" [(ngModel)]="editGameEvent.title"></li>
+            <li class="list-group-item">Description: <br><input type="text" name="description" [(ngModel)]="editGameEvent.description"></li>
+            <li class="list-group-item">Location: <br>
+                <select form="gameEventForm" name="address" required="required" [(ngModel)]="editGameEvent.address">
+                    <option [ngValue]="editGameEvent.address.address">{{editGameEvent.address.address}}</option>
+                    <option *ngFor="let a of loggedInUser.addresses" [ngValue]="a">{{a.address}}</option>
+                </select>
+            </li>
+            <li class="list-group-item">Date of Event: <br><input type="date" name="date" [(ngModel)]="editGameEvent.dateOfEvent"></li>
+            <li class="list-group-item">Maximum Number of Guests: <br><input type="text" name="numberOfGuests" [(ngModel)]="editGameEvent.maxNumberOfGuests"></li>
+            <li class="list-group-item">Start Time: <br><input type="datetime-local" name="startTime" [(ngModel)]="editGameEvent.startTime"></li>
+            <li class="list-group-item">End Time: <br><input type="datetime-local" name="endTime" [(ngModel)]="editGameEvent.endTime"></li>
+            <li class="list-group-item">Event Image: <br><input type="text" name="eventImageUrl" [(ngModel)]="editGameEvent.imageUrl"></li>
+        </ul>
+            <button (click)='updateGameEvent(editGameEvent); beginEdit = false;'>Submit</button>
+    </form>
+
+  </div>
 <hr />
 <div class="discussion"><h2>Discussion</h2>
   <div class="comment" *ngFor="let comment of gameEvent.comments">
     <img *ngIf="comment.user" src="{{comment.user.profilePictureUrl}}"><p *ngIf="comment.user" id="commenter">{{comment.postDate}} {{ comment.user.username }}:</p>
+    <div *ngIf="comment.user">
+      <button *ngIf="(comment.user.id === loggedInUser.id) || (loggedInUser.id === gameEvent.host.id) || (loggedInUser.role === 'ROLE_ADMIN')" class="btn btn-danger" (click)="deleteComment(comment)">X</button>
+    </div>
     <p>{{comment.message}}</p>
   </div>
     <div class="addComment">
-      <form *ngIf="loggedInUser">
-        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="comment.message"></textarea>
-        <input type="hidden" name="user" [(ngModel)]="comment.user" value="{{loggedInUser}}"><br>
-        <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(comment)">
+      <form *ngIf="isLoggedIn">
+        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="newComment.message"></textarea>
+        <input type="hidden" name="user" [(ngModel)]="newComment.user" value="{{loggedInUser}}"><br>
+        <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(newComment)">
       </form>
   </div>
+
+  <div *ngIf="beginEdit" class="blur"></div>
+
+
+
 </div>

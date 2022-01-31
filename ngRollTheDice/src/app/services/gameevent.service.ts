@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Gameevent } from '../models/gameevent';
 import { AuthService } from './auth.service';
@@ -31,7 +31,7 @@ export class GameeventService {
    }
 
    show(id: number): Observable<Gameevent> {
-     return this.http.get<Gameevent>(this.url + '/' + id, this.getHttpOptions()).pipe(
+     return this.http.get<Gameevent>(this.url + '/' + id).pipe(
        catchError((err: any) => {
          console.log(err);
          return throwError (
@@ -99,4 +99,27 @@ export class GameeventService {
        })
      )
    }
+
+   joinGameEvent(gId: number, uId: number): Observable<Gameevent> {
+     return this.http.put<Gameevent>(this.url + '/' + gId + '/users/' + uId, {}, this.getHttpOptions()).pipe(
+       catchError((err: any) => {
+         console.log(err);
+         return throwError(
+           () => new Error('GameEventService.joinGameEvent(): error joining Game Event: ' + err)
+         );
+       })
+     )
+   }
+
+   leaveGameEvent(gId: number, uId: number): Observable<Gameevent> {
+     return this.http.put<Gameevent>(this.url + '/users/' + gId + '/' + uId, {}, this.getHttpOptions()).pipe(
+       catchError((err: any) => {
+         console.log(err);
+         return throwError(
+           () => new Error('GameEventService.joinGameEvent(): error joining Game Event: ' + err)
+         );
+       })
+     )
+   }
+
 }
