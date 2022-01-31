@@ -9,7 +9,11 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class GameeventService {
+
+
   private url = environment.baseUrl + 'api/gameevents';
+
+
 
   constructor(
   private http: HttpClient,

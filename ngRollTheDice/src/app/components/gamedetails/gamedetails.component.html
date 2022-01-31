@@ -1,1 +1,52 @@
-<p>gamedetails works!</p>
+<div class="wrapper">
+  <div class="picture">
+    <img src="{{game.imageUrl}}" height="200px">
+    <ngb-rating [(rate)]="currentRate"></ngb-rating>
+  </div>
+
+  <div class="details">
+    <a href="{{game.linkToGame}}" target="_blank"><h1>{{game.name}}</h1></a>
+    <p>{{game.description}}</p>
+    <p *ngIf="game.genres">Game genre size: {{game.genres.length}}</p>
+    <p>Average time to Play: {{game.timeToPlay}}</p>
+    <p>Maximum Number of Players: {{game.maxPlayers}}</p>
+    <hr>
+    <p >Genres: </p>
+      <ul *ngIf="game.genres">
+        <li *ngFor="let g of game.genres">{{g.name}}</li>
+      </ul>
+  </div>
+  <div class="similar"><h3>Similar Games</h3>
+    <button *ngIf="buttonClick" (click)="randomGames(); buttonClick=false">Click to see Similar Games</button>
+      <div class="displaySimilar">
+        <span>
+        <img [src]="displayGame1.imageUrl">
+          <a *ngIf="displayGame1.id" class="nav-link" aria-current="page" [routerLink]="['/gamedetails/' + displayGame1.id]">{{displayGame1.name}}</a>
+          <!-- <p>
+            {{displayGame1.name}}
+          </p> -->
+        </span>
+        <span *ngIf="displayGame2.id" class="nav-link" [routerLink]="['/gamedetails/' + displayGame2.id]">
+          <img [src]="displayGame2.imageUrl">
+          <p>
+            {{displayGame2.name}}
+          </p>
+        </span>
+        <span *ngIf="displayGame3.id" (click)="redirect(displayGame3.id)">
+          <img [src]="displayGame3.imageUrl">
+          <p>
+            {{displayGame3.name}}
+          </p>
+        </span>
+      </div>
+  </div>
+  <div class="discussion">
+    <h3>Discussion... doesn't exist</h3>
+    <h3>I hate Jack :) </h3>
+  </div>
+  <div class="five">Five</div>
+  <div class="six">Six</div>
+  <!-- <ngb-rating [(rate)]="currentRate"></ngb-rating> -->
+  <!-- <hr>
+  <pre>Rate: <b>{{currentRate}}</b></pre> -->
+</div>

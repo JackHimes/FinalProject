@@ -19,6 +19,8 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { SearchComponent } from './components/search/search.component';
 import { DisplayComponent } from './components/display/display.component';
 import { SearchService } from './services/search.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FilterGenrePipe } from './pipes/filter-genre.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SearchService } from './services/search.service';
     AdvancedsearchComponent,
     AboutusComponent,
     SearchComponent,
-    DisplayComponent
+    DisplayComponent,
+    NotFoundComponent,
+    FilterGenrePipe
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import { SearchService } from './services/search.service';
   providers: [
     AuthService,
     SearchService,
+    FilterGenrePipe
+
   ],
   bootstrap: [AppComponent]
 })

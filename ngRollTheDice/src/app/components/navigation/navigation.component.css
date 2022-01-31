@@ -1,0 +1,19 @@
+#navBar {
+  display: flex;
+  justify-content: center;
+}
+html {
+  min-height: 100%;
+  min-width: 100%;
+  background-size: cover;
+}
+
+a {
+  color: black;
+  font-weight: 500;
+}
+
+a:hover {
+  color: red;
+  font-weight: 500;
+}

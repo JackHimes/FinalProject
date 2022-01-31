@@ -10,6 +10,10 @@
   <input type="password" name="passwordConfirm" placeholder="Confirm Password" required [(ngModel)]="confirmPword">
   <br> <label for="email">Email:</label><br>
   <input type="text" name="email" placeholder="Email" required [(ngModel)]="createUser.email">
+  <br> <label for="firstName">First Name:</label><br>
+  <input type="text" name="firstName" placeholder="First Name" required [(ngModel)]="createUser.firstName">
+  <br> <label for="lastName">Last Name:</label><br>
+  <input type="text" name="lastName" placeholder="Last Name" required [(ngModel)]="createUser.lastName">
   <br><input type="submit" value="Create Account" (click)="createAcct(createUser)">
   <br>
 </form>

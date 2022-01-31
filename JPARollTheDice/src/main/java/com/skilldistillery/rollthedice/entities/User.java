@@ -43,6 +43,7 @@ public class User {
 	@Column(name="profile_picture_url")
 	private String profilePictureUrl;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Address> addresses;
 	
