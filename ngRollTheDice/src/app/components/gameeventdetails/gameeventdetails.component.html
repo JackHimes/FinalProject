@@ -64,7 +64,7 @@
   <div class="comment" *ngFor="let comment of gameEvent.comments">
     <img *ngIf="comment.user" src="{{comment.user.profilePictureUrl}}"><p *ngIf="comment.user" id="commenter">{{comment.postDate}} {{ comment.user.username }}:</p>
     <div *ngIf="comment.user">
-      <button *ngIf="(comment.user.id === loggedInUser.id) || (loggedInUser.id === gameEvent.host.id)" class="btn btn-danger" (click)="deleteComment(comment)">X</button>
+      <button *ngIf="(comment.user.id === loggedInUser.id) || (loggedInUser.id === gameEvent.host.id) || (loggedInUser.role === 'ROLE_ADMIN')" class="btn btn-danger" (click)="deleteComment(comment)">X</button>
     </div>
     <p>{{comment.message}}</p>
   </div>
