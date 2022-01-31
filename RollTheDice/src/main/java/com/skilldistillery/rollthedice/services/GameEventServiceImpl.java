@@ -65,6 +65,41 @@ public class GameEventServiceImpl implements GameEventService {
 		}
 		return null;
 	}
+	
+	@Override
+	public GameEvent joinGameEvent(int gId, int uId, String username) {
+		Optional<User> userOpt = userRepo.findById(uId);
+		Optional<GameEvent> gameEventOpt = gameEventRepo.findById(gId);
+		GameEvent gameEvent = gameEventOpt.get();
+		User user = userOpt.get();
+		if (userOpt.isPresent() && 
+				gameEventOpt.isPresent() && 
+				!gameEvent.getHost().equals(user) &&
+				!gameEvent.getGuests().contains(user) &&
+				user.getUsername().equals(username)) {
+			gameEvent.addGuest(user);
+			userRepo.saveAndFlush(user);
+			return gameEventRepo.saveAndFlush(gameEvent);
+		} else return null;
+	}
+	
+	@Override
+	public GameEvent leaveGameEvent(int gId, int uId, String username) {
+		Optional<User> userOpt = userRepo.findById(uId);
+		Optional<GameEvent> gameEventOpt = gameEventRepo.findById(gId);
+		GameEvent gameEvent = gameEventOpt.get();
+		User user = userOpt.get();
+		if (userOpt.isPresent() && 
+				gameEventOpt.isPresent() && 
+//				!gameEvent.getHost().equals(user) &&
+				gameEvent.getGuests().contains(user) &&
+				user.getUsername().equals(username)) 
+		{
+			gameEvent.removeGuest(user);
+			userRepo.saveAndFlush(user);
+			return gameEventRepo.saveAndFlush(gameEvent);
+		} else return null;
+	}
 
 	@Override
 	public List<GameEvent> searchKeyword(String keyword) {

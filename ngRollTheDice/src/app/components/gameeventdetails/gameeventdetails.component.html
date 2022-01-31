@@ -33,18 +33,26 @@
     <p>{{ tags }}</p>
   </div>
 
-  <div class="join" *ngIf="!isHost">
-    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block">
+  <div class="join" *ngIf="!isHost && isLoggedIn && !alreadyJoined">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="joinEvent(gameEvent.id, loggedInUser.id)">
       Join
     </button>
   </div>
 
-  <div class="join" *ngIf="isHost">
+  <div class="join" *ngIf="isHost || !isLoggedIn">
     <button type="button" name="joinButton" class="btn btn-secondary btn-large btn-block" disabled>
       Join
     </button>
   </div>
+
+  <div class="join" *ngIf="alreadyJoined">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="leaveEvent(gameEvent.id, loggedInUser.id)">
+      Leave
+    </button>
+  </div>
+
 </div>
+
 <hr />
 <div class="discussion"><h2>Discussion</h2>
   <div class="comment" *ngFor="let comment of gameEvent.comments">
@@ -52,7 +60,7 @@
     <p>{{comment.message}}</p>
   </div>
     <div class="addComment">
-      <form *ngIf="loggedInUser">
+      <form *ngIf="isLoggedIn">
         <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="comment.message"></textarea>
         <input type="hidden" name="user" [(ngModel)]="comment.user" value="{{loggedInUser}}"><br>
         <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(comment)">

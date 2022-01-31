@@ -25,6 +25,7 @@ export class GameeventdetailsComponent implements OnInit {
   games = '';
   comment: Comment = new Comment();
   isHost = false;
+  alreadyJoined = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,8 +43,6 @@ export class GameeventdetailsComponent implements OnInit {
     }
     this.load();
     this.loadUser();
-    this.checkLogin();
-    this.checkHost();
   }
 
   load() {
@@ -60,6 +59,16 @@ export class GameeventdetailsComponent implements OnInit {
         );
       },
     });
+  }
+
+  checkJoined() {
+    if (this.gameEvent.guests) {
+      for (const g of this.gameEvent.guests) {
+        if (g.id === this.loggedInUser.id) {
+          this.alreadyJoined = true;
+        }
+      }
+    }
   }
 
   loadGuests() {
@@ -89,6 +98,7 @@ export class GameeventdetailsComponent implements OnInit {
       this.userSvc.show(id).subscribe({
         next: (u) => {
           this.loggedInUser = u;
+          this.checkLogin();
         },
         error: (fail) => {
           console.error(
@@ -101,6 +111,8 @@ export class GameeventdetailsComponent implements OnInit {
 
   checkLogin() {
     this.isLoggedIn = this.auth.checkLogin();
+    this.checkHost();
+    this.checkJoined();
   }
 
   createComment(c: Comment) {
@@ -123,9 +135,29 @@ export class GameeventdetailsComponent implements OnInit {
     } else this.isHost = false;
   }
 
-  joinEvent() {
-
+  joinEvent(gId: number, uId: number) {
+    this.gameEventSvc.joinGameEvent(gId, uId).subscribe({
+      next: (g) => {
+        this.gameEvent = g;
+        this.load();
+        this.alreadyJoined = true;
+      },
+      error: (f) => {
+        console.error('error joining game event' + f);
+      },
+    });
   }
 
-
+  leaveEvent(gId: number, uId: number) {
+    this.gameEventSvc.leaveGameEvent(gId, uId).subscribe({
+      next: (g) => {
+        this.gameEvent = g;
+        this.alreadyJoined = false;
+        this.load();
+      },
+      error: (f) => {
+        console.error('error joining game event' + f);
+      },
+    });
+  }
 }
