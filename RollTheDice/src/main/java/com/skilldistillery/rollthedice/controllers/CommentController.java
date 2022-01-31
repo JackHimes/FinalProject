@@ -82,7 +82,7 @@ public class CommentController {
 	}
 	
 	@DeleteMapping("gameevents/{gId}/comments/{commentId}")
-	public void deleteComment(HttpServletResponse res, HttpServletRequest req, Principal principal, @PathVariable int gId, @RequestBody Comment comment, @PathVariable int commentId) {
+	public void deleteComment(HttpServletResponse res, HttpServletRequest req, Principal principal, @PathVariable int gId, @PathVariable int commentId) {
 		try {
 			boolean deleted = commentService.destroyComment(principal.getName(), commentId, gId);
 			if (deleted) {

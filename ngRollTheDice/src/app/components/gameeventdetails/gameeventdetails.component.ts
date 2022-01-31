@@ -23,9 +23,10 @@ export class GameeventdetailsComponent implements OnInit {
   loggedInUser: User = new User();
   isLoggedIn = false;
   games = '';
-  comment: Comment = new Comment();
+  newComment: Comment = new Comment();
   isHost = false;
   alreadyJoined = false;
+  beginEdit = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +44,7 @@ export class GameeventdetailsComponent implements OnInit {
     }
     this.load();
     this.loadUser();
+    console.log("at end of ngOnInit, isHost = " + this.isHost)
   }
 
   load() {
@@ -120,7 +122,7 @@ export class GameeventdetailsComponent implements OnInit {
       this.commentSvc.create(c, this.gameEvent.id).subscribe({
         next: () => {
           this.load();
-          this.comment = new Comment();
+          this.newComment = new Comment();
         },
         error: (f) => {
           console.error('error adding comment to game event: ' + f);
@@ -130,6 +132,7 @@ export class GameeventdetailsComponent implements OnInit {
   }
 
   checkHost() {
+    console.log("in checkHose() isHost = " + this.isHost)
     if (this.loggedInUser.id === this.gameEvent.host.id) {
       this.isHost = true;
     } else this.isHost = false;
@@ -160,4 +163,17 @@ export class GameeventdetailsComponent implements OnInit {
       },
     });
   }
+
+  deleteComment(comment: Comment) {
+    if (comment.id && this.gameEvent.id){
+    this.commentSvc.destroy(comment.id, this.gameEvent.id).subscribe({
+      next: () => {
+        this.load();
+      },
+      error: (f) => {
+        console.error('error deleting comment' + f);
+      }
+    })
+  }
+}
 }

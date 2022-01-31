@@ -39,7 +39,13 @@
     </button>
   </div>
 
-  <div class="join" *ngIf="isHost || !isLoggedIn">
+  <div class="join" *ngIf="isHost">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="beginEdit = true">
+      Edit Event
+    </button>
+  </div>
+
+  <div class="join" *ngIf="!isLoggedIn">
     <button type="button" name="joinButton" class="btn btn-secondary btn-large btn-block" disabled>
       Join
     </button>
@@ -57,13 +63,16 @@
 <div class="discussion"><h2>Discussion</h2>
   <div class="comment" *ngFor="let comment of gameEvent.comments">
     <img *ngIf="comment.user" src="{{comment.user.profilePictureUrl}}"><p *ngIf="comment.user" id="commenter">{{comment.postDate}} {{ comment.user.username }}:</p>
+    <div *ngIf="comment.user">
+      <button *ngIf="(comment.user.id === loggedInUser.id) || (loggedInUser.id === gameEvent.host.id)" class="btn btn-danger" (click)="deleteComment(comment)">X</button>
+    </div>
     <p>{{comment.message}}</p>
   </div>
     <div class="addComment">
       <form *ngIf="isLoggedIn">
-        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="comment.message"></textarea>
-        <input type="hidden" name="user" [(ngModel)]="comment.user" value="{{loggedInUser}}"><br>
-        <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(comment)">
+        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="newComment.message"></textarea>
+        <input type="hidden" name="user" [(ngModel)]="newComment.user" value="{{loggedInUser}}"><br>
+        <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(newComment)">
       </form>
   </div>
 </div>
