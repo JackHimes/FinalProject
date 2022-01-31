@@ -27,9 +27,9 @@ export class CreationComponent implements OnInit {
   genres: Genre [] = [];
   checked: Genre [] = [];
 
-  addGameBoolean: boolean = true;
-  addAddressBoolean: boolean = true;
-  addGameEventBoolean: boolean = true;
+  addGameBoolean: boolean = false;
+  addAddressBoolean: boolean = false;
+  addGameEventBoolean: boolean = false;
 
   constructor(
     private gameService: GameService,
