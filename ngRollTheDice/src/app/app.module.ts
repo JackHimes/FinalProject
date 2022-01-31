@@ -44,7 +44,8 @@ import { FilterGenrePipe } from './pipes/filter-genre.pipe';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    AppRoutingModule
   ],
   providers: [
     AuthService,

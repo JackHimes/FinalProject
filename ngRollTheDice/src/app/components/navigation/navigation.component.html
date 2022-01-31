@@ -1,16 +1,12 @@
 <html>
 <ul class="nav nav-pills" id="navBar">
 
-  <li class="nav-item" *ngIf="!loggedIn()">
-    <a class="nav-link active" aria-current="page" [routerLink]="['/loginregister']" (click)="logout()">Login</a>
-  </li>
-
-  <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link" aria-current="page" href="#" (click)="logout()">Logout</a>
-  </li>
-
   <li class="nav-item">
-    <a class="nav-link" aria-current="page" [routerLink]="['/home']" >Home</a>
+    <a class="nav-link" aria-current="page" [routerLink]="['/home']" ><img class="headerLogo" src="assets/LogoTransparent.png" alt="logo"></a>
+  </li>
+
+  <li class="nav-item" *ngIf="!loggedIn()">
+    <a class="nav-link " aria-current="page" [routerLink]="['/loginregister']" (click)="logout()">Login</a>
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
@@ -30,6 +26,10 @@
   </li>
   <li>
     <app-search></app-search>
+  </li>
+
+  <li class="nav-item" *ngIf="loggedIn()">
+    <a class="nav-link" aria-current="page" href="#" (click)="logout()" [routerLink]="['/home']">Logout</a>
   </li>
 
   <li>
