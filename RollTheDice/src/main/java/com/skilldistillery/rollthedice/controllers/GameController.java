@@ -1,6 +1,7 @@
 package com.skilldistillery.rollthedice.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +69,8 @@ public class GameController {
 	public Game create(HttpServletRequest req, HttpServletResponse res, @RequestBody Game game,
 			Principal principal) {
 		try {
-			List<Genre> temp = game.getGenres();
+			List<Genre> temp = new ArrayList<>(game.getGenres());
+			
 			gameServ.create(game, principal.getName(), temp);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();

@@ -43,13 +43,17 @@ export class CreationComponent implements OnInit {
   ngOnInit(): void {
     this.loadGenres();
     // this.loadAddressess();
-    this.findAddressessOfLoggedInUser();
+    this.findLoggedInUser();
     
   }
 
   addGame(game : Game): void{
     this.gameService.create(game).subscribe({
       next: (game) => {
+        console.log(game);
+        
+        // this.loggedInUser.games?.push(game);
+        // this.updateLoggedInUser(this.loggedInUser);
         this.newGame = new Game();
       }, error: (fail) => {
         console.error("Failed to post game")
@@ -75,6 +79,16 @@ export class CreationComponent implements OnInit {
         console.error("Failed to post GameEvent")
       }
 
+    });
+  }
+  updateLoggedInUser(user: User){
+    this.userService.update(user, user.id).subscribe({
+      next: (data) => {
+        console.log("Success updating user in updateLoggedInUser()" + data)
+      },
+      error: (err) => {
+        console.error("Error updating user in updateLoggedInUser() " + err)
+      }
     });
   }
 
@@ -131,21 +145,26 @@ export class CreationComponent implements OnInit {
   }
 
   addSelectedGenresBeforeAddingGame(){
+    console.log(this.newGame.genres);
     this.newGame.genres = this.checked;
+    console.log(this.newGame.genres);
+    
     this.addGame(this.newGame);
-    console.log(this.newGame);
+    
+
+    console.log(this.loggedInUser.games);
+    this.loggedInUser.games?.push(this.newGame);
+    console.log(this.loggedInUser.games);
+
+    // this.updateLoggedInUser(this.loggedInUser);
     
   }
 
-  removeGenre(){
 
-  }
-
-  findAddressessOfLoggedInUser(){
+  findLoggedInUser(){
     this.userService.show(this.authService.getCurrentUserId()).subscribe({
       next: (foundUser) => {
         this.loggedInUser = foundUser;
-        console.log(this.loggedInUser);
         
       },
       error: (err) => {
@@ -153,11 +172,6 @@ export class CreationComponent implements OnInit {
       }
     });
 
-    if(this.loggedInUser.addresses){
-      this.userAddressess = this.loggedInUser.addresses;
-      console.log(this.userAddressess);
-      
-    }
 
 
 

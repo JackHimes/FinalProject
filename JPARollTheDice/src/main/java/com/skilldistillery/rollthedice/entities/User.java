@@ -43,7 +43,7 @@ public class User {
 	@Column(name="profile_picture_url")
 	private String profilePictureUrl;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Address> addresses;
 	
@@ -51,7 +51,7 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address homeAddress;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="user_has_event",
 		joinColumns=@JoinColumn(name="user_id"),

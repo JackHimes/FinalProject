@@ -11,6 +11,7 @@ import com.skilldistillery.rollthedice.entities.Genre;
 import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.repositories.GameRepository;
+import com.skilldistillery.rollthedice.repositories.GenreRepository;
 import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
@@ -21,6 +22,9 @@ public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private GenreRepository genreRepo;
 
 	@Override
 	public List<Game> index() {
@@ -39,16 +43,22 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public Game create(Game game, String username, List<Genre> genres) {
 		User user = userRepo.findByUsername(username);
+		user.getGames().add(game);
+		game.getUsers().add(user);
 		game.setGameOwner(user);
+//		game.setGenres(genres);
+		
 		System.out.println("**********************************************************************" +genres);
 		for (Genre genre : genres) {
-			game.addGenre(genre);
+			Optional<Genre> genreOp = genreRepo.findById(genre.getId());
+			if(genreOp.isPresent()) {
+				genre = genreOp.get();
+//				game.getGenres().add(genre);
+//				game.addGenre(genre);
+			}
 		}
-		if(game != null && (user.getRole().equals("ROLE_ADMIN")) || user.getUsername().equals(username)) {
-			Game temp = gameRepo.save(game);
-			 return update(game, temp.getId(), username);
-		}
-		return null;
+		Game temp = gameRepo.saveAndFlush(game);
+		return temp;
 		
 		
 	}
