@@ -97,6 +97,7 @@ export class DisplayComponent implements OnInit {
     this.searchSvc.searchUserByKeyword(userKeyword).subscribe({
       next: (user) => {
         console.log('success searching user by keyword' + userKeyword);
+        console.log(user);
         this.users = user;
         this.userKeyword = '';
       },
