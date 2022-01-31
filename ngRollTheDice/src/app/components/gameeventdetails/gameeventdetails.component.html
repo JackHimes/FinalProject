@@ -75,4 +75,9 @@
         <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(newComment)">
       </form>
   </div>
+<div *ngIf="beginEdit" class="blur"></div>
+  <div class="edit" *ngIf="beginEdit">
+    <button class="btn btn-danger" (click)="beginEdit=false;">X</button>
+  </div>
+
 </div>
