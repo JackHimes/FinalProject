@@ -37,6 +37,7 @@ show(id: number): Observable<Game> {
   );
 }
 
+
 searchByKeyword(keyword: string): Observable<Game[]> {
   return this.http.get<Game[]>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
     catchError((err: any) => {
@@ -48,8 +49,8 @@ searchByKeyword(keyword: string): Observable<Game[]> {
   );
 }
 
-index(): Observable<Game> {
-  return this.http.get<Game>(this.url, this.getHttpOptions()).pipe(
+index(): Observable<Game[]> {
+  return this.http.get<Game[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

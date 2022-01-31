@@ -1,0 +1,114 @@
+#header {
+  object-fit: cover; /* Do not scale the image */
+  object-position: 80%, 80%; /* Center the image within the element */
+  width: 100%;
+  height: 300px;
+  margin-bottom: 1rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  background-color: rgb(241, 238, 228);
+}
+.title {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  color: rgb(51, 58, 86);
+}
+.title p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 4vw;
+}
+
+.description {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+  background-color: rgb(241, 238, 228);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  text-align: left;
+}
+
+p {
+  margin-left: 6px;
+  font-size: large;
+}
+
+.details {
+  grid-column: 1;
+  grid-row: 2 / 5;
+  background-color: rgba(82, 101, 143, 0.527);
+}
+
+h3 {
+  text-decoration: underline;
+  margin-left: 12px;
+}
+
+.details p {
+  margin-left: 6px;
+}
+
+.guests {
+  grid-column: 2/4;
+  grid-row: 3;
+  background-color: rgb(82, 101, 143);
+}
+
+.guests p {
+  margin-left: 6px;
+}
+
+.tags {
+  grid-column: 2;
+  grid-row: 4;
+  background-color: rgb(82, 101, 143);
+}
+.join {
+  grid-column: 3;
+  grid-row: 4;
+  background-color: rgb(82, 101, 143);
+  border-radius: 10%;
+}
+
+button {
+  width: 100%;
+  height: 100%;
+  font-size: 4vw;
+}
+
+.discussion {
+  grid-column: 1 / 4;
+  background-color: rgba(82, 101, 143, 0.788);
+  margin-bottom: 5px;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.comment {
+  background-color: rgb(241, 238, 228);
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 7px;
+  border: 2px solid rgb(51, 58, 86);
+}
+
+.comment img {
+  height: 25px;
+}
+
+#commenter {
+  font-size: x-small;
+}
+
+.addComment {
+  margin-left: 10px;
+}
+

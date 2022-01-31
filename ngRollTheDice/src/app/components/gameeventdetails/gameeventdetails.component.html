@@ -1,1 +1,61 @@
-<p>gameeventdetails works!</p>
+<img src="assets/chess.jpg" id="header" />
+<div class="wrapper">
+  <div class="title">
+    <p>{{ gameEvent.title }}</p>
+  </div>
+
+  <div class="description">
+    <h3>Description</h3>
+    <p>{{ gameEvent.description }}</p>
+  </div>
+
+  <div class="details">
+    <h3>Host</h3>
+    <p>{{ gameEvent.host.username }}</p>
+    <h3>Date</h3>
+    <p>{{ gameEvent.dateOfEvent | date: "fullDate" }}</p>
+    <h3>Time</h3>
+    <p>
+      From {{ gameEvent.startTime | date: "shortTime" }} until
+      {{ gameEvent.endTime | date: "shortTime" }}
+    </p>
+    <h3>Games</h3>
+    <p *ngIf="games">{{games}}</p>
+  </div>
+
+  <div class="guests">
+    <h3>Guests</h3>
+    <p>{{guestNames}}</p>
+  </div>
+
+  <div class="tags">
+    <h3>Tags</h3>
+    <p>{{ tags }}</p>
+  </div>
+
+  <div class="join" *ngIf="!isHost">
+    <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block">
+      Join
+    </button>
+  </div>
+
+  <div class="join" *ngIf="isHost">
+    <button type="button" name="joinButton" class="btn btn-secondary btn-large btn-block" disabled>
+      Join
+    </button>
+  </div>
+</div>
+<hr />
+<div class="discussion"><h2>Discussion</h2>
+  <div class="comment" *ngFor="let comment of gameEvent.comments">
+    <img *ngIf="comment.user" src="{{comment.user.profilePictureUrl}}"><p *ngIf="comment.user" id="commenter">{{comment.postDate}} {{ comment.user.username }}:</p>
+    <p>{{comment.message}}</p>
+  </div>
+    <div class="addComment">
+      <form *ngIf="loggedInUser">
+        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="comment.message"></textarea>
+        <input type="hidden" name="user" [(ngModel)]="comment.user" value="{{loggedInUser}}"><br>
+        <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(comment)">
+      </form>
+  </div>
+</div>

@@ -9,20 +9,24 @@ import { GameeventdetailsComponent } from './components/gameeventdetails/gameeve
 import { HomeComponent } from './components/home/home.component';
 import { LoginregisterComponent } from './components/loginregister/loginregister.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {path: 'advancedsearch', component: AdvancedsearchComponent},
   {path: 'creation', component: CreationComponent},
   {path: 'gamedetails', component: GamedetailsComponent},
+  {path: 'gamedetails/:gameId', component: GamedetailsComponent},
   {path: 'gameeventdetails', component: GameeventdetailsComponent},
+  {path: 'gameeventdetails/:eventId', component: GameeventdetailsComponent},
   {path: 'home', component: HomeComponent},
   {path: 'navigation', component: NavigationComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'profile/:userId', component: ProfileComponent},
   {path: 'loginregister', component: LoginregisterComponent},
   {path: 'aboutus', component: AboutusComponent},
-  {path: 'display/:keyword', component: DisplayComponent}
+  {path: 'display/:keyword', component: DisplayComponent},
+  {path: '**', component: NotFoundComponent }
 ]
 
 @NgModule({
