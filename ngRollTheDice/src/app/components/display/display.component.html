@@ -9,7 +9,7 @@
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
-              aria-expanded="true"
+              aria-expanded="false"
               aria-controls="collapseOne"
               (click)="toggleCollapseOne()"
             >
@@ -23,14 +23,9 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <!-- SEARCH BAR BY USER! -->
+              <input type="text" name="userKeyword" placeholder="Search" value=userKeyword [(ngModel)]="userKeyword">
+              <input type="button" name="search" value="Search"  (click)="loadUsers()">
             </div>
           </div>
         </div>
@@ -55,14 +50,9 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <!-- SEARCH BAR BY GAME! -->
+              <input type="text" name="gameKeyword" placeholder="Search" value=gameKeyword [(ngModel)]="gameKeyword">
+              <input type="submit" name="search" value="Search" (click)="loadGames()">
             </div>
           </div>
         </div>
@@ -87,64 +77,64 @@
             data-bs-parent="#accordionExample"
           >
             <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+              <!-- SEARCH BAR BY GAMEEVENT! -->
+              <input type="text" name="gameEventKeyword" placeholder="Search" value=gameEventKeyword [(ngModel)]="gameEventKeyword">
+              <input type="submit" name="search" value="Search" (click)="loadGameEvents()">
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-7">
-      <div class="card" *ngFor="let game of games">
-        <div class="card-header">
-          Game Results!
-          <a href="{{ game.linkToGame }}" class="btn btn-primary"
-            >View on BoardGameGeek!</a
-          >
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ game.name }}</h5>
-          <p class="card-text">{{ game.description }}</p>
-          <img src="{{ game.imageUrl }}" />
-        </div>
-      </div>
-
-      <div class="card" *ngFor="let gameEvent of gameEvents">
-        <div class="card-header">
-          Game Event Results!
-          <a href="#" class="btn btn-primary">Link to game event?</a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">Host: {{ gameEvent.host.username }}</h5>
-          <p class="card-text">
-            <time datetime="gameEvent.dateOfEvent">
-              Date of Event: {{ gameEvent.dateOfEvent }}</time
+      <div class="gameBooleanDiv" *ngIf="games.length">
+        <div class="card" *ngFor="let game of games">
+          <div class="card-header">
+            Game Results!
+            <a href="{{ game.linkToGame }}" class="btn btn-primary"
+              >View on BoardGameGeek!</a
             >
-            Start Time: {{ gameEvent.startTime | date: "shortTime" }} End Time:
-            {{ gameEvent.endTime | date: "shortTime" }}
-          </p>
-          <p class="card-text">
-            Max amount of guests: {{ gameEvent.maxNumberOfGuests }}
-          </p>
-          <p class="card-test">Description: {{ gameEvent.description }}</p>
-          <img src="{{ gameEvent.imageUrl }}" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ game.name }}</h5>
+            <p class="card-text">{{ game.description }}</p>
+            <img src="{{ game.imageUrl }}" />
+          </div>
         </div>
       </div>
-
-      <div class="card">
-        <div class="card-header">
-          User Results! <a href="#" class="btn btn-primary">View Profile!</a>
+      <div class="gameEventBooleanDiv" *ngIf="gameEvents.length">
+        <div class="card" *ngFor="let gameEvent of gameEvents">
+          <div class="card-header">
+            Game Event Results!
+            <a href="#" class="btn btn-primary">Link to game event?</a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Host: {{ gameEvent.host.username }}</h5>
+            <p class="card-text">
+              <time datetime="gameEvent.dateOfEvent">
+                Date of Event: {{ gameEvent.dateOfEvent }}</time
+              >
+              Start Time: {{ gameEvent.startTime | date: "shortTime" }} End
+              Time:
+              {{ gameEvent.endTime | date: "shortTime" }}
+            </p>
+            <p class="card-text">
+              Max amount of guests: {{ gameEvent.maxNumberOfGuests }}
+            </p>
+            <p class="card-test">Description: {{ gameEvent.description }}</p>
+            <img src="{{ gameEvent.imageUrl }}" />
+          </div>
         </div>
-        <div class="card-body" *ngFor="let user of users">
-          <h5 class="card-title">Username: {{ user.username }}</h5>
-          <p class="card-text">About Me: {{ user.biography }}</p>
-          <img src="{{ user.profilePictureUrl }}" />
+      </div>
+      <div class="userBooleanDiv" *ngIf="users.length">
+        <div class="card">
+          <div class="card-header">
+            User Results! <a href="#" class="btn btn-primary">View Profile!</a>
+          </div>
+          <div class="card-body" *ngFor="let user of users">
+            <h5 class="card-title">Username: {{ user.username }}</h5>
+            <p class="card-text">About Me: {{ user.biography }}</p>
+            <img src="{{ user.profilePictureUrl }}" />
+          </div>
         </div>
       </div>
     </div>
