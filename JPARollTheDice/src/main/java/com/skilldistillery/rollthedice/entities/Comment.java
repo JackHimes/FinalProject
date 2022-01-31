@@ -1,6 +1,6 @@
 package com.skilldistillery.rollthedice.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,14 +24,16 @@ public class Comment {
 
 	private String message;
 	
+	@CreationTimestamp
 	@Column(name = "post_date")
-	private LocalDateTime postDate;
+	private LocalDate postDate;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "event_id")
 	private GameEvent gameEvent;
@@ -68,6 +72,14 @@ public class Comment {
 
 	public void setGameEvent(GameEvent gameEvent) {
 		this.gameEvent = gameEvent;
+	}
+
+	public LocalDate getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(LocalDate postDate) {
+		this.postDate = postDate;
 	}
 
 	@Override

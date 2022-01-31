@@ -48,7 +48,7 @@ public class GameEvent {
 
 	private String title;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy="gameEvent")
 	private List<Comment> comments;
 	
@@ -56,15 +56,15 @@ public class GameEvent {
 	@OneToMany(mappedBy="gameEvent")
 	private List<Review> reviews;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(mappedBy="gameEvents")
 	private List<Game> games;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(mappedBy="gameEvents")
 	private List<User> guests;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(mappedBy = "gameEvents")
 	private List<EventTag> eventTags;
 	
