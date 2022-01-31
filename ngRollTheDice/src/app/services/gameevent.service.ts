@@ -41,6 +41,8 @@ export class GameeventService {
      );
    }
 
+
+
    searchByKeyword(keyword: string): Observable<Gameevent[]> {
     return this.http.get<Gameevent[]>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -63,6 +65,18 @@ export class GameeventService {
        })
      )
    }
+
+   create(gameEvent: Gameevent): Observable<Gameevent> {
+    return this.http.post<Gameevent>(this.url, gameEvent, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('GameeventService.create(): error creating gameevent: ' + err)
+        );
+      })
+    )
+  }
 
    update(gameevent: Gameevent, id: number): Observable<Gameevent> {
      return this.http.put<Gameevent>(this.url + '/' + id, gameevent, this.getHttpOptions()).pipe(

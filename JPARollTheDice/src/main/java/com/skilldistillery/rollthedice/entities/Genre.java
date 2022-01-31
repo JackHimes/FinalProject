@@ -26,10 +26,10 @@ public class Genre {
 	private String description;
 	
 	@JsonIgnore
-	@ManyToMany
-	@JoinTable(name="game_genre",
-			joinColumns=@JoinColumn(name="genre_id"),
-			inverseJoinColumns=@JoinColumn(name="game_id"))
+	@ManyToMany(mappedBy="genres")
+//	@JoinTable(name="game_genre",
+//			joinColumns=@JoinColumn(name="genre_id"),
+//			inverseJoinColumns=@JoinColumn(name="game_id"))
 	private List<Game> games;
 
 	public Genre() {

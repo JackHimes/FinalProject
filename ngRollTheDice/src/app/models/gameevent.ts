@@ -8,7 +8,7 @@ import { User } from "./user";
 export class Gameevent {
   //host id & address id can't be null
   id: number | undefined;
-  dateOfEvent: string | undefined;
+  dateOfEvent: Date | undefined;
   maxNumberOfGuests: number | undefined;
   enabled: boolean;
   startTime: string | undefined;
@@ -26,7 +26,7 @@ export class Gameevent {
 
   constructor(
   id?: number,
-  dateOfEvent?: string | undefined,
+  dateOfEvent?: Date | undefined,
   maxNumberOfGuests?: number | undefined,
   enabled: boolean = true,
   startTime?: string | undefined,
