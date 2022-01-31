@@ -3,7 +3,6 @@ package com.skilldistillery.rollthedice.services;
 import java.util.List;
 
 import com.skilldistillery.rollthedice.entities.GameEvent;
-import com.skilldistillery.rollthedice.entities.User;
 
 public interface GameEventService {
 	
@@ -18,5 +17,9 @@ public interface GameEventService {
 	GameEvent updateGameEvent(String username, GameEvent gameEvent, Integer gameEventId);
 	
 	List<GameEvent> searchKeyword(String keyword);
+
+	GameEvent joinGameEvent(int gId, int uId, String username);
+
+	GameEvent leaveGameEvent(int gId, int uId, String username);
 	
 }

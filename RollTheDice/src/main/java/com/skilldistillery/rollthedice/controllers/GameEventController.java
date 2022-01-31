@@ -55,6 +55,36 @@ public class GameEventController {
 		}
 		return gameEvent;
 	}
+	
+	@PutMapping("gameevents/{gId}/users/{uId}")
+	public GameEvent joinGameEvent(@PathVariable int gId, @PathVariable int uId, Principal principal, HttpServletResponse res) {
+		GameEvent updatedGameEvent = null;
+		try {
+			updatedGameEvent = gameEventService.joinGameEvent(gId, uId, principal.getName());
+			if (updatedGameEvent == null) {
+				res.setStatus(404);
+			} else res.setStatus(200);
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return updatedGameEvent;
+	}
+	
+	@PutMapping("gameevents/users/{gId}/{uId}")
+	public GameEvent leaveGameEvent(@PathVariable int gId, @PathVariable int uId, Principal principal, HttpServletResponse res) {
+		GameEvent updatedGameEvent = null;
+		try {
+			updatedGameEvent = gameEventService.leaveGameEvent(gId, uId, principal.getName());
+			if (updatedGameEvent == null) {
+				res.setStatus(404);
+			} else res.setStatus(200);
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return updatedGameEvent;
+	}
 
 	@PutMapping("gameevents/{gameEventId}")
 	public GameEvent updateGameEvent(@PathVariable Integer gameEventId, @RequestBody GameEvent gameEvent,
@@ -66,7 +96,7 @@ public class GameEventController {
 			if (updatedGameEvent == null) {
 				res.setStatus(404);
 			}
-			res.setStatus(201);
+			else res.setStatus(201);
 		} catch (Exception e) {
 			res.setStatus(400);
 			updatedGameEvent = null;
@@ -101,5 +131,7 @@ public class GameEventController {
 		}
 		return resultGameEvents;
 	}
+	
+	
 
 }
