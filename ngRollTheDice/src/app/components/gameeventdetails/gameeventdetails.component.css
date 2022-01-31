@@ -17,10 +17,11 @@
   grid-column: 1 / 2;
   grid-row: 1;
   color: rgb(51, 58, 86);
+}
+.title p {
   text-align: center;
-  vertical-align: 50%;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 4vw;
 }
 
 .description {
@@ -32,7 +33,7 @@
   text-align: left;
 }
 
-.description p {
+p {
   margin-left: 6px;
   font-size: large;
 }
@@ -43,7 +44,7 @@
   background-color: rgba(82, 101, 143, 0.527);
 }
 
-.details h3 {
+h3 {
   text-decoration: underline;
   margin-left: 12px;
 }
@@ -58,22 +59,56 @@
   background-color: rgb(82, 101, 143);
 }
 
-.guests h3 {
-  text-decoration: underline;
-  margin-left: 6px;
-}
-
 .guests p {
   margin-left: 6px;
 }
 
-.five {
+.tags {
   grid-column: 2;
   grid-row: 4;
   background-color: rgb(82, 101, 143);
 }
-.six {
+.join {
   grid-column: 3;
   grid-row: 4;
   background-color: rgb(82, 101, 143);
+  border-radius: 10%;
 }
+
+button {
+  width: 100%;
+  height: 100%;
+  font-size: 4vw;
+}
+
+.discussion {
+  grid-column: 1 / 4;
+  background-color: rgba(82, 101, 143, 0.788);
+  margin-bottom: 5px;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.comment {
+  background-color: rgb(241, 238, 228);
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 7px;
+  border: 2px solid rgb(51, 58, 86);
+}
+
+.comment img {
+  height: 25px;
+}
+
+#commenter {
+  font-size: x-small;
+}
+
+.addComment {
+  margin-left: 10px;
+}
+
