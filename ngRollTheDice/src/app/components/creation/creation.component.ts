@@ -155,6 +155,8 @@ export class CreationComponent implements OnInit {
     console.log(this.loggedInUser.games);
     this.loggedInUser.games?.push(this.newGame);
     console.log(this.loggedInUser.games);
+    this.loadGenres();
+    document.getElementById("genreCheckbox");
 
     // this.updateLoggedInUser(this.loggedInUser);
     
