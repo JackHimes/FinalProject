@@ -109,7 +109,7 @@
         <div class="card" *ngFor="let gameEvent of gameEvents">
           <div class="card-header">
             Game Event Results!
-            <a [routerLink]="['/gameeventdetails/' + gameEvent.id]" class="btn btn-primary">Link to game event?</a>
+            <a [routerLink]="['/gameeventdetails/' + gameEvent.id]" class="btn btn-primary">View Event Details</a>
           </div>
           <div class="card-body">
             <h5 class="card-title">Host: {{ gameEvent.host.username }}</h5>

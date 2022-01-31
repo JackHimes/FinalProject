@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.rollthedice.entities.Game;
+import com.skilldistillery.rollthedice.entities.Genre;
 import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.repositories.GameRepository;
+import com.skilldistillery.rollthedice.repositories.GenreRepository;
 import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
@@ -20,6 +22,9 @@ public class GameServiceImpl implements GameService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private GenreRepository genreRepo;
 
 	@Override
 	public List<Game> index() {
@@ -36,13 +41,24 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Game create(Game game, String username) {
+	public Game create(Game game, String username, List<Genre> genres) {
 		User user = userRepo.findByUsername(username);
+		user.getGames().add(game);
+		game.getUsers().add(user);
 		game.setGameOwner(user);
-		if(game != null && (user.getRole().equals("ROLE_ADMIN")) || user.getUsername().equals(username)) {
-			return gameRepo.saveAndFlush(game);
+//		game.setGenres(genres);
+		
+		System.out.println("**********************************************************************" +genres);
+		for (Genre genre : genres) {
+			Optional<Genre> genreOp = genreRepo.findById(genre.getId());
+			if(genreOp.isPresent()) {
+				genre = genreOp.get();
+//				game.getGenres().add(genre);
+//				game.addGenre(genre);
+			}
 		}
-		return null;
+		Game temp = gameRepo.saveAndFlush(game);
+		return temp;
 		
 		
 	}

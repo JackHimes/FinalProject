@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,7 +54,10 @@ public class Game {
 	inverseJoinColumns=@JoinColumn(name="game_event_id"))
 	private List<GameEvent> gameEvents;
 	
-	@ManyToMany(mappedBy="games")
+	@ManyToMany(cascade=CascadeType.MERGE)
+	@JoinTable(name="game_genre",
+	joinColumns=@JoinColumn(name="game_id"),
+	inverseJoinColumns=@JoinColumn(name="genre_id"))
 	private List<Genre> genres;
 	
 	@JsonIgnore
@@ -138,6 +142,9 @@ public class Game {
 	}
 
 	public List<User> getUsers() {
+		if(users == null) {
+			users = new ArrayList<User>();
+		}
 		return users;
 	}
 
