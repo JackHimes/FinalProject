@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { AdvancedsearchComponent } from './components/advancedsearch/advancedsearch.component';
 import { CreationComponent } from './components/creation/creation.component';
+import { DisplayComponent } from './components/display/display.component';
 import { GamedetailsComponent } from './components/gamedetails/gamedetails.component';
 import { GameeventdetailsComponent } from './components/gameeventdetails/gameeventdetails.component';
 import { HomeComponent } from './components/home/home.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'profile/:userId', component: ProfileComponent},
   {path: 'loginregister', component: LoginregisterComponent},
   {path: 'aboutus', component: AboutusComponent},
+  {path: 'display/:keyword', component: DisplayComponent},
   {path: '**', component: NotFoundComponent }
 ]
 

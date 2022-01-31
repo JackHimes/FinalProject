@@ -9,7 +9,11 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class GameeventService {
+<<<<<<< HEAD
+  private url = environment.baseUrl + 'api/gameevents';
+=======
   private url = environment.baseUrl +'api/gameevents';
+>>>>>>> main
 
   constructor(
   private http: HttpClient,
@@ -36,6 +40,17 @@ export class GameeventService {
        })
      );
    }
+
+   searchByKeyword(keyword: string): Observable<Gameevent[]> {
+    return this.http.get<Gameevent[]>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('GameEventService.searchByKeyword(): error retrieving game events' + err)
+        );
+      })
+    );
+  }
 
    index(): Observable<Gameevent> {
      return this.http.get<Gameevent>(this.url, this.getHttpOptions()).pipe(

@@ -1,0 +1,80 @@
+
+<div class="resultsMasterDiv">
+<div class="card" *ngFor="let game of games">
+  <div class="card-header">
+    Game Results! <a href="{{game.linkToGame}}" class="btn btn-primary">View on BoardGameGeek!</a>
+  </div>
+  <div class="card-body" >
+    <h5 class="card-title">Title: {{game.name}}</h5>
+    <p class="card-text">Description: {{game.description}}</p>
+    <img src="{{game.imageUrl}}"/>
+  </div>
+</div>
+
+<div class="card" *ngFor="let gameEvent of gameEvents">
+  <div class="card-header">
+    Game Event Results! <a href="#" class="btn btn-primary">Link to host profile?</a>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Host: {{gameEvent.host.username}}</h5>
+    <p class="card-text">Date of Event: {{gameEvent.dateOfEvent}} Start Time: {{gameEvent.startTime}} End Time: {{gameEvent.endTime}}</p>
+    <p class ="card-test">Description: {{gameEvent.description}}</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    User Results!
+  </div>
+  <div class="card-body" *ngFor="let user of users">
+    <h5 class="card-title">Username: {{user.username}}</h5>
+    <p class="card-text">{{user.profilePictureUrl}}</p>
+    <a href="#" class="btn btn-primary">View Profile!</a>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div name="userSearchResultDiv" *ngIf="users">
+  <ul *ngFor="let user of users">
+    <li>Username: {{ user.username }}</li>
+    <li>Profile Pic: <img src="{{ user.profilePictureUrl }}" /></li>
+  </ul>
+</div>
+
+<div name="gameSearchResultDiv" *ngIf="games">
+  game search results go here
+  <ul *ngFor="let game of games">
+    <li>Name: {{ game.name }}</li>
+    <li>game description: {{ game.description }}</li>
+    <li>max players: {{ game.maxPlayers }}</li>
+    <li>Game Time Limit: {{ game.timeToPlay }}</li>
+  </ul>
+</div>
+
+<div name="gameEventSearchResultDiv" *ngIf="gameEvents">
+  gameEvent search results go here
+  <ul *ngFor="let gameEvent of gameEvents">
+    <li>Game Host: {{gameEvent.host.username}}</li>
+    <li>Guests: {{gameEvent.guests}}</li>
+    <li>Date of Event: {{ gameEvent.dateOfEvent }}</li>
+    <li>Max # of Guests: {{ gameEvent.maxNumberOfGuests }}</li>
+    <li>Start Time: {{ gameEvent.startTime }}</li>
+    <li>End Time: {{ gameEvent.endTime }}</li>
+    <li>Description: {{ gameEvent.description }}</li>
+  </ul>
+</div> -->
+
