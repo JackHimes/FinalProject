@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Eventtag } from 'src/app/models/eventtag';
-import { Game } from 'src/app/models/game';
 import { Gameevent } from 'src/app/models/gameevent';
 import { User } from 'src/app/models/user';
 import { Comment } from 'src/app/models/comment';
@@ -9,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { GameeventService } from 'src/app/services/gameevent.service';
 import { UserService } from 'src/app/services/user.service';
 import { CommentService } from 'src/app/services/comment.service';
+import { Address } from 'src/app/models/address';
 
 @Component({
   selector: 'app-gameeventdetails',
@@ -27,6 +26,8 @@ export class GameeventdetailsComponent implements OnInit {
   isHost = false;
   alreadyJoined = false;
   beginEdit = false;
+  editGameEvent: Gameevent = new Gameevent();
+  userAddressess: Address[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,7 +45,6 @@ export class GameeventdetailsComponent implements OnInit {
     }
     this.load();
     this.loadUser();
-    console.log("at end of ngOnInit, isHost = " + this.isHost)
   }
 
   load() {
@@ -176,4 +176,21 @@ export class GameeventdetailsComponent implements OnInit {
     })
   }
 }
+
+updateGameEvent(event: Gameevent) {
+  this.gameEventSvc.update(event, this.id).subscribe({
+    next: (g) => {
+      this.gameEvent = g;
+      this.load();
+    },
+    error: (f) => {
+      console.error('error updating game: ' + f)
+    }
+  });
+}
+
+loadUpdateEvent() {
+  this.editGameEvent = Object.assign({}, this.gameEvent);
+}
+
 }
