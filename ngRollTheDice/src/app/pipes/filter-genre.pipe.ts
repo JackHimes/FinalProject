@@ -6,13 +6,13 @@ import { Genre } from '../models/genre';
   name: 'filterGenre',
 })
 export class FilterGenrePipe implements PipeTransform {
-  transform(games: Game[], genres: Genre[]): Game[] {
+  transform(games: Game[], genres: Genre[], mainGame: Game): Game[] {
     let result: Game[] = [];
     for (const game of games) {
       if (game.genres) {
         for (const g of game.genres) {
           for (const genre of genres) {
-            if (g.id === genre.id) {
+            if (g.id === genre.id && game.id != mainGame.id && !result.includes(game)) {
               result.push(game);
           }
           }

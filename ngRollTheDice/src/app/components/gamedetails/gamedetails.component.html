@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="picture">
-    <img src="https://upload.wikimedia.org/wikipedia/en/9/92/Ticket_to_Ride_Board_Game_Box_EN.jpg" height="200px">
+    <img src="{{game.imageUrl}}" height="200px">
     <ngb-rating [(rate)]="currentRate"></ngb-rating>
   </div>
 
@@ -19,13 +19,14 @@
   <div class="similar"><h3>Similar Games</h3>
     <button *ngIf="buttonClick" (click)="randomGames(); buttonClick=false">Click to see Similar Games</button>
       <div class="displaySimilar">
-        <span *ngIf="displayGame1.id" (click)="redirect(displayGame1.id)">
-          <img [src]="displayGame1.imageUrl">
-          <p>
+        <span>
+        <img [src]="displayGame1.imageUrl">
+          <a *ngIf="displayGame1.id" class="nav-link" aria-current="page" [routerLink]="['/gamedetails/' + displayGame1.id]">{{displayGame1.name}}</a>
+          <!-- <p>
             {{displayGame1.name}}
-          </p>
+          </p> -->
         </span>
-        <span *ngIf="displayGame2.id" (click)="redirect(displayGame2.id)">
+        <span *ngIf="displayGame2.id" class="nav-link" [routerLink]="['/gamedetails/' + displayGame2.id]">
           <img [src]="displayGame2.imageUrl">
           <p>
             {{displayGame2.name}}

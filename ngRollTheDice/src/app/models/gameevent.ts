@@ -1,4 +1,3 @@
-import { max } from "rxjs";
 import { Address } from "./address";
 import { Comment } from "./comment";
 import { Eventtag } from "./eventtag";
@@ -8,7 +7,7 @@ import { User } from "./user";
 
 export class Gameevent {
   //host id & address id can't be null
-  id: number;
+  id: number | undefined;
   dateOfEvent: string | undefined;
   maxNumberOfGuests: number | undefined;
   enabled: boolean;
@@ -26,20 +25,20 @@ export class Gameevent {
   host: User;
 
   constructor(
-  id: number = 0,
-  dateOfEvent: string | undefined,
-  maxNumberOfGuests: number | undefined,
+  id?: number,
+  dateOfEvent?: string | undefined,
+  maxNumberOfGuests?: number | undefined,
   enabled: boolean = true,
-  startTime: string | undefined,
-  endTime: string | undefined,
-  imageUrl: string | undefined,
-  description: string | undefined,
-  title: string | undefined,
-  comments: Comment[] | undefined,
-  reviews: Review[] | undefined,
-  games: Game[] | undefined,
-  guests: User[] | undefined,
-  eventTags: Eventtag[] | undefined,
+  startTime?: string | undefined,
+  endTime?: string | undefined,
+  imageUrl?: string | undefined,
+  description?: string | undefined,
+  title?: string | undefined,
+  comments?: Comment[] | undefined,
+  reviews?: Review[] | undefined,
+  games?: Game[] | undefined,
+  guests?: User[] | undefined,
+  eventTags?: Eventtag[] | undefined,
   address: Address = new Address(),
   host: User = new User(),
   ) {

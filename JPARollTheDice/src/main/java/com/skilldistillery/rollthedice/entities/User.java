@@ -43,6 +43,7 @@ public class User {
 	@Column(name="profile_picture_url")
 	private String profilePictureUrl;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Address> addresses;
 	
@@ -73,7 +74,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 	
-//	@JsonIgnore
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="friends",
 		joinColumns=@JoinColumn(name="user_id"),
