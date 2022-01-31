@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -43,15 +44,16 @@ public class User {
 	@Column(name="profile_picture_url")
 	private String profilePictureUrl;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(mappedBy="users")
 	private List<Address> addresses;
 	
 	@OneToOne
-	@JoinColumn(name="address_id")
+	@JoinColumn(name="address_id") 
 	private Address homeAddress;
 	
 	@JsonIgnore
+//	@JsonIgnoreProperties({"guests", "comments"})
 	@ManyToMany
 	@JoinTable(name="user_has_event",
 		joinColumns=@JoinColumn(name="user_id"),

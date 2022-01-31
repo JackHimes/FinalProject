@@ -1,11 +1,20 @@
-<ul class="nav nav-pills">
+<html>
+<ul class="nav nav-pills" id="navBar">
 
-  <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link active" aria-current="page" href="#" (click)="logout()">Logout</a>
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" [routerLink]="['/home']" ><img class="headerLogo" src="assets/LogoTransparent.png" alt="logo"></a>
   </li>
 
   <li class="nav-item" *ngIf="!loggedIn()">
-    <a class="nav-link" aria-current="page" [routerLink]="['/loginregister']" (click)="logout()">Login</a>
+    <a class="nav-link " aria-current="page" [routerLink]="['/loginregister']" (click)="logout()">Login</a>
+  </li>
+
+  <li class="nav-item" *ngIf="loggedIn()">
+    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">My Profile</a>
+  </li>
+
+  <li class="nav-item" *ngIf="loggedIn()">
+    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Host Event</a>
   </li>
 
   <li class="nav-item">
@@ -13,14 +22,19 @@
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Host Event</a>
+    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Add Game</a>
+  </li>
+  <li>
+    <app-search></app-search>
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Add Game</a>
+    <a class="nav-link" aria-current="page" href="#" (click)="logout()" [routerLink]="['/home']">Logout</a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="#">Search</a>
+  <li>
+    <p></p>
   </li>
+
 </ul>
+</html>

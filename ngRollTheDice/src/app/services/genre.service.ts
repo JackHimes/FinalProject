@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class GenreService {
-  private url = environment.baseUrl +'genres';
+  private url = environment.baseUrl +'api/genres';
 
 
   constructor(
@@ -38,8 +38,8 @@ show(id: number): Observable<Genre> {
   );
 }
 
-index(): Observable<Genre> {
-  return this.http.get<Genre>(this.url, this.getHttpOptions()).pipe(
+index(): Observable<Genre[]> {
+  return this.http.get<Genre[]>(this.url, this.getHttpOptions()).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError(

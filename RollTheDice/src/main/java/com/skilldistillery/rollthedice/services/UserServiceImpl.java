@@ -45,10 +45,17 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(String username, User user, int userId) {
 		User loggedInUser = userRepo.findByUsername(username);	
 		
-		user.setId(userId);	
+//		user.setId(userId);	
 		if (loggedInUser.equals(user) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
 			if (userRepo.existsById(userId)) {
-				return userRepo.saveAndFlush(user);
+				loggedInUser.setBiography(user.getBiography());
+				loggedInUser.setEmail(user.getEmail());
+				loggedInUser.setFirstName(user.getFirstName());
+				loggedInUser.setLastName(user.getLastName());
+				loggedInUser.setProfilePictureUrl(user.getProfilePictureUrl());
+				
+				
+				return userRepo.saveAndFlush(loggedInUser);
 			}				
 		}
 		return null;

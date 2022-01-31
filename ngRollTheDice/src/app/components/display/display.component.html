@@ -1,0 +1,180 @@
+<!-- LEFT VIEW BELOW HERE -->
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-lg-5">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="false"
+              aria-controls="collapseOne"
+              (click)="toggleCollapseOne()"
+            >
+              Search By User
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <!-- SEARCH BAR BY USER! -->
+              <input type="text" name="userKeyword" placeholder="Search" value=userKeyword [(ngModel)]="userKeyword">
+              <input type="button" name="search" value="Search"  (click)="loadUsers()">
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+              (click)="toggleCollapseTwo()"
+            >
+              Search By Game
+            </button>
+          </h2>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <!-- SEARCH BAR BY GAME! -->
+              <input type="text" name="gameKeyword" placeholder="Search" value=gameKeyword [(ngModel)]="gameKeyword">
+              <input type="submit" name="search" value="Search" (click)="loadGames()">
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+              (click)="toggleCollapseThree()"
+            >
+              Search By GameEvent
+            </button>
+          </h2>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <!-- SEARCH BAR BY GAMEEVENT! -->
+              <input type="text" name="gameEventKeyword" placeholder="Search" value=gameEventKeyword [(ngModel)]="gameEventKeyword">
+              <input type="submit" name="search" value="Search" (click)="loadGameEvents()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT VIEW BELOW HERE -->
+
+    <div class="col-lg-7">
+      <div class="gameBooleanDiv" *ngIf="games.length">
+        <div class="card" *ngFor="let game of games">
+          <div class="card-header">
+            Game Results!
+            <a href="{{ game.linkToGame }}" class="btn btn-primary"
+              >View on BoardGameGeek!</a
+            >
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ game.name }}</h5>
+            <p class="card-text">{{ game.description }}</p>
+            <img src="{{ game.imageUrl }}" />
+          </div>
+        </div>
+      </div>
+      <div class="gameEventBooleanDiv" *ngIf="gameEvents.length">
+        <div class="card" *ngFor="let gameEvent of gameEvents">
+          <div class="card-header">
+            Game Event Results!
+            <a [routerLink]="['/gameeventdetails/' + gameEvent.id]" class="btn btn-primary">View Event Details</a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Host: {{ gameEvent.host.username }}</h5>
+            <p class="card-text">
+              <time datetime="gameEvent.dateOfEvent">
+                Date of Event: {{ gameEvent.dateOfEvent }}</time
+              >
+              Start Time: {{ gameEvent.startTime | date: "shortTime" }} End
+              Time:
+              {{ gameEvent.endTime | date: "shortTime" }}
+            </p>
+            <p class="card-text">
+              Max amount of guests: {{ gameEvent.maxNumberOfGuests }}
+            </p>
+            <p class="card-test">Description: {{ gameEvent.description }}</p>
+            <img src="{{ gameEvent.imageUrl }}" />
+          </div>
+        </div>
+      </div>
+      <div class="userBooleanDiv" *ngIf="users.length">
+        <div class="card" *ngFor="let user of users">
+          <div class="card-header">
+            User Results! <a [routerLink]="['/profile/' + user.id]" class="btn btn-primary">View Profile!</a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Username: {{ user.username }}</h5>
+            <p class="card-text">About Me: {{ user.biography }}</p>
+            <img src="{{ user.profilePictureUrl }}" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Accordion on left side of view -->
+
+<!-- Right side of view with search results -->
+
+<!-- <div name="userSearchResultDiv" *ngIf="users">
+  <ul *ngFor="let user of users">
+    <li>Username: {{ user.username }}</li>
+    <li>Profile Pic: <img src="{{ user.profilePictureUrl }}" /></li>
+  </ul>
+</div>
+
+<div name="gameSearchResultDiv" *ngIf="games">
+  game search results go here
+  <ul *ngFor="let game of games">
+    <li>Name: {{ game.name }}</li>
+    <li>game description: {{ game.description }}</li>
+    <li>max players: {{ game.maxPlayers }}</li>
+    <li>Game Time Limit: {{ game.timeToPlay }}</li>
+  </ul>
+</div>
+
+<div name="gameEventSearchResultDiv" *ngIf="gameEvents">
+  gameEvent search results go here
+  <ul *ngFor="let gameEvent of gameEvents">
+    <li>Game Host: {{gameEvent.host.username}}</li>
+    <li>Guests: {{gameEvent.guests}}</li>
+    <li>Date of Event: {{ gameEvent.dateOfEvent }}</li>
+    <li>Max # of Guests: {{ gameEvent.maxNumberOfGuests }}</li>
+    <li>Start Time: {{ gameEvent.startTime }}</li>
+    <li>End Time: {{ gameEvent.endTime }}</li>
+    <li>Description: {{ gameEvent.description }}</li>
+  </ul>
+</div> -->
