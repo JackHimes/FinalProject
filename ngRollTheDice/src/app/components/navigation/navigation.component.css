@@ -14,6 +14,18 @@ a {
 }
 
 a:hover {
-  color: red;
+  color: steelblue;
   font-weight: 500;
+}
+
+img.headerLogo {
+  object-fit: cover; /* Do not scale the image */
+  object-position: 80%, 80%; /* Center the image within the element */
+  width: 100%;
+  height: 100px;
+  margin-top: -10mm;
+  margin-right: -10mm;
+  margin-bottom: -8mm;
+  display: flex;
+  justify-content: center;
 }
