@@ -10,11 +10,11 @@
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">My Profile</a>
+    <a class="nav-link" aria-current="page" [routerLink]="['/profile']">My Profile</a>
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Host Event</a>
+    <a class="nav-link" aria-current="page" [routerLink]="['/createGameEvent']">Host Event</a>
   </li>
 
   <li class="nav-item">
@@ -22,7 +22,7 @@
   </li>
 
   <li class="nav-item" *ngIf="loggedIn()">
-    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Add Game</a>
+    <a class="nav-link" aria-current="page" [routerLink]="['/createGame']">Add Game</a>
   </li>
   <li>
     <app-search></app-search>

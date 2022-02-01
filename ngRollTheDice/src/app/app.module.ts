@@ -21,6 +21,8 @@ import { DisplayComponent } from './components/display/display.component';
 import { SearchService } from './services/search.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FilterGenrePipe } from './pipes/filter-genre.pipe';
+import { CreateGameComponent } from './components/create-game/create-game.component';
+import { CreateGameEventComponent } from './components/create-game-event/create-game-event.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { FilterGenrePipe } from './pipes/filter-genre.pipe';
     SearchComponent,
     DisplayComponent,
     NotFoundComponent,
-    FilterGenrePipe
+    FilterGenrePipe,
+    CreateGameComponent,
+    CreateGameEventComponent
   ],
   imports: [
     BrowserModule,

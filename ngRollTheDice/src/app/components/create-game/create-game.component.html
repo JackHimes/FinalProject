@@ -1,0 +1,25 @@
+<div class="card" style="width: 25rem;" ng-show="addGameBoolean">
+  <div class="card-body">
+    <h5 class="card-title">Add a game</h5>
+  </div>
+  <form>
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title: <br><input type="text" name="title" [(ngModel)]="newGame.name"></li>
+          <li class="list-group-item">Max Players: <br><input type="number" name="maxPlayers" [(ngModel)]="newGame.maxPlayers"></li>
+          <li class="list-group-item">Game Url: <br><input type="text" name="gameUrl" [(ngModel)]="newGame.linkToGame"></li>
+          <li class="list-group-item">Average Play Time: <br><input type="text" name="playTime" [(ngModel)]="newGame.timeToPlay"></li>
+          <li class="list-group-item">Description: <br><input type="text" name="description" [(ngModel)]="newGame.description"></li>
+          <li class="list-group-item">Image Url: <br><input type="text" name="imageUrl" [(ngModel)]="newGame.imageUrl"></li>
+          <li class="list-group-item">Genres:<br>
+              <div *ngFor="let genre of genres; let i = index">
+                  <label for="i"> {{genre.name}}: </label>
+                  <input id="genreCheckbox" type="checkbox" value="genre[i]" (change)=addGenresToChecked(genre)>
+                  <!-- <input type="checkbox" [checked]='cars.indexOf(car) > -1' (change)="checkChanged(car)"></td> -->
+              </div>
+          </li>
+      </ul>
+      <button (click)='addSelectedGenresBeforeAddingGame()'>Submit</button>
+      <!-- <input type="submit" (click)=addSelectedGenresBeforeAddingGame()> -->
+  </form>
+
+</div>

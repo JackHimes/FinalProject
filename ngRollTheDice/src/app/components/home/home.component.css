@@ -4,6 +4,8 @@ html {
   /* background-color: lightsteelblue; */
   background-size: cover;
   border-radius: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #homePageWelcomeDiv {
@@ -77,8 +79,8 @@ img:not(.headerLogo) {
 
 .registerContainer {
   border-radius: 15px;
-  border: 4px solid steelblue;
-  background-color: lightsteelblue;
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
   /* white-space: nowrap; */
   /* overflow: auto; */
   width: 200px;
@@ -86,13 +88,14 @@ img:not(.headerLogo) {
   margin: auto;
   margin-top: 25px;
   margin-right: 8px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
 .contactUsContainer {
   border-radius: 15px;
-  border: 4px solid steelblue;
-  background-color: lightsteelblue;
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
   white-space: nowrap;
   overflow: auto;
   width: 200px;
@@ -100,5 +103,6 @@ img:not(.headerLogo) {
   margin: auto;
   margin-top: 25px;
   margin-left: 8px;
+  margin-bottom: 10px;
   text-align: center;
 }

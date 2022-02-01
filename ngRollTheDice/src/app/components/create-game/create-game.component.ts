@@ -12,11 +12,11 @@ import { GenreService } from 'src/app/services/genre.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-creation',
-  templateUrl: './creation.component.html',
-  styleUrls: ['./creation.component.css']
+  selector: 'app-create-game',
+  templateUrl: './create-game.component.html',
+  styleUrls: ['./create-game.component.css']
 })
-export class CreationComponent implements OnInit {
+export class CreateGameComponent implements OnInit {
 
   newGame: Game = new Game();
   newAddress: Address = new Address();
@@ -27,8 +27,6 @@ export class CreationComponent implements OnInit {
   genres: Genre [] = [];
   checked: Genre [] = [];
 
-  addGameBoolean: boolean = false;
-  addAddressBoolean: boolean = false;
   addGameEventBoolean: boolean = false;
 
   constructor(
@@ -174,3 +172,6 @@ export class CreationComponent implements OnInit {
     });
   }
 }
+
+
+

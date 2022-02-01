@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { AdvancedsearchComponent } from './components/advancedsearch/advancedsearch.component';
+import { CreateGameEventComponent } from './components/create-game-event/create-game-event.component';
+import { CreateGameComponent } from './components/create-game/create-game.component';
 import { CreationComponent } from './components/creation/creation.component';
 import { DisplayComponent } from './components/display/display.component';
 import { GamedetailsComponent } from './components/gamedetails/gamedetails.component';
@@ -27,6 +29,8 @@ const routes: Routes = [
   {path: 'aboutus', component: AboutusComponent},
   {path: 'display/:keyword', component: DisplayComponent},
   {path: 'display', component: DisplayComponent},
+  {path: 'createGameEvent', component: CreateGameEventComponent},
+  {path: 'createGame', component: CreateGameComponent},
   {path: '**', component: NotFoundComponent }
 ]
 
