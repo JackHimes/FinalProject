@@ -1,0 +1,14 @@
+div {
+  display: block;
+  text-align: center;
+  margin-top: 10%;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  margin-top: 4px;
+}
