@@ -4,6 +4,8 @@
   width: 100%;
   height: 300px;
   margin-bottom: 1rem;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
 .wrapper {
@@ -11,12 +13,18 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  background-color: rgb(241, 238, 228);
+  /* background-color: rgb(241, 238, 228); */
 }
 .title {
   grid-column: 1 / 2;
   grid-row: 1;
   color: rgb(51, 58, 86);
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 .title p {
   text-align: center;
@@ -27,10 +35,13 @@
 .description {
   grid-column: 2 / 4;
   grid-row: 1 / 3;
-  background-color: rgb(241, 238, 228);
+  background-color: rgba(82, 101, 143, 0.527);
   border: 4px solid rgb(82, 101, 143);
   color: rgb(51, 58, 86);
+  border-radius: 15px;
   text-align: left;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 p {
@@ -42,6 +53,11 @@ p {
   grid-column: 1;
   grid-row: 2 / 5;
   background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 h3 {
@@ -56,7 +72,12 @@ h3 {
 .guests {
   grid-column: 2/4;
   grid-row: 3;
-  background-color: rgb(82, 101, 143);
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 .guests p {
@@ -66,25 +87,40 @@ h3 {
 .tags {
   grid-column: 2;
   grid-row: 4;
-  background-color: rgb(82, 101, 143);
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 .join {
   grid-column: 3;
   grid-row: 4;
-  background-color: rgb(82, 101, 143);
-  border-radius: 10%;
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 .join button {
   width: 100%;
   height: 100%;
   font-size: 4vw;
+  background-color: steelblue;
 }
 
 .discussion {
   grid-column: 1 / 4;
-  background-color: rgba(82, 101, 143, 0.788);
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
   margin-bottom: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 h2 {
@@ -93,11 +129,15 @@ h2 {
 }
 
 .comment {
-  background-color: rgb(241, 238, 228);
+  background-color: rgba(183, 200, 238, 0.925);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 7px;
-  border: 2px solid rgb(51, 58, 86);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 .comment button {
@@ -106,6 +146,9 @@ h2 {
 
 .comment img {
   height: 25px;
+  border-radius: 15%;
+  margin-left: 3px;
+  margin-top: 3px;
 }
 
 #commenter {
