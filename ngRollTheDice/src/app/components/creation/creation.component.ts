@@ -44,7 +44,6 @@ export class CreationComponent implements OnInit {
     this.loadGenres();
     // this.loadAddressess();
     this.findLoggedInUser();
-
   }
 
   addGame(game : Game): void{

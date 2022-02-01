@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Game } from 'src/app/models/game';
 import { AuthService } from 'src/app/services/auth.service';
 import { GameService } from 'src/app/services/game.service';
+import { CreationComponent } from '../creation/creation.component';
 
 @Component({
   selector: 'app-navigation',
