@@ -17,8 +17,9 @@ export class ProfileComponent implements OnInit {
   friends: User[] = [];
   events: Gameevent[] = [];
   games: Game[] = [];
-
   game = '';
+  beginEdit = false;
+  editUser: User = new User();
 
   constructor(
     private userSvc: UserService,
@@ -61,35 +62,41 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  addFriend() {
+    let loggedInId = this.authService.getCurrentUserId();
+    this.userSvc.addFriend(loggedInId, this.user.id).subscribe({
+      next: (u) => {
+        this.user = u;
+      },
+      error: (f) => {
+        console.error('Error adding friend in profile component: ' + f);
+      }
+    });
+  }
+
   checkIfYou() {
     let idStr = this.route.snapshot.paramMap.get('userId');
     let userId = this.authService.getCurrentUserId();
     if (idStr) {
       if (Number.parseInt(idStr) === userId) {
         this.isItYou = true;
-      }
+      } else this.isItYou = false;
     }
   }
 
   displayGames() {
-    // this.friends = [];
-    // this.events = [];
     if (this.user.games) {
       this.games = this.user.games;
     }
   }
 
   displayFriends() {
-    // this.games = [];
-    // this.events = [];
     if (this.user.friends) {
       this.friends = this.user.friends;
     }
   }
 
   displayEvents() {
-    // this.friends = [];
-    // this.games = [];
     if (this.user.gameEvents) {
       this.events = this.user.gameEvents;
     }
@@ -116,28 +123,32 @@ export class ProfileComponent implements OnInit {
       return friend.games.map((x) => x.name).join(', ');
     }
     return 'Empty';
- 
+
   }
 
   navigateToFriendProfile (friend: User){
+    this.isItYou = false;
     let friendId = friend.id;
-
-    // if(document.getElementById("collapseOne")){
-      
-    //   this.toggleCollapseOne();
-    // }
-    // if(document.getElementById("collapseOne")){
-    //   this.toggleCollapseTwo();
-      
-    // }
-    // if(document.getElementById("collapseOne")){
-    //   this.toggleCollapseThree();
-      
-    // }
-    // window.location.reload();
+    this.router.navigateByUrl('/profile/' + friend.id);
     this.loadUser(friend.id);
-
+    this.checkIfYou();
   }
 
+  updateUser(userToUpdate: User) {
+    this.userSvc.update(userToUpdate, this.user.id).subscribe({
+      next: (a) => {
+        this.user = a;
+        this.editUser = new User();
+        this.loadUser(a.id);
+      },
+      error: (f) => {
+        console.error('error updating user: ' + f)
+      }
+    })
+  }
+
+  loadUpdateUser() {
+    this.editUser = Object.assign({}, this.user);
+  }
 
 }

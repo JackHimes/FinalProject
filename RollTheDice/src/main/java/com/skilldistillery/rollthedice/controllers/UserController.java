@@ -45,22 +45,6 @@ public class UserController {
 		}
 		return resultUser;
 	}
-//	
-//	@PostMapping("users")
-//	public User createUser(HttpServletRequest req, HttpServletResponse res,  @RequestBody User user) {
-//		try {
-//			authService.register(userTemp);
-//			res.setStatus(201);
-//			StringBuffer url = req.getRequestURL();
-//			url.append("/").append(user.getId());
-//			res.setHeader("Location", url.toString());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.err.println("Invalid JSON for New User");
-//			res.setStatus(400);
-//		}
-//		return user;
-//	}
 	
 	@PutMapping("users/{userId}")
 	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId, @RequestBody User user) {
@@ -84,6 +68,22 @@ public class UserController {
 			res.setStatus(404);
 			System.err.println("Error deleting user.");
 		}
+	}
+	
+	@PutMapping("users/{userId}/users/{friendId}")
+	public User addFriend(@PathVariable int userId, @PathVariable int friendId, HttpServletResponse res, Principal principal) {
+		User user = new User();
+		try {
+			user = userService.addFriend(userId, friendId);
+			if (user != null) {
+				res.setStatus(200);
+			} else res.setStatus(404);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			System.err.println("Error adding friend");
+		}
+		return user;
 	}
 	
 	@PutMapping("users/{userId}/gameevents/{gId}")

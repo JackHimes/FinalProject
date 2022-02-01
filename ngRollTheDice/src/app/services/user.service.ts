@@ -59,6 +59,14 @@ export class UserService {
   }
 
   update(user: User, id: number): Observable<User> {
+    delete user.friends;
+    delete user.games;
+    delete user.gameEvents;
+    delete user.homeAddress;
+    delete user.hostedGameEvents;
+    delete user.reviews;
+    delete user.comments;
+
     return this.http.put<User>(this.url + '/' + id, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -91,5 +99,15 @@ export class UserService {
       );
   }
 
+  addFriend(userId: number, friendId: number): Observable<User> {
+    return this.http.put<User>(this.url + '/' + userId + '/users/' + friendId, {}, this.getHttpOptions()).pipe(
+      catchError((err: any) =>{
+        console.log(err);
+        return throwError(
+          () => new Error('UserService.addFriend, error adding friend: ' + err)
+        );
+      })
+    );
+  }
 
 }
