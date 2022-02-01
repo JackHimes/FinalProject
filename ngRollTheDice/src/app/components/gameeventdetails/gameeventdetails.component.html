@@ -96,7 +96,7 @@
   </div>
     <div class="addComment">
       <form *ngIf="isLoggedIn">
-        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="newComment.message"></textarea>
+        <textarea id="message" name="message" rows="4" cols="80" [(ngModel)]="newComment.message" Placeholder="Comment Here"></textarea>
         <input type="hidden" name="user" [(ngModel)]="newComment.user" value="{{loggedInUser}}"><br>
         <input type="submit" class="btn btn-primary" name="submit" (click)="createComment(newComment)">
       </form>

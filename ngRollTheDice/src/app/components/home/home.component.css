@@ -35,6 +35,8 @@ html {
   text-align: left;
   margin: auto;
   margin-top: 25px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 div.peopleHavingFunMenu {
@@ -48,7 +50,8 @@ div.peopleHavingFunMenu {
   width: 850px;
   margin: auto;
   margin-top: 25px;
-
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 
