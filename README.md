@@ -2,7 +2,11 @@
 
 Live version deployed on an AWS server can be found here.
 
-WEBSITE SCREEN SHOTS HERE
+![HomePage](https://drive.google.com/file/d/1Dx7HYNTVXgTxJRdDonkgs-nR6Xx675d1/view?usp=sharing)
+![ProfilePage](https://drive.google.com/file/d/1SUXeoTS75i5Z06Pr2fb53V0cYyREiqLl/view?usp=sharing)
+![EventDisplay](https://drive.google.com/file/d/1kBMo9NETpcckS1JvjGj0vEvCj8Egm7tk/view?usp=sharing)
+![EventCommentSection](https://drive.google.com/file/d/1QJCMgnBWXMXLjNVOV6okyoIdJMLeix2Z/view?usp=sharing)
+![AdvancedSearch](https://drive.google.com/file/d/1Mxw5yyR5dWRCXsEd0PclU9bomrwFKd7w/view?usp=sharing)
 
 ## Overview
 
@@ -15,12 +19,19 @@ Roll the Dice is a board game meet up organizer, that allows users to create and
 
 ## File Structure
 [Entities](https://github.com/A-Shumway42/FinalProject/tree/main/JPARollTheDice/src/main/java/com/skilldistillery/rollthedice/entities)
+<br>
 [Controllers](https://github.com/A-Shumway42/FinalProject/tree/main/RollTheDice/src/main/java/com/skilldistillery/rollthedice/controllers)
+<br>
 [Repositories](https://github.com/A-Shumway42/FinalProject/tree/main/RollTheDice/src/main/java/com/skilldistillery/rollthedice/repositories)
+<br>
 [Services](https://github.com/A-Shumway42/FinalProject/tree/main/RollTheDice/src/main/java/com/skilldistillery/rollthedice/services)
+<br>
 [Angular Components](https://github.com/A-Shumway42/FinalProject/tree/main/ngRollTheDice/src/app/components)
+<br>
 [Angular Models](https://github.com/A-Shumway42/FinalProject/tree/main/ngRollTheDice/src/app/models)
+<br>
 [Angular Services](https://github.com/A-Shumway42/FinalProject/tree/main/ngRollTheDice/src/app/services)
+<br>
 
 ## Features
 * Account creation
@@ -63,9 +74,13 @@ Similar to angular, this was one of our first opportunities to practice website 
 
 ## Project Owners
 [Andrew Shumway (Repository Owner)](https://github.com/A-Shumway42)
+<br>
 [Ian Verderame (Scrum Master)](https://github.com/ianverderame)
+<br>
 [Max McGregor(DBA)](https://github.com/maxmcgregor)
+<br>
 [Jack Himes](https://github.com/JackHimes)
+<br>
 
 ## Future Directions For The FinalProject
 * Find game meet ups by location
@@ -73,3 +88,4 @@ Similar to angular, this was one of our first opportunities to practice website 
 * Add new features for users to interact with each other
 
 ## Database Schema
+![Schema](https://drive.google.com/file/d/1eX7sNsdW7fmlcT8eXCpseKlzfCzLjYxV/view?usp=sharing)
