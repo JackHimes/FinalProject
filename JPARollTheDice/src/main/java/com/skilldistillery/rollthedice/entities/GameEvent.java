@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "game_event")
@@ -72,6 +73,7 @@ public class GameEvent {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
+	@JsonIgnoreProperties({"gameEvents"})
 	@OneToOne
 	@JoinColumn(name="host_id")
 	private User host;

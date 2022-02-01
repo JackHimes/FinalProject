@@ -6,34 +6,95 @@
 }
 
 .profilePicDiv {
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-right: 15px;
   grid-column: 1/2;
   grid-row: 1;
   text-align: bottom;
+
   /* background-color: green; */
 }
 
 #profilePic {
+
   width: 182px; /* width of container */
   height: 182px; /* height of container */
   object-fit: cover;
   border: 5px solid black;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
+
+  
 }
 
 .bio {
+  margin-left: -20%;
+  margin-right: 15px;
+  margin-top: 15px;
+  margin-bottom: -5px;
   grid-column: 2 / 4;
   grid-row: 1 /3;
-  background-color: lightblue;
+  color: rgb(51, 58, 86);
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 .box3 {
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 15px;
   grid-column: 2 / 4;
-  grid-row: 5 / 100;
-  background-color: lightgreen;
+  grid-row: 5 / 60;
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
 
 .options {
+  margin-left: 15px;
+  margin-bottom: 15px;
   grid-column: 1 / 2;
-  grid-row: 5 / 100;
-  background-color: plum;
+  grid-row: 5 / 60;
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
 }
+.accordion-header{
+  background-color: lightsteelblue;
+  border: 2px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 5px;
+}
+.accordion-body{
+  background-color: rgba(144, 156, 182, 0.096);
+
+  border-radius: 5px;
+  border: 2px solid rgb(82, 101, 143);
+
+}
+.accordion-item{
+  background-color: rgba(82, 101, 143, 0.527);
+}
+.accordion-button{
+  background-color: lightsteelblue;
+  color: rgb(51, 58, 86);
+
+
+}
+
+table{
+  width: 100%;
+}
+
 
