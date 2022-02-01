@@ -15,7 +15,7 @@
                     <label for="i"> {{genre.name}}: </label>
                     <input id="genreCheckbox" type="checkbox" value="genre[i]" (change)=addGenresToChecked(genre)>
                     <!-- <input type="checkbox" [checked]='cars.indexOf(car) > -1' (change)="checkChanged(car)"></td> -->
-                </div> 
+                </div>
             </li>
         </ul>
         <button (click)='addSelectedGenresBeforeAddingGame()'>Submit</button>

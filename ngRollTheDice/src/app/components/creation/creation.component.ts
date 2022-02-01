@@ -27,7 +27,7 @@ export class CreationComponent implements OnInit {
   genres: Genre [] = [];
   checked: Genre [] = [];
 
-  addGameBoolean: boolean = true;
+  addGameBoolean: boolean = false;
   addAddressBoolean: boolean = false;
   addGameEventBoolean: boolean = false;
 
@@ -173,12 +173,5 @@ export class CreationComponent implements OnInit {
         console.error("Failed to retrieve user in findAddressessOfLoggedInUser(): " + err)
       }
     });
-
-
-
-
-
   }
-
-
 }
