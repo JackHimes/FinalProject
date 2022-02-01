@@ -124,7 +124,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let event of events">
-                <td>{{ event.title }}</td>
+                <td [routerLink]="'/gameeventdetails/' + event.id">{{ event.title }}</td>
                 <td>{{ event.dateOfEvent | date: "fullDate" }}</td>
                 <td>
                   <p *ngFor="let g of event.games">{{ g.name }}</p>
