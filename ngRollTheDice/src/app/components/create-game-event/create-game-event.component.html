@@ -1,0 +1,24 @@
+<div class="card" style="width: 25rem;" ng-show="addGameEventBoolean" >
+  <div class="card-body">
+    <h5 class="card-title">Host a Game Night</h5>
+  </div>
+  <form id="gameEventForm">
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title: <br><input type="text" name="title" [(ngModel)]="newGameEvent.title"></li>
+          <li class="list-group-item">Description: <br><input type="text" name="description" [(ngModel)]="newGameEvent.description"></li>
+          <li class="list-group-item">Location: <br>
+              <select form="gameEventForm" name="address" required="required" [(ngModel)]="newGameEvent.address">
+                  <option *ngFor="let a of loggedInUser.addresses" [ngValue]="a">{{a.address}}</option>
+              </select>
+          </li>
+          <li class="list-group-item">Date of Event: <br><input type="date" name="date" [(ngModel)]="newGameEvent.dateOfEvent"></li>
+          <li class="list-group-item">Maximum Number of Guests: <br><input type="text" name="numberOfGuests" [(ngModel)]="newGameEvent.maxNumberOfGuests"></li>
+          <li class="list-group-item">Start Time: <br><input type="datetime-local" name="startTime" [(ngModel)]="newGameEvent.startTime"></li>
+          <li class="list-group-item">End Time: <br><input type="datetime-local" name="endTime" [(ngModel)]="newGameEvent.endTime"></li>
+          <li class="list-group-item">Event Image: <br><input type="text" name="eventImageUrl" [(ngModel)]="newGameEvent.imageUrl"></li>
+      </ul>
+          <button (click)='addGameEvent(newGameEvent)'>Submit</button>
+      <!-- <input type="submit" class="form-submit-button" (click)='addGameEvent(newGameEvent)'> -->
+  </form>
+
+</div>
