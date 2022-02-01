@@ -78,7 +78,7 @@
                 <td>
                   <img src="{{ friend.profilePictureUrl }}" height="10" />
                 </td>
-                <td (click)="navigateToFriendProfile(friend)">
+                <td (click)="navigateToFriendProfile(friend); isItYou = false">
                   {{ friend.username }}
                 </td>
                 <td *ngIf="isItYou">{{ friend.firstName }}</td>

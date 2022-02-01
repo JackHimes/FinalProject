@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
     if (idStr) {
       if (Number.parseInt(idStr) === userId) {
         this.isItYou = true;
-      }
+      } else this.isItYou = false;
     }
   }
 
@@ -127,8 +127,11 @@ export class ProfileComponent implements OnInit {
   }
 
   navigateToFriendProfile (friend: User){
+    this.isItYou = false;
     let friendId = friend.id;
+    this.router.navigateByUrl('/profile/' + friend.id);
     this.loadUser(friend.id);
+    this.checkIfYou();
   }
 
   updateUser(userToUpdate: User) {
