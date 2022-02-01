@@ -52,8 +52,9 @@ public class User {
 	@JoinColumn(name="address_id") 
 	private Address homeAddress;
 	
-	@JsonIgnore
+//	@JsonIgnore
 //	@JsonIgnoreProperties({"guests", "comments"})
+	@JsonIgnoreProperties({"guests", "comments", "host"})
 	@ManyToMany
 	@JoinTable(name="user_has_event",
 		joinColumns=@JoinColumn(name="user_id"),
@@ -76,7 +77,8 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 	
-	@JsonIgnore
+//	@JsonIgnore
+	@JsonIgnoreProperties({"friends"})
 	@ManyToMany
 	@JoinTable(name="friends",
 		joinColumns=@JoinColumn(name="user_id"),

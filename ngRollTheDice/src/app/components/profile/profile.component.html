@@ -5,7 +5,7 @@
       <p>{{ user.username }}</p>
     </div>
     <div class="bio">{{ user.biography }}</div>
-    <div class="box3">Details
+    <!-- <div class="box3">Details
       <div *ngIf="friends.length > 0">
         <table>
           <thead>
@@ -13,13 +13,13 @@
             <th>Username</th>
             <th *ngIf="isItYou">First Name</th>
           </thead>
-          <!-- <tbody> -->
+          <tbody>
             <tr *ngFor="let friend of friends">
               <td><img src="{{friend.profilePictureUrl}}" height="10"></td>
               <td>{{friend.username}}</td>
               <td *ngIf="isItYou">{{friend.firstName}}</td>
             </tr>
-          <!-- </tbody> -->
+          </tbody>
         </table>
       </div>
       <div *ngIf="games.length > 0">
@@ -58,8 +58,8 @@
           </tbody>
         </table>
       </div>
-    </div>
-    <div class="options">
+    </div> -->
+    <!-- <div class="options">
       <div class="optionsIfYou" *ngIf="isItYou">
         <h3>It's you</h3>
         <button class="sideButton" (click)="displayFriends()">Your Friends</button><br>
@@ -68,6 +68,105 @@
       </div>
       <div class="optionsNotYou" *ngIf="!isItYou">
         It's not you!
+      </div>
+    </div> -->
+  </div>
+</div> 
+<hr>
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" (click)="toggleCollapseOne(); displayFriends()">
+        Friends
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div *ngIf="friends.length > 0">
+          <table>
+            <thead>
+              <th>Profile Picture</th>
+              <th>Username</th>
+              <th *ngIf="isItYou">First Name</th>
+              <th>Games</th>
+            </thead>
+             <tbody> 
+               <tr *ngFor="let friend of friends">
+                <td><img src="{{friend.profilePictureUrl}}" height="10"></td>
+                <td (click)="navigateToFriendProfile(friend)">{{friend.username}}</td>
+                <td *ngIf="isItYou">{{friend.firstName}}</td>
+                <td> 
+                  {{loadGame(friend)}}
+                  <!-- <p *ngFor="let game of friend.games">{{game.name}}</p> -->
+
+                </td>
+              </tr> 
+             </tbody> 
+          </table>
+        </div> 
+
+        
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" (click)="toggleCollapseTwo(); displayEvents()">
+        Game Events
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div *ngIf="events.length > 0">
+          <table>
+            <thead>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Games</th>
+              <th>Description</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of events">
+                <td>{{event.title}}</td>
+                <td>{{event.dateOfEvent | date: "fullDate" }}</td>
+                <td><p *ngFor="let g of event.games">{{g.name}}</p></td>
+                <td>{{event.description}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" (click)="toggleCollapseThree(); displayGames()">
+        Your Games
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+
+        <div *ngIf="games.length > 0">
+          <table>
+            <thead>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Time To Play</th>
+              <th>Maximum Players</th>
+            </thead>
+            <tr *ngFor="let game of games">
+              <td><img src="{{game.imageUrl}}"></td>
+              <td><a [href]="game.linkToGame" target="_blank">{{game.name}}</a></td>
+              <td>{{game.description}}</td>
+              <td>{{game.timeToPlay}}</td>
+              <td>{{game.maxPlayers}}</td>
+            </tr>
+          </table>
+        </div>
+
       </div>
     </div>
   </div>

@@ -35,6 +35,7 @@ public class EventTag {
 					inverseJoinColumns=@JoinColumn(name="game_event_id"))
 	private List<GameEvent> gameEvents;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
