@@ -4,6 +4,8 @@ html {
   /* background-color: lightsteelblue; */
   background-size: cover;
   border-radius: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #homePageWelcomeDiv {
@@ -86,6 +88,7 @@ img:not(.headerLogo) {
   margin: auto;
   margin-top: 25px;
   margin-right: 8px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -100,5 +103,6 @@ img:not(.headerLogo) {
   margin: auto;
   margin-top: 25px;
   margin-left: 8px;
+  margin-bottom: 10px;
   text-align: center;
 }
