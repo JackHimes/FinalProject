@@ -11,7 +11,7 @@ import { CreationComponent } from '../creation/creation.component';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+  userId = 0;
 
 
   constructor(
@@ -19,6 +19,7 @@ export class NavigationComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.getUserId();
   }
 
   loggedIn(): boolean {
@@ -27,6 +28,10 @@ export class NavigationComponent implements OnInit {
 
   logout(): void {
     return this.authService.logout();
+  }
+
+  getUserId() {
+   this.userId = this.authService.getCurrentUserId();
   }
 
 }

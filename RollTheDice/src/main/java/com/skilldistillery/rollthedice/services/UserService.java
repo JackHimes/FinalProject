@@ -21,4 +21,6 @@ public interface UserService {
 	
 	List<User> searchKeyword(String keyword);
 
+	User addFriend(int userId, int friendId);
+
 }

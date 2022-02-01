@@ -89,5 +89,14 @@ public class UserServiceImpl implements UserService {
 	public List<User> searchKeyword(String keyword) {
 		return userRepo.findByUsernameContainsOrFirstNameContainsOrLastNameContains(keyword, keyword, keyword);
 	}
+	
+	@Override 
+	public User addFriend(int userId, int friendId) {
+		User user = userRepo.findById(userId).get();
+		User friend = userRepo.findById(friendId).get();
+		user.addFriend(friend);
+		userRepo.saveAndFlush(friend);
+		return userRepo.saveAndFlush(user);
+	}
 
 }

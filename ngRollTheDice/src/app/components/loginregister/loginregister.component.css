@@ -2,6 +2,7 @@ div {
   display: block;
   text-align: center;
   margin-top: 10%;
+  width: 300px;
 }
 
 h3 {
@@ -11,4 +12,13 @@ h3 {
 
 input {
   margin-top: 4px;
+}
+
+form {
+  border-style: solid;
+  border-radius: 10px;
+  float: center;
+  text-align: center;
+  margin-top: 10%;
+  background-color: lightsteelblue;
 }

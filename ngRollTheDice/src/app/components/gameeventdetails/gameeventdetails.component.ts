@@ -182,6 +182,7 @@ updateGameEvent(event: Gameevent) {
     next: (g) => {
       this.gameEvent = g;
       this.load();
+      this.editGameEvent = new Gameevent();
     },
     error: (f) => {
       console.error('error updating game: ' + f)
