@@ -10,9 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class GameeventService {
 
-
   private url = environment.baseUrl + 'api/gameevents';
-
 
 
   constructor(
