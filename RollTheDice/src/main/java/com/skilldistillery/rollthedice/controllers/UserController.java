@@ -46,7 +46,7 @@ public class UserController {
 
 
 	@PutMapping("users/{userId}")
-	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId,
+	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId, 
 			@RequestBody User user) {
 		User updatedUser = userService.updateUser(principal.getName(), user, userId);
 		if (updatedUser != null) {

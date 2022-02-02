@@ -110,8 +110,8 @@ public class UserServiceImpl implements UserService {
 		Game game = gameRepo.findById(gameId).get();
 		loggedInUser.addGame(game);
 		game.addUser(loggedInUser);
-		System.err.println(loggedInUser);
-		System.err.println(game);
+//		System.err.println(loggedInUser);
+//		System.err.println(game);
 		userRepo.saveAndFlush(loggedInUser);
 		gameRepo.saveAndFlush(game);
 		return game;
