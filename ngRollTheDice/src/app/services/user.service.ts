@@ -2,17 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Game } from '../models/game';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private url = environment.baseUrl + 'api/users';
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHttpOptions() {
     let options = {
@@ -29,18 +29,17 @@ export class UserService {
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () =>
-            new Error('UserService.index(): error retreiving users: ' + err)
+          () => new Error('UserService.index(): error retreiving users: ' + err)
         );
       })
-    )
+    );
   }
 
   show(id: number): Observable<User> {
     return this.http.get<User>(this.url + '/' + id).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError (
+        return throwError(
           () => new Error('UserService.show(): error retreiving user: ' + err)
         );
       })
@@ -48,14 +47,19 @@ export class UserService {
   }
 
   searchByKeyword(keyword: string): Observable<User[]> {
-    return this.http.get<User[]>(this.url + '/search/' + keyword, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('UserService.searchByKeyword(): error retrieving users' + err)
-        );
-      })
-    );
+    return this.http
+      .get<User[]>(this.url + '/search/' + keyword, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'UserService.searchByKeyword(): error retrieving users' + err
+              )
+          );
+        })
+      );
   }
 
   update(user: User, id: number): Observable<User> {
@@ -67,47 +71,78 @@ export class UserService {
     delete user.reviews;
     delete user.comments;
 
-    return this.http.put<User>(this.url + '/' + id, user, this.getHttpOptions()).pipe(
+    return this.http
+      .put<User>(this.url + '/' + id, user, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () => new Error('UserService.update(): error updating user: ' + err)
+          );
+        })
+      );
+  }
+
+  destroy(id: number): Observable<void> {
+    return this.http
+      .delete<void>(this.url + '/' + id, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error('UserService.destroy(): error destroying user: ' + err)
+          );
+        })
+      );
+  }
+
+  addGuestToGameEvent(user: User): Observable<User> {
+    return this.http.put<User>(this.url, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error('UserService.update(): error updating user: ' + err)
+          () =>
+            new Error(
+              'UserService.addGuestToGameEvent(): error adding guest to GameEvent: ' +
+                err
+            )
         );
       })
     );
   }
 
-  destroy(id: number): Observable<void> {
-    return this.http.delete<void>(this.url + '/' + id, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('UserService.destroy(): error destroying user: ' + err)
-        );
-      })
-    )
-  }
-
-  addGuestToGameEvent(user: User): Observable<User> {
-    return this.http.put<User>(this.url, user, this.getHttpOptions()).pipe(
+  addGame(gameId: number): Observable<Game> {
+    return this.http
+      .put<Game>(`${this.url}/games/${gameId}`, {}, this.getHttpOptions())
+      .pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
-            () => new Error('UserService.addGuestToGameEvent(): error adding guest to GameEvent: ' + err)
+            () =>
+              new Error(
+                'UserService.addGame(): error adding game to user: ' + err
+              )
           );
         })
       );
   }
 
   addFriend(userId: number, friendId: number): Observable<User> {
-    return this.http.put<User>(this.url + '/' + userId + '/users/' + friendId, {}, this.getHttpOptions()).pipe(
-      catchError((err: any) =>{
-        console.log(err);
-        return throwError(
-          () => new Error('UserService.addFriend, error adding friend: ' + err)
-        );
-      })
-    );
+    return this.http
+      .put<User>(
+        this.url + '/' + userId + '/users/' + friendId,
+        {},
+        this.getHttpOptions()
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error('UserService.addFriend, error adding friend: ' + err)
+          );
+        })
+      );
   }
-
 }

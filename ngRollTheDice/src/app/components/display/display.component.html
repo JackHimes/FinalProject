@@ -94,6 +94,7 @@
         <div class="card" *ngFor="let game of games">
           <div class="card-header">
             Game Results!
+            <a (click)="addGameToUser(game.id)" class="btn btn-primary">Add Game to Profile!</a>
             <a href="{{ game.linkToGame }}" class="btn btn-primary"
               >View on BoardGameGeek!</a
             >

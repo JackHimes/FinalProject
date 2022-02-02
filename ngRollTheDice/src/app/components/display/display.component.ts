@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Game } from 'src/app/models/game';
 import { Gameevent } from 'src/app/models/gameevent';
 import { User } from 'src/app/models/user';
+import { GameService } from 'src/app/services/game.service';
 import { SearchService } from 'src/app/services/search.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-display',
@@ -27,7 +29,8 @@ export class DisplayComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private searchSvc: SearchService
+    private searchSvc: SearchService,
+    private userSvc: UserService
     ) { }
 
   ngOnInit(): void {
@@ -167,6 +170,18 @@ export class DisplayComponent implements OnInit {
   this.games = [];
   this.gameEvents= [];
   this.users= [];
+  }
+
+  addGameToUser(gameId: any) {
+    this.userSvc.addGame(gameId).subscribe({
+      next: (game) => {
+        console.log(game);
+      },
+      error: (fail) => {
+        console.log("displaycomponent.addGameToUser error adding game to user");
+        console.log(fail);
+      }
+    });
   }
 
 }
