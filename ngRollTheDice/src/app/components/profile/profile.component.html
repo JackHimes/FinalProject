@@ -76,7 +76,7 @@
             <tbody>
               <tr *ngFor="let friend of friends">
                 <td>
-                  <img src="{{ friend.profilePictureUrl }}" height="10" />
+                  <img src="{{ friend.profilePictureUrl }}" height="150" />
                 </td>
                 <td (click)="navigateToFriendProfile(friend); isItYou = false">
                   {{ friend.username }}
@@ -104,7 +104,7 @@
         aria-controls="collapseTwo"
         (click)="toggleCollapseTwo(); displayEvents()"
       >
-        Game Events
+        Game Events Attended
       </button>
     </h2>
     <div
@@ -137,6 +137,52 @@
       </div>
     </div>
   </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingHosted">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseHosted"
+        aria-expanded="false"
+        aria-controls="collapseHosted"
+        (click)="toggleCollapseHosted()"
+      >
+        Game Events Hosted
+      </button>
+    </h2>
+    <div
+      id="collapseHosted"
+      class="accordion-collapse collapse"
+      aria-labelledby="headingHosted"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <div *ngIf="user.hostedGameEvents">
+          <table>
+            <thead>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Games</th>
+              <th>Description</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let event of eventsHosted">
+                <td [routerLink]="'/gameeventdetails/' + event.id">{{ event.title }}</td>
+                <td>{{ event.dateOfEvent | date: "fullDate" }}</td>
+                <td>
+                  <p *ngFor="let g of event.games">{{ g.name }}</p>
+                </td>
+                <td>{{ event.description }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingThree">
       <button
@@ -168,7 +214,7 @@
               <th>Maximum Players</th>
             </thead>
             <tr *ngFor="let game of games">
-              <td><img src="{{ game.imageUrl }}" /></td>
+              <td><img src="{{ game.imageUrl }}" width="250px"/></td>
               <td>
                 <a [href]="game.linkToGame" target="_blank">{{ game.name }}</a>
               </td>
