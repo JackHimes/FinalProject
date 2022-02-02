@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.User;
-import com.skilldistillery.rollthedice.services.AuthService;
 import com.skilldistillery.rollthedice.services.UserService;
 
 @RestController
@@ -30,8 +29,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private AuthService authService;
 
 	@GetMapping("users")
 	public List<User> findAllUsers(HttpServletRequest req, HttpServletResponse res) {
@@ -46,27 +43,8 @@ public class UserController {
 		}
 		return resultUser;
 	}
-<<<<<<< HEAD
-//	
-//	@PostMapping("users")
-//	public User createUser(HttpServletRequest req, HttpServletResponse res,  @RequestBody User user) {
-//		try {
-//			authService.register(userTemp);
-//			res.setStatus(201);
-//			StringBuffer url = req.getRequestURL();
-//			url.append("/").append(user.getId());
-//			res.setHeader("Location", url.toString());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.err.println("Invalid JSON for New User");
-//			res.setStatus(400);
-//		}
-//		return user;
-//	}
 
-=======
-	
->>>>>>> cd62f900e4b09be2c0ef914fa00631c17190c90c
+
 	@PutMapping("users/{userId}")
 	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId,
 			@RequestBody User user) {
@@ -92,9 +70,7 @@ public class UserController {
 			System.err.println("Error deleting user.");
 		}
 	}
-<<<<<<< HEAD
 
-=======
 	
 	@PutMapping("users/{userId}/users/{friendId}")
 	public User addFriend(@PathVariable int userId, @PathVariable int friendId, HttpServletResponse res, Principal principal) {
@@ -112,7 +88,7 @@ public class UserController {
 		return user;
 	}
 	
->>>>>>> cd62f900e4b09be2c0ef914fa00631c17190c90c
+
 	@PutMapping("users/{userId}/gameevents/{gId}")
 	public GameEvent addGuestToGameEvent(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId,
 			@PathVariable int gId, Principal principal) {
