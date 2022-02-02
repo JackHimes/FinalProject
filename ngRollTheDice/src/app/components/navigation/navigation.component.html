@@ -24,6 +24,11 @@
   <li class="nav-item" *ngIf="loggedIn()">
     <a class="nav-link" aria-current="page" [routerLink]="['/createGame']">Add Game</a>
   </li>
+
+  <li class="nav-item" *ngIf="loggedIn()">
+    <a class="nav-link" aria-current="page" [routerLink]="['/creation']">Add Address</a>
+  </li>
+
   <li>
     <app-search></app-search>
   </li>

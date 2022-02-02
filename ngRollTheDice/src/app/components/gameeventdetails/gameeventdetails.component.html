@@ -45,6 +45,10 @@
     <button type="button" name="joinButton" class="btn btn-primary btn-large btn-block" *ngIf="gameEvent.id" (click)="beginEdit = true; loadUpdateEvent()">
       Edit Event
     </button>
+    <button type="button" name="joinButton" class="btn btn-danger btn-large btn-block" *ngIf="gameEvent.id" (click)="deleteEvent(gameEvent.id)">
+      Delete Event
+    </button>
+
   </div>
 
   <div class="join" *ngIf="!isLoggedIn">

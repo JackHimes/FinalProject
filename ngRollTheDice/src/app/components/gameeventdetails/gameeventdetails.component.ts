@@ -51,6 +51,9 @@ export class GameeventdetailsComponent implements OnInit {
     this.gameEventSvc.show(this.id).subscribe({
       next: (g) => {
         this.gameEvent = g;
+        if (!this.gameEvent.enabled) {
+          this.router.navigateByUrl('/oof');
+        }
         this.loadTags();
         this.loadGames();
         this.loadGuests();
@@ -132,7 +135,6 @@ export class GameeventdetailsComponent implements OnInit {
   }
 
   checkHost() {
-    console.log("in checkHose() isHost = " + this.isHost)
     if (this.loggedInUser.id === this.gameEvent.host.id) {
       this.isHost = true;
     } else this.isHost = false;
@@ -192,6 +194,11 @@ updateGameEvent(event: Gameevent) {
 
 loadUpdateEvent() {
   this.editGameEvent = Object.assign({}, this.gameEvent);
+}
+
+deleteEvent(id: number) {
+  this.gameEventSvc.destroy(id);
+  this.router.navigateByUrl('/profile/' + this.loggedInUser.id)
 }
 
 }

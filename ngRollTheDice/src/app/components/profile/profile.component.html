@@ -5,7 +5,7 @@
     </div>
     <div class="usernameDiv">
       <h3>{{ user.username }}</h3>
-      <button class="addFriend" *ngIf="!isItYou" (click)="addFriend()">
+      <button class="addFriend" *ngIf="!isItYou && !isFriend" (click)="addFriend()">
         Add Friend
       </button>
       <button *ngIf="isItYou" (click)="beginEdit = true; loadUpdateUser();">Edit Profile</button>
@@ -84,7 +84,6 @@
                 <td *ngIf="isItYou">{{ friend.firstName }}</td>
                 <td>
                   {{ loadGame(friend) }}
-                  <!-- <p *ngFor="let game of friend.games">{{game.name}}</p> -->
                 </td>
               </tr>
             </tbody>

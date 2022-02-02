@@ -79,11 +79,13 @@ export class GameeventService {
   }
 
    update(gameevent: Gameevent, id: number): Observable<Gameevent> {
+     delete gameevent.games;
+
      return this.http.put<Gameevent>(this.url + '/' + id, gameevent, this.getHttpOptions()).pipe(
        catchError((err: any) => {
          console.log(err);
          return throwError(
-           () => new Error('GameeventService.create(): error updating Gameevent: ' + err)
+           () => new Error('GameeventService.update(): error updating Gameevent: ' + err)
          );
        })
      );

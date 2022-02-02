@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   game = '';
   beginEdit = false;
   editUser: User = new User();
+  isFriend = false;
 
   constructor(
     private userSvc: UserService,
@@ -56,6 +57,7 @@ export class ProfileComponent implements OnInit {
           this.displayFriends();
           this.displayGames();
           this.displayEventsHosted();
+          this.findOutIfFriend();
         },
         error: (fail) => {
           console.error('ERROR RETREIVING USER' + fail);
@@ -64,6 +66,26 @@ export class ProfileComponent implements OnInit {
     } else {
       this.router.navigateByUrl('home'); //change this later to error page
     }
+  }
+
+  findOutIfFriend() {
+    console.log("In findOutIfFriend()");
+    let loggedInId = this.authService.getCurrentUserId();
+    this.userSvc.show(loggedInId).subscribe({
+      next: (u) => {
+        console.log("IN findOutIfFriend.next(). u: " + u.username);
+        console.log("IN findOutIfFriend.next(). boolean isFriend: " + this.isFriend);
+        if (this.user.friends) {
+          console.log("IN findOutIfFriend.next(). boolean isFriend: " + this.isFriend);
+          if (this.user.friends.includes(u))
+          this.isFriend = true;
+          console.log("IN findOutIfFriend.next(). boolean isFriend should now be true is we made it here: " + this.isFriend);
+        }
+      },
+      error: (f) => {
+        console.error("Error rectreiving logged in user: " +f)
+      }
+    })
   }
 
   addFriend() {
@@ -114,8 +136,6 @@ export class ProfileComponent implements OnInit {
         }
       }
     }
-    console.log('Events hosted:');
-    console.log(this.eventsHosted);
   }
 
   toggleCollapseOne() {

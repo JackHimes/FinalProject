@@ -45,8 +45,12 @@ public class GameEventServiceImpl implements GameEventService {
 		boolean isDeleted = false;
 		if (gameEventRepo.existsById(gameEventId)) {
 			if (loggedInUser.getUsername().equals(username) || loggedInUser.getRole().equals("ROLE_ADMIN")) {
-			gameEventRepo.deleteById(gameEventId);
-			isDeleted = true;
+				GameEvent gameEvent = gameEventRepo.findById(gameEventId).get();
+				if (gameEvent.isEnabled()) {
+					gameEvent.setEnabled(false);
+					gameEventRepo.saveAndFlush(gameEvent);
+					isDeleted = true;
+				}
 			}
 		}
 		return isDeleted;
