@@ -2,11 +2,10 @@
 
 Live version deployed on an AWS server can be found here.
 
-![HomePage](https://drive.google.com/file/d/1Dx7HYNTVXgTxJRdDonkgs-nR6Xx675d1/view?usp=sharing)
-![HomePage](<img width="1440" alt="Home Page" src="https://user-images.githubusercontent.com/89323272/152071703-b75644b3-52e8-4b70-8162-b5fd4c05f668.png">)
-![ProfilePage](https://drive.google.com/file/d/1SUXeoTS75i5Z06Pr2fb53V0cYyREiqLl/view?usp=sharing)
-![EventDisplay](https://drive.google.com/file/d/1kBMo9NETpcckS1JvjGj0vEvCj8Egm7tk/view?usp=sharing)
-![EventCommentSection](https://drive.google.com/file/d/1QJCMgnBWXMXLjNVOV6okyoIdJMLeix2Z/view?usp=sharing)
+![HomePage](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Home%20Page.png)
+![ProfilePage](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Profile%20Display.png)
+![EventDisplay](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Event%20Display.png)
+![EventCommentSection](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/CommentSection.png)
 ![AdvancedSearch](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/AdvancedSearch.png)
 
 
@@ -90,4 +89,4 @@ Similar to angular, this was one of our first opportunities to practice website 
 * Add new features for users to interact with each other
 
 ## Database Schema
-![Schema](https://drive.google.com/file/d/1eX7sNsdW7fmlcT8eXCpseKlzfCzLjYxV/view?usp=sharing)
+![Schema](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/EERimage.png)
