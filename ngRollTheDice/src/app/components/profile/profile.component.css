@@ -16,6 +16,7 @@
   /* background-color: green; */
 }
 
+
 #profilePic {
 
   width: 182px; /* width of container */
@@ -25,14 +26,14 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
   transition: 0.3s;
 
-  
+
 }
 
 .bio {
-  margin-left: -20%;
+  margin-left: -25%;
   margin-right: 15px;
   margin-top: 15px;
-  margin-bottom: -5px;
+  margin-bottom: -50px;
   grid-column: 2 / 4;
   grid-row: 1 /3;
   color: rgb(51, 58, 86);
@@ -42,6 +43,31 @@
   border-radius: 15px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
   transition: 0.3s;
+}
+
+.bio h3 {
+  margin-left: 6px;
+}
+
+.bio p {
+  margin-left: 6px;
+}
+
+.usernameDiv {
+  color: rgb(51, 58, 86);
+  margin-left: 5%;
+  grid-column: 1 ;
+  grid-row: 3/4;
+}
+
+.usernameDiv button {
+  background-color: rgba(82, 101, 143, 0.527);
+  border: 4px solid rgb(82, 101, 143);
+  color: rgb(255, 255, 255);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.486);
+  transition: 0.3s;
+  font-weight: bold;
 }
 
 .box3 {
@@ -98,3 +124,102 @@ table{
 }
 
 
+.card{
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  border-radius: 8px;
+  position: relative;
+  display: block;
+  /* margin-top: 20px; */
+  margin-bottom: -50%;
+  overflow: visible;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  z-index: 2;
+  margin-top: -10%;
+}
+
+.card input{
+  width: 350px;
+}
+.card select{
+  width: 350px;
+}
+.card input[type=checkbox]{
+  width: auto;
+}
+
+.card body {
+  font-family: 'Lato', sans-serif;
+}
+.card button {
+  margin-right: auto;
+  margin-left: 12px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  width: 375px;
+  position: relative;
+  background: #000;
+  border: 0;
+  padding: 14px 42px;
+  border-radius: 3px;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  font-weight: 400;
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: 0.2em;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+.card button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -200%;
+  width: 200%;
+  height: 100%;
+  transform: skewX(-20deg);
+  background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+}
+.card button:hover:after {
+  animation: shine 1.6s ease;
+}
+.card button:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+@-moz-keyframes shine {
+  100% {
+    left: 200%;
+  }
+}
+@-webkit-keyframes shine {
+  100% {
+    left: 200%;
+  }
+}
+@-o-keyframes shine {
+  100% {
+    left: 200%;
+  }
+}
+@keyframes shine {
+  100% {
+    left: 200%;
+  }
+}
+
+
+.blur {
+  backdrop-filter: blur(10px);
+  position:absolute;
+  /* We'll grow the blur box to be bigger than 100% so there isn't some weird effects that you can get with blur */
+  width: 104%;
+  height: 304%;
+  top: -2%;
+  left: -2%;
+}

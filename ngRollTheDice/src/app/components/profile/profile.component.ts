@@ -4,6 +4,7 @@ import { Game } from 'src/app/models/game';
 import { Gameevent } from 'src/app/models/gameevent';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { GameeventService } from 'src/app/services/gameevent.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,13 +17,16 @@ export class ProfileComponent implements OnInit {
   isItYou = false;
   friends: User[] = [];
   events: Gameevent[] = [];
+  eventsHosted: Gameevent[] = [];
   games: Game[] = [];
-
   game = '';
+  beginEdit = false;
+  editUser: User = new User();
 
   constructor(
     private userSvc: UserService,
     private authService: AuthService,
+    private gameEventService: GameeventService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -51,6 +55,7 @@ export class ProfileComponent implements OnInit {
           this.displayEvents();
           this.displayFriends();
           this.displayGames();
+          this.displayEventsHosted();
         },
         error: (fail) => {
           console.error('ERROR RETREIVING USER' + fail);
@@ -61,39 +66,58 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  addFriend() {
+    let loggedInId = this.authService.getCurrentUserId();
+    this.userSvc.addFriend(loggedInId, this.user.id).subscribe({
+      next: (u) => {
+        this.user = u;
+      },
+      error: (f) => {
+        console.error('Error adding friend in profile component: ' + f);
+      }
+    });
+  }
+
   checkIfYou() {
     let idStr = this.route.snapshot.paramMap.get('userId');
     let userId = this.authService.getCurrentUserId();
     if (idStr) {
       if (Number.parseInt(idStr) === userId) {
         this.isItYou = true;
-      }
+      } else this.isItYou = false;
     }
   }
 
   displayGames() {
-    // this.friends = [];
-    // this.events = [];
     if (this.user.games) {
       this.games = this.user.games;
     }
   }
 
   displayFriends() {
-    // this.games = [];
-    // this.events = [];
     if (this.user.friends) {
       this.friends = this.user.friends;
     }
   }
 
   displayEvents() {
-    // this.friends = [];
-    // this.games = [];
     if (this.user.gameEvents) {
       this.events = this.user.gameEvents;
     }
   }
+
+  displayEventsHosted() {
+    if (this.user.hostedGameEvents) {
+      for (const e of this.user.hostedGameEvents) {
+        if (e.enabled) {
+          this.eventsHosted.push(e);
+        }
+      }
+    }
+    console.log('Events hosted:');
+    console.log(this.eventsHosted);
+  }
+
   toggleCollapseOne() {
     let collapseOneDiv = document.getElementById("collapseOne");
     collapseOneDiv?.classList.toggle("show");
@@ -109,6 +133,11 @@ export class ProfileComponent implements OnInit {
     collapseThreeDiv?.classList.toggle("show");
   }
 
+  toggleCollapseHosted() {
+    let collapseThreeDiv = document.getElementById("collapseHosted");
+    collapseThreeDiv?.classList.toggle("show");
+  }
+
 
   loadGame(friend: User) {
     this.game = '';
@@ -116,28 +145,32 @@ export class ProfileComponent implements OnInit {
       return friend.games.map((x) => x.name).join(', ');
     }
     return 'Empty';
- 
+
   }
 
   navigateToFriendProfile (friend: User){
+    this.isItYou = false;
     let friendId = friend.id;
-
-    // if(document.getElementById("collapseOne")){
-      
-    //   this.toggleCollapseOne();
-    // }
-    // if(document.getElementById("collapseOne")){
-    //   this.toggleCollapseTwo();
-      
-    // }
-    // if(document.getElementById("collapseOne")){
-    //   this.toggleCollapseThree();
-      
-    // }
-    // window.location.reload();
+    this.router.navigateByUrl('/profile/' + friend.id);
     this.loadUser(friend.id);
-
+    this.checkIfYou();
   }
 
+  updateUser(userToUpdate: User) {
+    this.userSvc.update(userToUpdate, this.user.id).subscribe({
+      next: (a) => {
+        this.user = a;
+        this.editUser = new User();
+        this.loadUser(a.id);
+      },
+      error: (f) => {
+        console.error('error updating user: ' + f)
+      }
+    })
+  }
+
+  loadUpdateUser() {
+    this.editUser = Object.assign({}, this.user);
+  }
 
 }

@@ -46,6 +46,7 @@ public class UserController {
 		}
 		return resultUser;
 	}
+<<<<<<< HEAD
 //	
 //	@PostMapping("users")
 //	public User createUser(HttpServletRequest req, HttpServletResponse res,  @RequestBody User user) {
@@ -63,6 +64,9 @@ public class UserController {
 //		return user;
 //	}
 
+=======
+	
+>>>>>>> cd62f900e4b09be2c0ef914fa00631c17190c90c
 	@PutMapping("users/{userId}")
 	public User update(HttpServletRequest req, HttpServletResponse res, Principal principal, @PathVariable int userId,
 			@RequestBody User user) {
@@ -88,7 +92,27 @@ public class UserController {
 			System.err.println("Error deleting user.");
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	
+	@PutMapping("users/{userId}/users/{friendId}")
+	public User addFriend(@PathVariable int userId, @PathVariable int friendId, HttpServletResponse res, Principal principal) {
+		User user = new User();
+		try {
+			user = userService.addFriend(userId, friendId);
+			if (user != null) {
+				res.setStatus(200);
+			} else res.setStatus(404);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			System.err.println("Error adding friend");
+		}
+		return user;
+	}
+	
+>>>>>>> cd62f900e4b09be2c0ef914fa00631c17190c90c
 	@PutMapping("users/{userId}/gameevents/{gId}")
 	public GameEvent addGuestToGameEvent(HttpServletRequest req, HttpServletResponse res, @PathVariable int userId,
 			@PathVariable int gId, Principal principal) {

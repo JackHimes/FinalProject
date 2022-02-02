@@ -54,8 +54,8 @@ export class GameeventService {
     );
   }
 
-   index(): Observable<Gameevent> {
-     return this.http.get<Gameevent>(this.url, this.getHttpOptions()).pipe(
+   index(): Observable<Gameevent[]> {
+     return this.http.get<Gameevent[]>(this.url, this.getHttpOptions()).pipe(
        catchError((err: any) => {
          console.log(err);
          return throwError(

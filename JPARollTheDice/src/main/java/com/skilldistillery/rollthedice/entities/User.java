@@ -62,7 +62,7 @@ public class User {
 	)
 	private List<GameEvent> gameEvents;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"guests", "comments", "host"})
 	@OneToMany(mappedBy="host")
 	private List<GameEvent> hostedGameEvents;
 	

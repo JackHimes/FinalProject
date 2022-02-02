@@ -26,4 +26,6 @@ public interface UserService {
 	
 	public User findUserByUserName(String username);
 
+	User addFriend(int userId, int friendId);
+
 }
