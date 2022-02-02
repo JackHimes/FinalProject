@@ -7,7 +7,7 @@ Live version deployed on an AWS server can be found here.
 ![ProfilePage](https://drive.google.com/file/d/1SUXeoTS75i5Z06Pr2fb53V0cYyREiqLl/view?usp=sharing)
 ![EventDisplay](https://drive.google.com/file/d/1kBMo9NETpcckS1JvjGj0vEvCj8Egm7tk/view?usp=sharing)
 ![EventCommentSection](https://drive.google.com/file/d/1QJCMgnBWXMXLjNVOV6okyoIdJMLeix2Z/view?usp=sharing)
-![AdvancedSearch](/Screenshot/AdvancedSearch.png)
+![AdvancedSearch](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/AdvancedSearch.png)
 
 
 ## Overview
