@@ -5,7 +5,7 @@
     </div>
     <div class="usernameDiv">
       <h3>{{ user.username }}</h3>
-      <button class="addFriend" *ngIf="!isItYou && !isFriend" (click)="addFriend()">
+      <button class="addFriend" *ngIf="!isItYou " (click)="addFriend()">
         Add Friend
       </button>
       <button *ngIf="isItYou" (click)="beginEdit = true; loadUpdateUser();">Edit Profile</button>
