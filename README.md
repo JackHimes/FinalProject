@@ -78,7 +78,7 @@ Similar to angular, this was one of our first opportunities to practice website 
 <br>
 [Ian Verderame (Scrum Master)](https://github.com/ianverderame)
 <br>
-[Max McGregor(DBA)](https://github.com/maxmcgregor)
+[Max McGregor (DBA)](https://github.com/maxmcgregor)
 <br>
 [Jack Himes](https://github.com/JackHimes)
 <br>
