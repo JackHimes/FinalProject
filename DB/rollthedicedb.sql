@@ -1022,7 +1022,7 @@ START TRANSACTION;
 USE `rollthedicedb`;
 INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (1, 3);
 INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (65, 58);
-INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (3, 4);
+INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (3, 20);
 INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (102, 46);
 INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (93, 21);
 INSERT INTO `friends` (`user_id`, `friend_id`) VALUES (61, 5);
