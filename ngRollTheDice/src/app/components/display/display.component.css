@@ -1,7 +1,14 @@
-.card {
+.card:hover {
  width: 100%;
  margin-bottom: 5px;
+ margin-top: 10px;
  border-radius: 10px;
+ box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-header {
+  background-color: lightsteelblue;
+  border-radius: 5px;
 }
 
 a {
@@ -13,7 +20,7 @@ a {
 }
 
 .accordion-button {
-  background-color: white;
+  background-color: lightsteelblue;
   color: black;
 }
 .accordion {
@@ -23,10 +30,33 @@ a {
   padding: 10px;
 }
 
+.accordion-header{
+  background-color: lightsteelblue;
+  border: 2px solid rgb(82, 101, 143);
+  color: rgb(51, 58, 86);
+  border-radius: 5px;
+}
+
+.accordion-body{
+  background-color: rgba(144, 156, 182, 0.096);
+
+  border-radius: 5px;
+  border: 2px solid rgb(82, 101, 143);
+
+}
+
+.accordion-item{
+  background-color: rgba(82, 101, 143, 0.527);
+}
+
 img {
   max-width: 250px;
   max-height: 250px;
   float: right;
+}
+
+button {
+  color: black;
 }
 
 

@@ -4,6 +4,7 @@ import { Game } from 'src/app/models/game';
 import { Gameevent } from 'src/app/models/gameevent';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { GameeventService } from 'src/app/services/gameevent.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class ProfileComponent implements OnInit {
   isItYou = false;
   friends: User[] = [];
   events: Gameevent[] = [];
+  eventsHosted: Gameevent[] = [];
   games: Game[] = [];
   game = '';
   beginEdit = false;
@@ -24,6 +26,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userSvc: UserService,
     private authService: AuthService,
+    private gameEventService: GameeventService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -52,6 +55,7 @@ export class ProfileComponent implements OnInit {
           this.displayEvents();
           this.displayFriends();
           this.displayGames();
+          this.displayEventsHosted();
         },
         error: (fail) => {
           console.error('ERROR RETREIVING USER' + fail);
@@ -101,6 +105,19 @@ export class ProfileComponent implements OnInit {
       this.events = this.user.gameEvents;
     }
   }
+
+  displayEventsHosted() {
+    if (this.user.hostedGameEvents) {
+      for (const e of this.user.hostedGameEvents) {
+        if (e.enabled) {
+          this.eventsHosted.push(e);
+        }
+      }
+    }
+    console.log('Events hosted:');
+    console.log(this.eventsHosted);
+  }
+
   toggleCollapseOne() {
     let collapseOneDiv = document.getElementById("collapseOne");
     collapseOneDiv?.classList.toggle("show");
@@ -113,6 +130,11 @@ export class ProfileComponent implements OnInit {
 
   toggleCollapseThree() {
     let collapseThreeDiv = document.getElementById("collapseThree");
+    collapseThreeDiv?.classList.toggle("show");
+  }
+
+  toggleCollapseHosted() {
+    let collapseThreeDiv = document.getElementById("collapseHosted");
     collapseThreeDiv?.classList.toggle("show");
   }
 
