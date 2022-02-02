@@ -2,11 +2,12 @@
 
 Live version deployed on an AWS server can be found here.
 
-![HomePage](https://drive.google.com/file/d/1Dx7HYNTVXgTxJRdDonkgs-nR6Xx675d1/view?usp=sharing)
-![ProfilePage](https://drive.google.com/file/d/1SUXeoTS75i5Z06Pr2fb53V0cYyREiqLl/view?usp=sharing)
-![EventDisplay](https://drive.google.com/file/d/1kBMo9NETpcckS1JvjGj0vEvCj8Egm7tk/view?usp=sharing)
-![EventCommentSection](https://drive.google.com/file/d/1QJCMgnBWXMXLjNVOV6okyoIdJMLeix2Z/view?usp=sharing)
-![AdvancedSearch](https://drive.google.com/file/d/1Mxw5yyR5dWRCXsEd0PclU9bomrwFKd7w/view?usp=sharing)
+![HomePage](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Home%20Page.png)
+![ProfilePage](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Profile%20Display.png)
+![EventDisplay](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Event%20Display.png)
+![EventCommentSection](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/CommentSection.png)
+![AdvancedSearch](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/AdvancedSearch.png)
+
 
 ## Overview
 
@@ -77,7 +78,7 @@ Similar to angular, this was one of our first opportunities to practice website 
 <br>
 [Ian Verderame (Scrum Master)](https://github.com/ianverderame)
 <br>
-[Max McGregor(DBA)](https://github.com/maxmcgregor)
+[Max McGregor (DBA)](https://github.com/maxmcgregor)
 <br>
 [Jack Himes](https://github.com/JackHimes)
 <br>
@@ -88,4 +89,4 @@ Similar to angular, this was one of our first opportunities to practice website 
 * Add new features for users to interact with each other
 
 ## Database Schema
-![Schema](https://drive.google.com/file/d/1eX7sNsdW7fmlcT8eXCpseKlzfCzLjYxV/view?usp=sharing)
+![Schema](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/EERimage.png)
