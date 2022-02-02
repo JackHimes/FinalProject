@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.User;
 import com.skilldistillery.rollthedice.repositories.GameEventRepository;
+import com.skilldistillery.rollthedice.repositories.GameRepository;
 import com.skilldistillery.rollthedice.repositories.UserRepository;
 
 @Service
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 	@Autowired
 	private GameEventRepository gameEventRepo;
+	
+	@Autowired
+	private GameRepository gameRepo;
 	
 	@Override
 	public List<User> findAllUsers() {
@@ -88,6 +93,26 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> searchKeyword(String keyword) {
 		return userRepo.findByUsernameContainsOrFirstNameContainsOrLastNameContains(keyword, keyword, keyword);
+	}
+
+	@Override
+	public Game addGameToUser(String username, int gameId) {
+		User loggedInUser = userRepo.findByUsername(username);
+		Game game = gameRepo.findById(gameId).get();
+		loggedInUser.addGame(game);
+		game.addUser(loggedInUser);
+		System.err.println(loggedInUser);
+		System.err.println(game);
+		userRepo.saveAndFlush(loggedInUser);
+		gameRepo.saveAndFlush(game);
+		return game;
+	}
+
+	@Override
+	public User findUserByUserName(String username) {
+		User user = null;
+		user = userRepo.findByUsername(username);
+		return user;
 	}
 
 }

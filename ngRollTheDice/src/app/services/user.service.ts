@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Game } from '../models/game';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
@@ -89,6 +90,17 @@ export class UserService {
           );
         })
       );
+  }
+
+  addGame(gameId: number): Observable<Game> {
+    return this.http.put<Game>(`${this.url}/games/${gameId}`, {}, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('UserService.addGame(): error adding game to user: ' + err)
+        );
+      })
+    );
   }
 
 

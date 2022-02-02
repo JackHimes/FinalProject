@@ -367,13 +367,19 @@ public class User {
 		User other = (User) obj;
 		return id == other.id;
 	}
-
+//game events and games causing stackoverflowexception due to toString() recursion on gameevents and games FIX ME!
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
 				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", profilePictureUrl=" + profilePictureUrl + ", addresses=" + addresses + ", homeAddress="
-				+ homeAddress + ", gameEvents=" + gameEvents + ", games=" + games + ", comments=" + comments
+				+ homeAddress 
+//				+ ", gameEvents=" 
+//				+ gameEvents 
+//				+ ", games=" 
+//				+ games 
+				+ ", comments=" 
+				+ comments
 				+ ", reviews=" + reviews + "]";
 	}
 

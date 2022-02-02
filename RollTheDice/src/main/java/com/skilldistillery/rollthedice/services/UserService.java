@@ -2,6 +2,7 @@ package com.skilldistillery.rollthedice.services;
 
 import java.util.List;
 
+import com.skilldistillery.rollthedice.entities.Game;
 import com.skilldistillery.rollthedice.entities.GameEvent;
 import com.skilldistillery.rollthedice.entities.User;
 
@@ -20,5 +21,9 @@ public interface UserService {
 	GameEvent addGuestToGameEvent(String username, int geId);
 	
 	List<User> searchKeyword(String keyword);
+	
+	Game addGameToUser(String username, int gameId);
+	
+	public User findUserByUserName(String username);
 
 }
