@@ -1,6 +1,6 @@
 # FinalProject (Roll The Dice)
 
-Live version deployed on an AWS server can be found here.
+Live version deployed on an AWS server can be found [here](http://3.13.17.130:8080/RollTheDice/#/home).
 
 ![HomePage](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Home%20Page.png)
 ![ProfilePage](https://github.com/A-Shumway42/FinalProject/blob/main/Screenshots/Profile%20Display.png)
